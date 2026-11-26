@@ -6,11 +6,3 @@ export interface TreeViewProps {
   isExpandedByDefault: boolean;
   onSelect: (row: FormRow) => void;
 }
-
-export interface TreeNodeProps {
-  item: FormRow;
-  config: TreeConfig;
-  level: number;
-  isExpandedByDefault: boolean;
-  onSelect: (row: FormRow) => void;
-}

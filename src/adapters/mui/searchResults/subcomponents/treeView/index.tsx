@@ -1,5 +1,5 @@
+import TreeNode from "./subcomponents/treeNode";
 import { TreeContainer } from "./styles";
-import TreeNode from "./treeNode";
 
 import type { TreeViewProps } from "./types";
 
