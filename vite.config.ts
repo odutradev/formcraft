@@ -19,7 +19,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
     lib: {
-      entry: { index: resolvePath("./src/index.ts"), mui: resolvePath("./src/adapters/mui/index.ts") },
+      entry: { index: resolvePath("./src/index.ts"), mui: resolvePath("./src/adapters/mui/index.ts"), native: resolvePath("./src/adapters/native/index.ts") },
       formats: ["es", "cjs"],
       fileName: (format, entryName) => `${entryName}.${format === "es" ? "js" : "cjs"}`
     },
