@@ -9,7 +9,11 @@
     "wizard",
     "headless",
     "mui",
-    "config-driven"
+    "config-driven",
+    "mantine",
+    "ant-design",
+    "chakra-ui",
+    "enchase"
   ],
   "license": "MIT",
   "author": "odutradev",
@@ -45,6 +49,26 @@
       "types": "./dist/lib/native/index.d.ts",
       "import": "./dist/native.js",
       "require": "./dist/native.cjs"
+    },
+    "./mantine": {
+      "types": "./dist/lib/mantine/index.d.ts",
+      "import": "./dist/mantine.js",
+      "require": "./dist/mantine.cjs"
+    },
+    "./antd": {
+      "types": "./dist/lib/antd/index.d.ts",
+      "import": "./dist/antd.js",
+      "require": "./dist/antd.cjs"
+    },
+    "./chakra": {
+      "types": "./dist/lib/chakra/index.d.ts",
+      "import": "./dist/chakra.js",
+      "require": "./dist/chakra.cjs"
+    },
+    "./enchase": {
+      "types": "./dist/lib/enchase/index.d.ts",
+      "import": "./dist/enchase.js",
+      "require": "./dist/enchase.cjs"
     }
   },
   "scripts": {
@@ -64,7 +88,16 @@
     "@mui/x-date-pickers": ">=9",
     "dayjs": ">=1.11",
     "react": ">=19",
-    "react-dom": ">=19"
+    "react-dom": ">=19",
+    "@mantine/core": ">=9",
+    "@mantine/dates": ">=9",
+    "@mantine/hooks": ">=9",
+    "@tabler/icons-react": ">=3",
+    "antd": ">=6",
+    "@ant-design/icons": ">=6",
+    "@chakra-ui/react": ">=3",
+    "lucide-react": ">=1",
+    "enchase": ">=0.27"
   },
   "peerDependenciesMeta": {
     "@mui/material": {
@@ -83,6 +116,33 @@
       "optional": true
     },
     "dayjs": {
+      "optional": true
+    },
+    "@mantine/core": {
+      "optional": true
+    },
+    "@mantine/dates": {
+      "optional": true
+    },
+    "@mantine/hooks": {
+      "optional": true
+    },
+    "@tabler/icons-react": {
+      "optional": true
+    },
+    "antd": {
+      "optional": true
+    },
+    "@ant-design/icons": {
+      "optional": true
+    },
+    "@chakra-ui/react": {
+      "optional": true
+    },
+    "lucide-react": {
+      "optional": true
+    },
+    "enchase": {
       "optional": true
     }
   },

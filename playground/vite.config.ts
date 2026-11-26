@@ -34,6 +34,10 @@ export default defineConfig({
       { find: /^@playground\//, replacement: resolvePath("./") },
       { find: new RegExp(`^${packageName}/mui$`), replacement: resolvePath("../dist/mui.js") },
       { find: new RegExp(`^${packageName}/native$`), replacement: resolvePath("../dist/native.js") },
+      { find: new RegExp(`^${packageName}/mantine$`), replacement: resolvePath("../dist/mantine.js") },
+      { find: new RegExp(`^${packageName}/antd$`), replacement: resolvePath("../dist/antd.js") },
+      { find: new RegExp(`^${packageName}/chakra$`), replacement: resolvePath("../dist/chakra.js") },
+      { find: new RegExp(`^${packageName}/enchase$`), replacement: resolvePath("../dist/enchase.js") },
       { find: new RegExp(`^${packageName}$`), replacement: resolvePath("../dist/index.js") }
     ]
   },

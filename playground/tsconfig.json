@@ -5,7 +5,11 @@
       "@playground/*": ["./*"],
       "multi-step-form": ["../dist/lib/index.d.ts"],
       "multi-step-form/mui": ["../dist/lib/mui/index.d.ts"],
-      "multi-step-form/native": ["../dist/lib/native/index.d.ts"]
+      "multi-step-form/native": ["../dist/lib/native/index.d.ts"],
+      "multi-step-form/mantine": ["../dist/lib/mantine/index.d.ts"],
+      "multi-step-form/antd": ["../dist/lib/antd/index.d.ts"],
+      "multi-step-form/chakra": ["../dist/lib/chakra/index.d.ts"],
+      "multi-step-form/enchase": ["../dist/lib/enchase/index.d.ts"]
     }
   },
   "include": ["."],

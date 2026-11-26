@@ -5,7 +5,20 @@ import dts from "vite-plugin-dts";
 
 const resolvePath = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
-const externalPackages = [/^react($|\/)/, /^react-dom($|\/)/, /^@mui\//, /^@emotion\//, /^dayjs($|\/)/];
+const externalPackages = [
+  /^react($|\/)/,
+  /^react-dom($|\/)/,
+  /^@mui\//,
+  /^@emotion\//,
+  /^dayjs($|\/)/,
+  /^@mantine\//,
+  /^@tabler\//,
+  /^antd($|\/)/,
+  /^@ant-design\//,
+  /^@chakra-ui\//,
+  /^lucide-react($|\/)/,
+  /^enchase($|\/)/
+];
 
 export default defineConfig({
   plugins: [react(), dts({ entryRoot: ".", include: ["src", "lib"], tsconfigPath: "./tsconfig.json" })],
@@ -24,7 +37,15 @@ export default defineConfig({
   build: {
     sourcemap: true,
     lib: {
-      entry: { index: resolvePath("./lib/index.ts"), mui: resolvePath("./lib/mui/index.ts"), native: resolvePath("./lib/native/index.ts") },
+      entry: {
+        index: resolvePath("./lib/index.ts"),
+        mui: resolvePath("./lib/mui/index.ts"),
+        native: resolvePath("./lib/native/index.ts"),
+        mantine: resolvePath("./lib/mantine/index.ts"),
+        antd: resolvePath("./lib/antd/index.ts"),
+        chakra: resolvePath("./lib/chakra/index.ts"),
+        enchase: resolvePath("./lib/enchase/index.ts")
+      },
       formats: ["es", "cjs"],
       fileName: (format, entryName) => `${entryName}.${format === "es" ? "js" : "cjs"}`
     },
