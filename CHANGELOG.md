@@ -2,7 +2,7 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
-## [Não publicado]
+## [0.1.3] - 2026-11-26
 
 ### Adicionado
 
@@ -48,4 +48,5 @@ Primeira versão como biblioteca, extraída do componente `MultiStepForm` da apl
 - As opções dos campos do modal recebiam o contexto do formulário pai.
 - Falhas no `onSearch` não eram tratadas.
 
+[0.1.3]: https://github.com/odutradev/multiStepForm/releases/tag/v0.1.3
 [0.1.1]: https://github.com/odutradev/multiStepForm/releases/tag/v0.1.1
