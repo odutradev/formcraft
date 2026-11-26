@@ -3,9 +3,11 @@ import { styled } from "@mui/material/styles";
 
 import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
+import type { NodeContainerProps } from "./types";
+
 const indentationStep = 3;
 
-export const NodeContainer = styled(Box, { shouldForwardProp })<{ $level: number }>(({ theme, $level }) => ({
+export const NodeContainer = styled(Box, { shouldForwardProp })<NodeContainerProps>(({ theme, $level }) => ({
   display: "flex",
   alignItems: "center",
   minHeight: theme.spacing(5),

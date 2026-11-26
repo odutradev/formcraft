@@ -3,17 +3,9 @@ import { alpha, styled } from "@mui/material/styles";
 
 import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
-import type { GroupVariant } from "./types";
+import type { FramedProps, HighlightProps, VariantProps } from "./types";
 
-interface VariantProps {
-  $variant: GroupVariant;
-}
-
-interface FramedProps extends VariantProps {
-  $isSeamless: boolean;
-}
-
-export const PlainGroup = styled(Box, { shouldForwardProp })<{ $isHighlighted: boolean }>(({ theme, $isHighlighted }) => ({
+export const PlainGroup = styled(Box, { shouldForwardProp })<HighlightProps>(({ theme, $isHighlighted }) => ({
   width: "100%",
   display: "flex",
   flexDirection: "column",
@@ -25,7 +17,7 @@ export const PlainGroup = styled(Box, { shouldForwardProp })<{ $isHighlighted: b
   })
 }));
 
-export const PlainTitle = styled(Typography, { shouldForwardProp })<{ $isHighlighted: boolean }>(({ theme, $isHighlighted }) => ({
+export const PlainTitle = styled(Typography, { shouldForwardProp })<HighlightProps>(({ theme, $isHighlighted }) => ({
   fontWeight: theme.typography.fontWeightBold,
   color: $isHighlighted ? theme.palette.primary.main : theme.palette.text.secondary
 }));

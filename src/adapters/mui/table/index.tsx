@@ -6,13 +6,8 @@ import { DetailCell, HeaderContainer, MenuIconWrapper, TableContainerWrapper } f
 import useFormRuntime from "@core/hooks/useFormRuntime";
 
 import type { FormRow, TableAction } from "@core/types";
+import type { OpenMenu, TableProps } from "./types";
 import type { MouseEvent } from "react";
-import type { TableProps } from "./types";
-
-interface OpenMenu {
-  anchor: HTMLElement;
-  row: FormRow;
-}
 
 const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCell, renderRowDetail, onAction }: TableProps) => {
   const { labels } = useFormRuntime();

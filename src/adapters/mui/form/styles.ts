@@ -3,6 +3,8 @@ import { Box } from "@mui/material";
 
 import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
+import type { StepContainerProps } from "./types";
+
 export const FormContainer = styled("form")(({ theme }) => ({
   flex: 1,
   width: "100%",
@@ -12,7 +14,7 @@ export const FormContainer = styled("form")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper
 }));
 
-export const StepContainer = styled(Box, { shouldForwardProp })<{ $hasIndicator: boolean }>(({ theme, $hasIndicator }) => ({
+export const StepContainer = styled(Box, { shouldForwardProp })<StepContainerProps>(({ theme, $hasIndicator }) => ({
   flex: 1,
   display: "flex",
   flexDirection: "column",

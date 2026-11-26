@@ -3,9 +3,11 @@ import { Box } from "@mui/material";
 
 import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
+import type { FieldWrapperProps } from "./types";
+
 const smallScreenColumns = 2;
 
-export const FieldWrapper = styled(Box, { shouldForwardProp })<{ $colSpan?: number; $isNewRow: boolean }>(({ theme, $colSpan, $isNewRow }) => ({
+export const FieldWrapper = styled(Box, { shouldForwardProp })<FieldWrapperProps>(({ theme, $colSpan, $isNewRow }) => ({
   width: "100%",
   minWidth: 0,
   gridColumn: "1 / -1",

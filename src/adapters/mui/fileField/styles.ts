@@ -4,7 +4,7 @@ import { Check } from "@mui/icons-material";
 
 import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
-import type { FileRowStateProps } from "./types";
+import type { FileRowStateProps, OrderBadgeProps } from "./types";
 
 export const FileUploadWrapper = styled(Box)({ width: "100%" });
 
@@ -41,7 +41,7 @@ export const FileRowMainLine = styled(Box)(({ theme }) => ({
   }
 }));
 
-export const OrderBadge = styled(Box, { shouldForwardProp })<{ $hasFile: boolean }>(({ theme, $hasFile }) => ({
+export const OrderBadge = styled(Box, { shouldForwardProp })<OrderBadgeProps>(({ theme, $hasFile }) => ({
   flexShrink: 0,
   display: "flex",
   alignItems: "center",

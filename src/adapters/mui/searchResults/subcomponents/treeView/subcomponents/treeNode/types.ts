@@ -7,3 +7,7 @@ export interface TreeNodeProps {
   isExpandedByDefault: boolean;
   onSelect: (row: FormRow) => void;
 }
+
+export interface NodeContainerProps {
+  $level: number;
+}
