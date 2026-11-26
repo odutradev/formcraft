@@ -504,7 +504,7 @@ src/
     └── native/  # adapter HTML nativo com variáveis CSS
 ```
 
-Cada pasta tem `index.ts(x)` e, quando declara tipos, um `types.ts` ao lado; os componentes dos adapters também têm `styles.ts`. Dentro de `src` os imports usam o alias `@/` (`@/types`, `@/hooks/useFormRuntime`).
+Cada pasta tem `index.ts(x)` e, quando declara tipos, um `types.ts` ao lado; os componentes dos adapters também têm `styles.ts`. Dentro de `src` cada pasta tem um alias com o nome dela (`@components`, `@hooks`, `@functions`, `@engine`, `@context`, `@labels`, `@adapters`); a pasta `types` usa `@typings`, porque o TypeScript reserva `@types/*` para os pacotes de tipos do npm.
 
 ## Publicação
 

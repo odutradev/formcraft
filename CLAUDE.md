@@ -196,7 +196,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 
 ## 8. Code style
 
-- **Imports:** one alias, `@/`, pointing at `src/` (`@/types`, `@/hooks/useFormRuntime`, `@/adapters/native`). Files import siblings in their own folder with `./` (`./types`, `./styles`, `./subcomponents/...`). The build resolves the alias: published files never contain it.
+- **Imports:** one alias per `src` folder, named after it: `@adapters`, `@components`, `@context`, `@engine`, `@functions`, `@hooks`, `@labels` and `@typings` for `src/types` (TypeScript reserves `@types/*` for npm type packages, error TS6137). A new `src` folder gets its alias in `tsconfig.json` `paths` (bare and `/*`) and in the `resolve.alias` of `vite.config.ts`. Files import siblings in their own folder with `./` (`./types`, `./styles`, `./subcomponents/...`). The build resolves every alias: published files never contain one.
 - **Import organization:** 3 blocks separated by a blank line: external, internal and `import type`, each sorted from longest to shortest line. Destructuring always on one line.
 - **Semicolons:** always.
 - **Quotes:** double quotes, also in JSX attributes.
@@ -274,7 +274,7 @@ Before writing a helper, look for one in `src/functions`. Never duplicate a help
 
 ✅ Do:
 ```typescript
-import resolveValue from "@/functions/resolveValue";
+import resolveValue from "@functions/resolveValue";
 ```
 
 ❌ Don't:
@@ -332,7 +332,7 @@ color: "#666"
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
 - Behavior changes are checked by hand in the playground (`npm run dev`). The full form config is in `playground/config/sampleConfig`; the components gallery, one single-step form per feature group, is in `playground/config/showcaseSections`. A new field type or config option gets an example in the gallery.
-- The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src`, `lib` or the `@/` alias in the playground.
+- The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src`, `lib` or the library aliases in the playground.
 - The playground follows the same folder rules as the library: `components/<name>/` (`index.tsx`, `styles.css`, `types.ts`), `config/`, `data/`, `functions/<name>/index.ts` and `types/`, imported through the `@playground` alias.
 
 ## 11. Commits and Git
@@ -416,7 +416,7 @@ Use these files as a template. They follow every rule above. Where an example di
 ### `src/functions/resolveValue/index.ts`
 
 ```typescript
-import type { ActionContext, Resolvable } from "@/types";
+import type { ActionContext, Resolvable } from "@typings";
 
 const resolveValue = <T>(value: Resolvable<T> | undefined, context: ActionContext, fallback: T): T => {
   if (value === undefined) return fallback;
@@ -449,7 +449,7 @@ export default FieldSlot;
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
-import shouldForwardProp from "@/adapters/mui/functions/shouldForwardProp";
+import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
 import type { FieldWrapperProps } from "./types";
 
@@ -473,7 +473,7 @@ export const FieldWrapper = styled(Box, { shouldForwardProp })<FieldWrapperProps
 ### `src/adapters/mui/fieldSlot/types.ts`
 
 ```typescript
-import type { FieldSlotProps as CoreFieldSlotProps } from "@/types";
+import type { FieldSlotProps as CoreFieldSlotProps } from "@typings";
 
 export type FieldSlotProps = CoreFieldSlotProps;
 
@@ -486,12 +486,12 @@ export interface FieldWrapperProps {
 ### `lib/index.ts`
 
 ```typescript
-export { default as MultiStepFormProvider } from "@/components/multiStepFormProvider";
-export { default as MultiStepForm } from "@/components/multiStepForm";
-export { default as useFormRuntime } from "@/hooks/useFormRuntime";
-export { default as defaultLabels } from "@/labels";
+export { default as MultiStepFormProvider } from "@components/multiStepFormProvider";
+export { default as MultiStepForm } from "@components/multiStepForm";
+export { default as useFormRuntime } from "@hooks/useFormRuntime";
+export { default as defaultLabels } from "@labels";
 
-export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldProps, MultiStepFormProps } from "@/types";
+export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldProps, MultiStepFormProps } from "@typings";
 ```
 
 ## 15. Checklist before delivering
@@ -506,7 +506,7 @@ export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldPr
 - [ ] Async callbacks have their rejections handled and reported through `onError`.
 - [ ] No `console.*`, no consumer-app dependencies, no whole-package icon imports.
 - [ ] New dependencies are `peerDependencies` (optional when adapter-only).
-- [ ] Imports use the `@/` alias and the 3-block order.
+- [ ] Imports use the folder aliases and the 3-block order.
 - [ ] Principles applied: early returns, immutability, strict typing, hooks rules, no reinvented utilities, mobile-first, accessibility, theme tokens.
 - [ ] Public API changes classified as patch, minor or major.
 - [ ] Typecheck, lint and build pass.

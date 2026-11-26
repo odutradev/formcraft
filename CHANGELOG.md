@@ -2,6 +2,12 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Alterado
+
+- Os imports internos voltam a usar um alias por pasta de `src` (`@components`, `@hooks`, `@functions`, `@engine`, `@context`, `@labels`, `@adapters` e `@typings`) no lugar do alias geral `@/`.
+
 ## [0.1.8] - 2026-11-26
 
 ### Alterado
