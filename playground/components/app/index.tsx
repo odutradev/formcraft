@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={muiTheme}>
-      <MultiStepFormProvider {...globalFormDefaults}>
+      <MultiStepFormProvider {...globalFormDefaults} locale={settings.locale}>
         <CssBaseline />
         <div className="playground" data-mode={settings.colorMode} style={buildNativeStyle(settings)}>
           <Header

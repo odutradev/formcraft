@@ -1,7 +1,8 @@
-import { colorPresets, fontOptions } from "@playground/data/styleOptions";
+import { colorPresets, fontOptions, localeOptions } from "@playground/data/styleOptions";
 import "./styles.css";
 
 import type { StyleSettings } from "@playground/types";
+import type { FormLocaleOption } from "multi-step-form";
 import type { ThemePanelProps } from "./types";
 
 const ThemePanel = ({ settings, onSettingsChange, onReset }: ThemePanelProps) => {
@@ -22,7 +23,7 @@ const ThemePanel = ({ settings, onSettingsChange, onReset }: ThemePanelProps) =>
           Restaurar
         </button>
       </div>
-      <p className="theme-panel-hint">Os controles mudam ao mesmo tempo o tema MUI (createTheme) e as variáveis --msf-* do adapter nativo.</p>
+      <p className="theme-panel-hint">Os controles mudam ao mesmo tempo o tema MUI (createTheme) e as variáveis --msf-* do adapter nativo. O idioma vale para todos os formulários.</p>
 
       <div className="theme-control">
         <span className="theme-control-label">Cor primária</span>
@@ -68,6 +69,18 @@ const ThemePanel = ({ settings, onSettingsChange, onReset }: ThemePanelProps) =>
             </option>
           ))}
         </select>
+      </label>
+
+      <label className="theme-control">
+        <span className="theme-control-label">Idioma dos textos</span>
+        <select value={settings.locale} onChange={(event) => update("locale", event.target.value as FormLocaleOption)}>
+          {localeOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <span className="theme-panel-hint">Prop locale no MultiStepFormProvider global. Navegador: {navigator.language}</span>
       </label>
 
       <div className="theme-snippet">

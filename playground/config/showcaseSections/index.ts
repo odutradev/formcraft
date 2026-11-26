@@ -1,5 +1,5 @@
 import searchPeople from "@playground/functions/searchPeople";
-import { sectionFormDefaults } from "@playground/data/formDefaults";
+import { englishFormDefaults, sectionFormDefaults } from "@playground/data/formDefaults";
 import { departments, people } from "@playground/data/people";
 
 import type { ShowcaseSection } from "@playground/types";
@@ -408,6 +408,36 @@ const showcaseSections: ShowcaseSection[] = [
                 { name: "phone", preSet: "phone", required: true },
                 { name: "workPhone", preSet: "phone", label: "Telefone comercial" },
                 { name: "zipCode", preSet: "zipCode", required: true }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "locale",
+    title: "Idiomas",
+    description:
+      "Os textos da biblioteca vêm em português e inglês. Por padrão o idioma segue o navegador (locale auto); esta seção fixa locale: \"en\" num Provider aninhado, sem depender do seletor do painel. Valide vazio para ver as mensagens.",
+    features: ["locale", "auto", "pt-BR", "en", "enLabels"],
+    defaults: englishFormDefaults,
+    config: {
+      steps: [
+        {
+          id: "locale",
+          title: "Idiomas",
+          actions: validateAction,
+          groups: [
+            {
+              title: "Textos em inglês",
+              gridColumns: 2,
+              fields: [
+                { name: "localeName", label: "Nome", required: true },
+                { name: "localeCity", label: "Cidade", type: "select", options: cityOptions, required: true },
+                { name: "localeTags", label: "Tags", type: "tags" },
+                { name: "localeDate", label: "Data", type: "date" },
+                { name: "localeDocument", label: "Documento", type: "file", required: true, colSpan: 2 }
               ]
             }
           ]

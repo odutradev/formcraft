@@ -7,6 +7,10 @@ export const globalFormDefaults: MultiStepFormDefaults = {
   }
 };
 
+export const englishFormDefaults: MultiStepFormDefaults = {
+  locale: "en"
+};
+
 export const sectionFormDefaults: MultiStepFormDefaults = {
   formStyle: "collapsed",
   labels: { required: "Obrigatório nesta seção" }

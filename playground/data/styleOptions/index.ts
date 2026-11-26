@@ -1,6 +1,8 @@
 import type { AdapterView, ColorMode, PageTab, StyleOption, StyleSettings } from "@playground/types";
+import type { FormLocaleOption } from "multi-step-form";
 
 export const defaultSettings: StyleSettings = {
+  locale: "auto",
   primaryColor: "#2563eb",
   colorMode: "light",
   borderRadius: 8,
@@ -15,6 +17,12 @@ export const fontOptions = [
   { label: "Roboto", value: 'Roboto, "Helvetica Neue", Arial, sans-serif' },
   { label: "Serif", value: 'Georgia, "Times New Roman", serif' },
   { label: "Monoespaçada", value: 'ui-monospace, "Cascadia Code", Consolas, monospace' }
+];
+
+export const localeOptions: StyleOption<FormLocaleOption>[] = [
+  { label: "Automático (idioma do navegador)", value: "auto" },
+  { label: "Português (pt-BR)", value: "pt-BR" },
+  { label: "English (en)", value: "en" }
 ];
 
 export const tabOptions: StyleOption<PageTab>[] = [
