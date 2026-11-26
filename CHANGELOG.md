@@ -2,6 +2,13 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Alterado
+
+- A prop `components` passa a ser opcional. Sem ela, o formulário usa o adapter nativo, exportado também como `nativeComponents` pela entrada principal. O entry `multi-step-form/native` continua disponível.
+- Playground organizado em pastas (`components`, `config`, `data`, `functions`, `types`), e o formulário nativo dele não passa `components`.
+
 ## [0.1.3] - 2026-11-26
 
 ### Adicionado

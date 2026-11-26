@@ -45,7 +45,6 @@ npm install react react-dom @mui/material @mui/icons-material @mui/x-date-picker
 ## Uso básico
 
 ```tsx
-import { muiComponents } from "multi-step-form/mui";
 import { MultiStepForm } from "multi-step-form";
 
 import type { FormConfig, FormValues } from "multi-step-form";
@@ -84,26 +83,28 @@ const RegistrationPage = () => {
     await saveRegistration(data);
   };
 
-  return <MultiStepForm config={config} components={muiComponents} onSubmit={handleSubmit} onError={reportError} />;
+  return <MultiStepForm config={config} onSubmit={handleSubmit} onError={reportError} />;
 };
 ```
 
-O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `LocalizationProvider` do date picker, configurado em pt-BR.
+Sem a prop `components`, o formulário usa o adapter nativo, em HTML puro, sem nenhum import extra.
 
-Para usar o adapter nativo, troque só o mapa de componentes:
+Para usar o Material UI, passe o adapter dele:
 
 ```tsx
-import { nativeComponents } from "multi-step-form/native";
+import { muiComponents } from "multi-step-form/mui";
 
-<MultiStepForm config={config} components={nativeComponents} onSubmit={handleSubmit} />;
+<MultiStepForm config={config} components={muiComponents} onSubmit={handleSubmit} />;
 ```
+
+O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `LocalizationProvider` do date picker, configurado em pt-BR.
 
 ## Propriedades do `MultiStepForm`
 
 | Propriedade | Tipo | Padrão | Descrição |
 | :--- | :--- | :--- | :--- |
 | `config` | `FormConfig` | `-` | Configuração das etapas, dos grupos e dos campos. |
-| `components` | `FormComponents` | `-` | Mapa de componentes visuais. Use `muiComponents`, `nativeComponents` ou um adapter próprio. |
+| `components` | `FormComponents` | `nativeComponents` | Mapa de componentes visuais. Sem ela, usa o adapter nativo. Passe `muiComponents` ou um adapter próprio para trocar. |
 | `onSubmit` | `(data: FormValues) => void \| Promise<void>` | `-` | Chamada por uma ação `submit` quando todas as etapas visíveis são válidas. |
 | `onError` | `(error: unknown) => void` | `undefined` | Recebe os erros lançados por `onSubmit`, `action.onClick` e `searchConfig.onSearch`. |
 | `initialData` | `FormValues` | `{}` | Valores iniciais do formulário. |
@@ -304,7 +305,7 @@ const field: FormField = {
 Todos os textos exibidos ficam em `defaultLabels`, em pt-BR. Passe apenas o que quiser mudar:
 
 ```tsx
-<MultiStepForm config={config} components={muiComponents} onSubmit={handleSubmit} labels={{ required: "Preencha este campo", search: "Pesquisar" }} />
+<MultiStepForm config={config} onSubmit={handleSubmit} labels={{ required: "Preencha este campo", search: "Pesquisar" }} />
 ```
 
 A lista completa de chaves está no tipo `FormLabels`. O painel de DevTools, que é usado só em desenvolvimento, tem textos fixos.
@@ -320,7 +321,7 @@ Com `isDevToolsEnabled`, o atalho `Ctrl + Shift + Q` mostra um painel que:
 A biblioteca nunca ativa o painel sozinha. Ligue-o apenas em desenvolvimento:
 
 ```tsx
-<MultiStepForm config={config} components={muiComponents} onSubmit={handleSubmit} isDevToolsEnabled={import.meta.env.DEV} />
+<MultiStepForm config={config} onSubmit={handleSubmit} isDevToolsEnabled={import.meta.env.DEV} />
 ```
 
 ## Adapters
@@ -329,8 +330,8 @@ O `components` recebe um objeto `FormComponents`, com um componente para cada pe
 
 | Adapter | Import | Dependências |
 | :--- | :--- | :--- |
+| Nativo (padrão) | Nenhum. Para estendê-lo: `import { nativeComponents } from "multi-step-form"` | Nenhuma |
 | Material UI | `import { muiComponents } from "multi-step-form/mui"` | MUI, Emotion e Day.js |
-| Nativo | `import { nativeComponents } from "multi-step-form/native"` | Nenhuma |
 
 ### Adapter nativo
 
@@ -405,7 +406,7 @@ Esta biblioteca substitui o componente `MultiStepForm` que usava `react-hook-for
 | Antes | Agora |
 | :--- | :--- |
 | `import MultiStepForm from "@components/multiStepForm"` | `import { MultiStepForm } from "multi-step-form"` e `import { muiComponents } from "multi-step-form/mui"` |
-| Sem a prop `components` | `components={muiComponents}` é obrigatória |
+| Visual do Material UI embutido | Sem `components`, usa o adapter nativo. Para manter o visual MUI, passe `components={muiComponents}`. |
 | `icon: "Search"` (nome do ícone) | `icon: <Search />` (elemento React) |
 | Autocomplete de opção única guardava o texto digitado | Guarda o `value` da opção. Use `freeSolo` para texto livre. |
 | `getValues` e `setError` do `react-hook-form` | `getValues(name?)` e `setError(name, { message })` |
@@ -420,9 +421,9 @@ npm install
 npm run dev
 ```
 
-O `npm run dev` abre o playground (`playground/`), que mostra a mesma configuração de exemplo, com quase todos os recursos, em dois formulários: um com o adapter MUI e outro com o adapter nativo. Uma barra no topo muda a cor primária, o modo claro ou escuro, o arredondamento, o espaçamento e a fonte dos dois, e permite ver os dois lado a lado ou um de cada vez. A configuração fica em `playground/sampleConfig.ts`.
+O `npm run dev` abre o playground (`playground/`), que mostra a mesma configuração de exemplo, com quase todos os recursos, em dois formulários: um com o adapter MUI e outro com o adapter nativo. Uma barra no topo muda a cor primária, o modo claro ou escuro, o arredondamento, o espaçamento e a fonte dos dois, e permite ver os dois lado a lado ou um de cada vez. A configuração fica em `playground/config/sampleConfig`. O código do playground segue a mesma organização da biblioteca: `components/` (um componente por pasta), `config/`, `data/`, `functions/` e `types/`, importados pelo alias `@playground`.
 
-O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form`, `multi-step-form/mui` e `multi-step-form/native`, e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
+O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form` e `multi-step-form/mui` (o alias também cobre `multi-step-form/native`) e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
 
 | Script | O que faz |
 | :--- | :--- |

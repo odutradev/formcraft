@@ -55,6 +55,9 @@ The original `react-hook-form` component was replaced by the structure below. Th
     │   │   └── index.ts  # defaultLabels in pt-BR
     │   └── types/
     │       └── index.ts  # FormConfig, FormField, ActionContext, adapter contract (FormComponents)
+    ├── multiStepForm/
+    │   ├── index.tsx  # public MultiStepForm: applies nativeComponents when components is omitted
+    │   └── types.ts
     ├── renderer/
     │   └── multiStepForm/
     │       ├── subcomponents/
@@ -86,6 +89,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 **Layer rules:**
 
 - `core` depends only on React. It never imports from `renderer`, `adapters`, MUI or any UI library.
+- `multiStepForm` is the public component. It is the only place that joins the renderer with a default adapter (`nativeComponents`) and holds no other logic.
 - `renderer` imports from `core` only. It never renders a UI-library component directly: it asks the component map for one.
 - `adapters/<name>` implement the `FormComponents` contract declared in `core/types`. They may import `core` types, hooks (`useFormRuntime` for labels) and display helpers (`toText`) and their own UI library, never `renderer` or another adapter.
 - Every input type in `InputFieldType` must have a component in each adapter's `inputs` map.
@@ -94,7 +98,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 
 **Public API:**
 
-- `src/index.ts` is the only entry for the core and renderer. Each adapter has its own entry (`<package>/mui`, `<package>/native`) declared in `package.json` `exports`.
+- `src/index.ts` is the only entry for the core, the renderer and the default native adapter (`nativeComponents`). Each adapter has its own entry (`<package>/mui`, `<package>/native`) declared in `package.json` `exports`.
 - Anything not exported from an entry file is private and may change without a major version.
 - Removing or renaming an export, changing a prop or changing the behavior of a config option is a **breaking change**.
 
@@ -290,8 +294,9 @@ color: "#666"
 
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
-- Behavior changes are checked by hand in the playground (`npm run dev`, config in `playground/sampleConfig.ts`).
+- Behavior changes are checked by hand in the playground (`npm run dev`, config in `playground/config/sampleConfig`).
 - The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src` or the `@core`, `@renderer` and `@adapters` aliases in the playground.
+- The playground follows the same folder rules as the library: `components/<name>/` (`index.tsx`, `styles.css`, `types.ts`), `config/`, `data/`, `functions/<name>/index.ts` and `types/`, imported through the `@playground` alias.
 
 ## 11. Commits and Git
 
