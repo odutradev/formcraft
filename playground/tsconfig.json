@@ -3,9 +3,9 @@
   "compilerOptions": {
     "paths": {
       "@playground/*": ["./*"],
-      "multi-step-form": ["../dist/index.d.ts"],
-      "multi-step-form/mui": ["../dist/adapters/mui/index.d.ts"],
-      "multi-step-form/native": ["../dist/adapters/native/index.d.ts"]
+      "multi-step-form": ["../dist/lib/index.d.ts"],
+      "multi-step-form/mui": ["../dist/lib/mui/index.d.ts"],
+      "multi-step-form/native": ["../dist/lib/native/index.d.ts"]
     }
   },
   "include": ["."],

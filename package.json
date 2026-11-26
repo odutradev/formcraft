@@ -29,20 +29,20 @@
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/lib/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/lib/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./mui": {
-      "types": "./dist/adapters/mui/index.d.ts",
+      "types": "./dist/lib/mui/index.d.ts",
       "import": "./dist/mui.js",
       "require": "./dist/mui.cjs"
     },
     "./native": {
-      "types": "./dist/adapters/native/index.d.ts",
+      "types": "./dist/lib/native/index.d.ts",
       "import": "./dist/native.js",
       "require": "./dist/native.cjs"
     }
