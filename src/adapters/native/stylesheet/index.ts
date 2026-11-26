@@ -5,6 +5,7 @@ import { stepIndicatorStyles } from "@adapters/native/stepIndicator/styles";
 import { searchResultsStyles } from "@adapters/native/searchResults/styles";
 import { subGroupListStyles } from "@adapters/native/subGroupList/styles";
 import { fieldFrameStyles } from "@adapters/native/fieldFrame/styles";
+import { comboBoxStyles } from "@adapters/native/comboBox/styles";
 import { searchBarStyles } from "@adapters/native/searchBar/styles";
 import { fieldGridStyles } from "@adapters/native/fieldGrid/styles";
 import { fieldSlotStyles } from "@adapters/native/fieldSlot/styles";
@@ -30,6 +31,7 @@ const componentStyles = [
   iconStyles,
   spinnerStyles,
   fieldFrameStyles,
+  comboBoxStyles,
   chipStyles,
   buttonStyles,
   stepIndicatorStyles,
