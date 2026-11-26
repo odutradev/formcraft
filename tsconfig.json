@@ -16,6 +16,7 @@
     "paths": {
       "@core/*": ["./src/core/*"],
       "@multiStepForm": ["./src/multiStepForm"],
+      "@multiStepFormProvider": ["./src/multiStepFormProvider"],
       "@renderer/*": ["./src/renderer/*"],
       "@adapters/*": ["./src/adapters/*"]
     }

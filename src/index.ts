@@ -1,3 +1,4 @@
+export { default as MultiStepFormProvider } from "@multiStepFormProvider";
 export { default as MultiStepForm } from "@multiStepForm";
 export { nativeComponents } from "@adapters/native";
 export { default as useFormRuntime } from "@core/hooks/useFormRuntime";
@@ -19,6 +20,7 @@ export type {
   FileFieldValue,
   FormAction,
   FormComponents,
+  FormComponentsOverride,
   FormConfig,
   FormErrors,
   FormField,
@@ -35,7 +37,9 @@ export type {
   MessageFieldProps,
   MessageFieldType,
   ModalProps,
+  MultiStepFormDefaults,
   MultiStepFormProps,
+  MultiStepFormProviderProps,
   Resolvable,
   SearchBarProps,
   SearchConfig,

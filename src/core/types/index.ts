@@ -351,9 +351,26 @@ export interface FormRuntime {
   reportError: (error: unknown) => void;
 }
 
+export type FormComponentsOverride = Partial<Omit<FormComponents, "inputs">> & {
+  inputs?: Partial<FormComponents["inputs"]>;
+};
+
+export interface MultiStepFormDefaults {
+  components?: FormComponentsOverride;
+  labels?: Partial<FormLabels>;
+  fieldPreSets?: FormConfig["fieldPreSets"];
+  formStyle?: FormConfig["formStyle"];
+  onError?: (error: unknown) => void;
+  isDevToolsEnabled?: boolean;
+}
+
+export interface MultiStepFormProviderProps extends MultiStepFormDefaults {
+  children: ReactNode;
+}
+
 export interface MultiStepFormProps {
   config: FormConfig;
-  components?: FormComponents;
+  components?: FormComponentsOverride;
   onSubmit: (data: FormValues) => void | Promise<void>;
   onError?: (error: unknown) => void;
   initialData?: FormValues;
