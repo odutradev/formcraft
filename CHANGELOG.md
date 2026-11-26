@@ -2,6 +2,13 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Alterado
+
+- As entradas públicas do pacote ficam em `src/lib` (`index`, `mui` e `native`), e os tipos publicados passam para `dist/lib`. Os caminhos de importação (`multi-step-form`, `multi-step-form/mui`, `multi-step-form/native`) não mudam.
+- Os tipos do core estão divididos por assunto em `core/types`, e os tipos internos de helpers, do motor e dos componentes MUI ficam em arquivos `types.ts`.
+
 ## [0.1.6] - 2026-11-26
 
 ### Adicionado

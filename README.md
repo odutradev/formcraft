@@ -490,11 +490,18 @@ A estrutura do código e as regras do projeto estão no [CLAUDE.md](CLAUDE.md). 
 src/
 ├── core/       # motor, tipos, hooks e funções puras (só React)
 ├── renderer/   # monta o formulário usando o mapa de componentes
+├── multiStepForm/          # componente público MultiStepForm
+├── multiStepFormProvider/  # MultiStepFormProvider
 ├── adapters/
 │   ├── mui/    # adapter Material UI
 │   └── native/ # adapter HTML nativo com variáveis CSS
-└── index.ts    # API pública
+└── lib/        # entradas públicas do pacote
+    ├── index.ts         # multi-step-form
+    ├── mui/index.ts     # multi-step-form/mui
+    └── native/index.ts  # multi-step-form/native
 ```
+
+Cada pasta tem `index.ts(x)` e, quando declara tipos, um `types.ts` ao lado; os componentes dos adapters também têm `styles.ts`. Os tipos compartilhados do core ficam em `core/types`, divididos por assunto (`config`, `components`, `labels`, `values`, `runtime`, `props`).
 
 ## Publicação
 
