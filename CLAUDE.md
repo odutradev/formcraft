@@ -290,6 +290,7 @@ color: "#666"
 
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
+- Behavior changes are checked by hand in the playground (`npm run dev`, config in `playground/sampleConfig.ts`).
 
 ## 11. Commits and Git
 
