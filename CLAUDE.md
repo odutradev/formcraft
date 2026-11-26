@@ -291,6 +291,7 @@ color: "#666"
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
 - Behavior changes are checked by hand in the playground (`npm run dev`, config in `playground/sampleConfig.ts`).
+- The playground consumes the built package, not `src`: it imports from `multi-step-form` and `multi-step-form/mui`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src` or the `@core`, `@renderer` and `@adapters` aliases in the playground.
 
 ## 11. Commits and Git
 

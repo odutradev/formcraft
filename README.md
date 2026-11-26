@@ -371,10 +371,13 @@ npm run dev
 
 O `npm run dev` abre o playground (`playground/`), um formulário de exemplo que usa quase todos os recursos. A configuração dele fica em `playground/sampleConfig.ts`.
 
+O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form` e `multi-step-form/mui`, e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
+
 | Script | O que faz |
 | :--- | :--- |
-| `npm run dev` | Abre o playground com recarregamento automático. |
-| `npm run typecheck` | Verifica os tipos. |
+| `npm run dev` | Gera a `dist` em modo watch e abre o playground com recarregamento automático. |
+| `npm run typecheck` | Verifica os tipos da biblioteca. |
+| `npm run typecheck:playground` | Verifica os tipos do playground contra os `.d.ts` da `dist` (precisa da `dist` gerada). |
 | `npm run lint` | Roda o ESLint. |
 | `npm run format` | Formata o código com Prettier. |
 | `npm run build` | Gera o pacote em `dist/` (ESM, CommonJS e tipos). |
