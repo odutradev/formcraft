@@ -57,14 +57,14 @@
     "prepare": "npm run build"
   },
   "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19",
-    "@mui/material": ">=9",
-    "@mui/icons-material": ">=9",
-    "@mui/x-date-pickers": ">=9",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "dayjs": ">=1.11"
+    "@mui/icons-material": ">=9",
+    "@mui/material": ">=9",
+    "@mui/x-date-pickers": ">=9",
+    "dayjs": ">=1.11",
+    "react": ">=19",
+    "react-dom": ">=19"
   },
   "peerDependenciesMeta": {
     "@mui/material": {
@@ -87,19 +87,28 @@
     }
   },
   "devDependencies": {
+    "@ant-design/icons": "^6.3.4",
+    "@chakra-ui/react": "^3.38.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@eslint/js": "^9.39.5",
+    "@mantine/core": "^9.8.2",
+    "@mantine/dates": "^9.8.2",
+    "@mantine/hooks": "^9.8.2",
     "@mui/icons-material": "^9.6.0",
     "@mui/material": "^9.6.0",
     "@mui/x-date-pickers": "^9.18.0",
+    "@tabler/icons-react": "^3.53.0",
     "@types/react": "^19.3.3",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
+    "antd": "^6.7.2",
     "dayjs": "^1.11.23",
+    "enchase": "^0.27.0",
     "eslint": "^9.39.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.14.0",
+    "lucide-react": "^1.81.0",
     "prettier": "^3.10.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

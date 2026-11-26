@@ -1,7 +1,7 @@
 import joinClassNames from "@adapters/native/functions/joinClassNames";
 
-import type { CssVariables } from "@adapters/native/types";
 import type { FieldSlotProps } from "./types";
+import type { CssVariables } from "@typings";
 
 const smallScreenColumns = 2;
 

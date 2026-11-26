@@ -1,5 +1,5 @@
-import type { CssVariables } from "@adapters/native/types";
 import type { FieldGridProps } from "./types";
+import type { CssVariables } from "@typings";
 
 const smallScreenColumns = 2;
 

@@ -4,7 +4,7 @@ import useFormRuntime from "@hooks/useFormRuntime";
 import Icon from "@adapters/native/icon";
 import toText from "@functions/toText";
 
-import type { CssVariables } from "@adapters/native/types";
+import type { CssVariables } from "@typings";
 import type { TreeNodeProps } from "./types";
 import type { FormRow } from "@typings";
 
