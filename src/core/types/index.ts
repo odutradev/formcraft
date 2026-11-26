@@ -191,6 +191,9 @@ export interface FormLabels {
   expand: string;
   collapse: string;
   rowsPerPage: string;
+  previousPage: string;
+  nextPage: string;
+  remove: string;
   displayedRows: (range: DisplayedRowsRange) => string;
   fileRequired: string;
   fileAttach: string;
