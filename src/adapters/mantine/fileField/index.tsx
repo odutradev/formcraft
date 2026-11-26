@@ -51,7 +51,13 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
       <Paper withBorder radius="md" p="sm" className="msf-mantine-file" data-error={error ? true : undefined} data-done={hasSavedFile || undefined}>
         <Group gap="sm" wrap="nowrap" align="flex-start">
           <ThemeIcon radius="xl" variant={hasSavedFile ? "filled" : "light"} color={hasSavedFile ? "teal" : undefined} aria-hidden="true">
-            {hasSavedFile ? <IconCheck size={16} /> : <Text size="xs" fw={700}>{orderNumber}</Text>}
+            {hasSavedFile ? (
+              <IconCheck size={16} />
+            ) : (
+              <Text size="xs" fw={700}>
+                {orderNumber}
+              </Text>
+            )}
           </ThemeIcon>
           <Stack gap="xs" className="msf-mantine-file-content">
             <Group gap="xs" justify="space-between" wrap="wrap">

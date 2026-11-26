@@ -29,7 +29,12 @@ const SelectField = (props: SelectFieldProps) => {
   return (
     <FieldFrame id={id} label={field.label} tooltip={field.tooltip} error={error} isRequired={isRequired}>
       {field.multiple ? (
-        <Select<string[]> {...commonProps} mode="multiple" value={Array.isArray(value) ? value.map(String) : []} onChange={(selected) => onChange(selected ?? [])} />
+        <Select<string[]>
+          {...commonProps}
+          mode="multiple"
+          value={Array.isArray(value) ? value.map(String) : []}
+          onChange={(selected) => onChange(selected ?? [])}
+        />
       ) : (
         <Select<string> {...commonProps} value={toText(value) || undefined} onChange={(selected) => onChange(selected ?? "")} />
       )}

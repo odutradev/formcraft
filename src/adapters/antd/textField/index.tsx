@@ -16,22 +16,11 @@ const TextField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
   const renderSuffix = () => {
     if (onOpenSearch) return <Button type="text" size="small" aria-label={labels.openSearch} icon={field.icon ?? <SearchOutlined />} onClick={onOpenSearch} />;
     if (field.type !== "percentage") return field.icon;
-    return (
-      <>
-        %{field.icon}
-      </>
-    );
+    return <>%{field.icon}</>;
   };
 
   return (
-    <FieldFrame
-      id={id}
-      label={field.label}
-      tooltip={field.tooltip}
-      hint={onOpenSearch ? labels.searchHint : undefined}
-      error={error}
-      isRequired={isRequired}
-    >
+    <FieldFrame id={id} label={field.label} tooltip={field.tooltip} hint={onOpenSearch ? labels.searchHint : undefined} error={error} isRequired={isRequired}>
       <Input
         id={id}
         type={isNumericText ? "text" : (field.type ?? "text")}

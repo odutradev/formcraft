@@ -48,16 +48,21 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
   return (
     <Stack gap="1">
       <input ref={inputRef} type="file" accept=".pdf" hidden aria-label={field.label} onChange={handleFileChange} />
-      <Flex
-        gap="3"
-        align="flex-start"
-        p="3"
-        borderWidth="1px"
-        rounded="l2"
-        borderColor={error ? "border.error" : hasSavedFile ? "border.success" : "border"}
-      >
-        <Circle size="7" flexShrink="0" bg={hasSavedFile ? "green.solid" : "colorPalette.muted"} color={hasSavedFile ? "green.contrast" : "colorPalette.fg"} aria-hidden="true">
-          {hasSavedFile ? <Check size={14} /> : <Text textStyle="xs" fontWeight="bold">{orderNumber}</Text>}
+      <Flex gap="3" align="flex-start" p="3" borderWidth="1px" rounded="l2" borderColor={error ? "border.error" : hasSavedFile ? "border.success" : "border"}>
+        <Circle
+          size="7"
+          flexShrink="0"
+          bg={hasSavedFile ? "green.solid" : "colorPalette.muted"}
+          color={hasSavedFile ? "green.contrast" : "colorPalette.fg"}
+          aria-hidden="true"
+        >
+          {hasSavedFile ? (
+            <Check size={14} />
+          ) : (
+            <Text textStyle="xs" fontWeight="bold">
+              {orderNumber}
+            </Text>
+          )}
         </Circle>
         <Stack gap="2" flex="1" minWidth="0">
           <Flex gap="2" align="center" justify="space-between" wrap="wrap">
