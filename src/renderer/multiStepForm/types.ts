@@ -1,7 +1,9 @@
 import type { FormState, FormStore } from "@core/engine";
-import type { ActionContext } from "@core/types";
+import type { ActionContext, FormComponents, MultiStepFormProps } from "@core/types";
 
-export type { MultiStepFormProps } from "@core/types";
+export interface FormRendererProps extends MultiStepFormProps {
+  components: FormComponents;
+}
 
 export interface FieldBinding {
   store: FormStore;

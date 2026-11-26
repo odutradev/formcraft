@@ -12,6 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@core": resolvePath("./src/core"),
+      "@multiStepForm": resolvePath("./src/multiStepForm"),
       "@renderer": resolvePath("./src/renderer"),
       "@adapters": resolvePath("./src/adapters")
     }

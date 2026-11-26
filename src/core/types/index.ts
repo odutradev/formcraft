@@ -353,7 +353,7 @@ export interface FormRuntime {
 
 export interface MultiStepFormProps {
   config: FormConfig;
-  components: FormComponents;
+  components?: FormComponents;
   onSubmit: (data: FormValues) => void | Promise<void>;
   onError?: (error: unknown) => void;
   initialData?: FormValues;

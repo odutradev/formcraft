@@ -8,11 +8,11 @@ import ActionBar from "./subcomponents/actionBar";
 import GroupList from "./subcomponents/groupList";
 
 import type { FormRuntime } from "@core/types";
-import type { FieldBinding, MultiStepFormProps } from "./types";
+import type { FieldBinding, FormRendererProps } from "./types";
 
 const ignoreError = () => undefined;
 
-const MultiStepForm = ({ config, components, onSubmit, onError, initialData, labels, isDevToolsEnabled = false }: MultiStepFormProps) => {
+const MultiStepForm = ({ config, components, onSubmit, onError, initialData, labels, isDevToolsEnabled = false }: FormRendererProps) => {
   const runtime = useMemo<FormRuntime>(() => ({ components, labels: { ...defaultLabels, ...labels }, reportError: onError ?? ignoreError }), [components, labels, onError]);
 
   const { store, state, context, visibleSteps, currentStep, currentStepIndex, visibleGroups, isStepReadOnly, isActionLoading, isCurrentStepValid, executeAction } =

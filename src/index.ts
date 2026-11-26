@@ -1,4 +1,5 @@
-export { default as MultiStepForm } from "@renderer/multiStepForm";
+export { default as MultiStepForm } from "@multiStepForm";
+export { nativeComponents } from "@adapters/native";
 export { default as useFormRuntime } from "@core/hooks/useFormRuntime";
 export { default as defaultLabels } from "@core/labels";
 
