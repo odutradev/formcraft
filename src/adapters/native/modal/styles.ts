@@ -45,7 +45,7 @@ export const modalStyles = `
 @media (min-width: 600px) {
   .msf-modal {
     width: calc(100% - 4rem);
-    height: auto;
+    height: fit-content;
     max-height: calc(100% - 4rem);
     margin: auto;
     border-radius: var(--msf-radius);
