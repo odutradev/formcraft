@@ -104,12 +104,52 @@ O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `L
 | Propriedade | Tipo | Padrão | Descrição |
 | :--- | :--- | :--- | :--- |
 | `config` | `FormConfig` | `-` | Configuração das etapas, dos grupos e dos campos. |
-| `components` | `FormComponents` | `nativeComponents` | Mapa de componentes visuais. Sem ela, usa o adapter nativo. Passe `muiComponents` ou um adapter próprio para trocar. |
+| `components` | `FormComponentsOverride` | `nativeComponents` | Mapa de componentes visuais. Sem ela, usa o adapter nativo. Passe `muiComponents`, um adapter próprio ou só as peças que quer trocar (por exemplo `{ inputs: { date: MeuCampoDeData } }`). |
 | `onSubmit` | `(data: FormValues) => void \| Promise<void>` | `-` | Chamada por uma ação `submit` quando todas as etapas visíveis são válidas. |
 | `onError` | `(error: unknown) => void` | `undefined` | Recebe os erros lançados por `onSubmit`, `action.onClick` e `searchConfig.onSearch`. |
 | `initialData` | `FormValues` | `{}` | Valores iniciais do formulário. |
 | `labels` | `Partial<FormLabels>` | `defaultLabels` | Substitui os textos da interface. |
 | `isDevToolsEnabled` | `boolean` | `false` | Habilita o painel de DevTools (atalho `Ctrl + Shift + Q`). |
+
+Os valores padrão de `components`, `labels`, `onError` e `isDevToolsEnabled` podem vir de um `MultiStepFormProvider` (veja a próxima seção).
+
+## Configuração global com `MultiStepFormProvider`
+
+O `MultiStepFormProvider` define padrões para todos os formulários abaixo dele. Cada formulário pode sobrescrever qualquer um deles pelas próprias props ou pela `config`.
+
+```tsx
+import { MultiStepForm, MultiStepFormProvider } from "multi-step-form";
+import { muiComponents } from "multi-step-form/mui";
+
+const App = () => (
+  <MultiStepFormProvider
+    components={muiComponents}
+    labels={{ required: "Preencha este campo" }}
+    fieldPreSets={{ phone: { label: "Telefone", mask: "(00) 00000-0000" } }}
+    formStyle="collapsed"
+    onError={reportError}
+    isDevToolsEnabled={import.meta.env.DEV}
+  >
+    <Routes />
+  </MultiStepFormProvider>
+);
+
+<MultiStepForm config={config} onSubmit={handleSubmit} />;
+
+<MultiStepForm config={config} onSubmit={handleSubmit} labels={{ required: "Obrigatório" }} isDevToolsEnabled={false} />;
+```
+
+| Opção | Como combina com o valor local |
+| :--- | :--- |
+| `components` | Peça por peça, inclusive dentro de `inputs`. A ordem é: adapter nativo, Provider, prop `components`. |
+| `labels` | Texto por texto: o formulário pode trocar só um deles. |
+| `fieldPreSets` | Preset por nome. Um preset de mesmo nome em `config.fieldPreSets` ganha do global. |
+| `formStyle` | `config.formStyle` ganha do global. |
+| `onError` e `isDevToolsEnabled` | A prop do formulário substitui o global. |
+
+Os Providers podem ser aninhados: um Provider interno herda os padrões do externo e sobrescreve só o que declarar. Isso serve para padrões de uma área do app, como presets de um módulo.
+
+O tema visual não passa pelo Provider: no MUI use o `ThemeProvider` (global ou em volta de um formulário), e no adapter nativo defina as variáveis `--msf-*` no `:root` ou em um elemento acima do formulário.
 
 ## Configuração
 

@@ -37,6 +37,8 @@ The original `react-hook-form` component was replaced by the structure below. Th
 └── src/
     ├── core/
     │   ├── context/
+    │   │   ├── formDefaults/
+    │   │   │   └── index.ts  # FormDefaultsContext: provider defaults
     │   │   └── index.ts  # FormRuntimeContext: components, labels, reportError
     │   ├── engine/
     │   │   └── index.ts  # createFormStore and formReducer: values and errors
@@ -56,7 +58,10 @@ The original `react-hook-form` component was replaced by the structure below. Th
     │   └── types/
     │       └── index.ts  # FormConfig, FormField, ActionContext, adapter contract (FormComponents)
     ├── multiStepForm/
-    │   ├── index.tsx  # public MultiStepForm: applies nativeComponents when components is omitted
+    │   ├── index.tsx  # public MultiStepForm: merges native adapter, provider defaults and props
+    │   └── types.ts
+    ├── multiStepFormProvider/
+    │   ├── index.tsx  # MultiStepFormProvider: global defaults, merged with parent providers
     │   └── types.ts
     ├── renderer/
     │   └── multiStepForm/
@@ -89,7 +94,8 @@ The original `react-hook-form` component was replaced by the structure below. Th
 **Layer rules:**
 
 - `core` depends only on React. It never imports from `renderer`, `adapters`, MUI or any UI library.
-- `multiStepForm` is the public component. It is the only place that joins the renderer with a default adapter (`nativeComponents`) and holds no other logic.
+- `multiStepForm` is the public component. It is the only place that joins the renderer with the default adapter (`nativeComponents`) and with the provider defaults; the merge rules live in `core/functions` (`mergeComponents`, `mergeFormDefaults`).
+- `multiStepFormProvider` only reads the parent defaults from `core/context/formDefaults`, merges its own and provides the result. Precedence is always: library defaults, outer provider, inner provider, form props and `config`.
 - `renderer` imports from `core` only. It never renders a UI-library component directly: it asks the component map for one.
 - `adapters/<name>` implement the `FormComponents` contract declared in `core/types`. They may import `core` types, hooks (`useFormRuntime` for labels) and display helpers (`toText`) and their own UI library, never `renderer` or another adapter.
 - Every input type in `InputFieldType` must have a component in each adapter's `inputs` map.
@@ -159,7 +165,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 
 ## 8. Code style
 
-- **Imports:** one alias per `src` root folder (`@core`, `@renderer`, `@adapters`). The build resolves every alias: published files never contain one.
+- **Imports:** one alias per `src` root folder (`@core`, `@renderer`, `@adapters`, `@multiStepForm`, `@multiStepFormProvider`). The build resolves every alias: published files never contain one.
 - **Import organization:** 3 blocks separated by a blank line: external, internal and `import type`, each sorted from longest to shortest line. Destructuring always on one line.
 - **Semicolons:** always.
 - **Quotes:** double quotes, also in JSX attributes.

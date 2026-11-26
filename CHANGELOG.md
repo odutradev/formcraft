@@ -2,6 +2,18 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Adicionado
+
+- `MultiStepFormProvider` para definir padrões globais de `components`, `labels`, `fieldPreSets`, `formStyle`, `onError` e `isDevToolsEnabled`. Os formulários e Providers aninhados sobrescrevem só o que declararem.
+- Tipos `MultiStepFormDefaults`, `MultiStepFormProviderProps` e `FormComponentsOverride`.
+- Seção "Provider" na galeria do playground, que usa os presets do Provider global do app e um Provider aninhado.
+
+### Alterado
+
+- A prop `components` aceita um mapa parcial, mesclado peça por peça sobre o adapter nativo e o Provider.
+
 ## [0.1.5] - 2026-11-26
 
 ### Adicionado
