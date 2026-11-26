@@ -9,10 +9,17 @@ export const modalStyles = `
   border: 0;
   background: var(--msf-color-background);
   color: var(--msf-color-text);
+  color-scheme: var(--msf-color-scheme);
   font-family: var(--msf-font-family);
+  font-size: var(--msf-font-size);
+  line-height: 1.5;
+}
+.msf-modal[open] {
+  animation: msf-modal-in 0.2s ease-out;
 }
 .msf-modal::backdrop {
-  background: rgb(0 0 0 / 0.5);
+  background: var(--msf-color-overlay);
+  backdrop-filter: blur(3px);
 }
 .msf-modal-surface {
   display: flex;
@@ -20,12 +27,18 @@ export const modalStyles = `
   flex-direction: column;
 }
 .msf-modal-header {
-  padding: calc(var(--msf-spacing) * 2) calc(var(--msf-spacing) * 3);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--msf-spacing) * 2);
+  padding: calc(var(--msf-spacing) * 2) calc(var(--msf-spacing) * 2) calc(var(--msf-spacing) * 2) calc(var(--msf-spacing) * 3);
+  border-bottom: 1px solid var(--msf-color-border);
 }
 .msf-modal-title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  flex: 1;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 .msf-modal-body {
   display: flex;
@@ -33,14 +46,26 @@ export const modalStyles = `
   flex-direction: column;
   gap: calc(var(--msf-spacing) * 2);
   overflow: auto;
-  padding: calc(var(--msf-spacing) * 2) calc(var(--msf-spacing) * 3);
-  border-block: 1px solid var(--msf-color-border);
+  padding: calc(var(--msf-spacing) * 3);
 }
 .msf-modal-footer {
   display: flex;
   justify-content: flex-end;
   gap: var(--msf-spacing);
-  padding: var(--msf-spacing) calc(var(--msf-spacing) * 2);
+  padding: calc(var(--msf-spacing) * 1.5) calc(var(--msf-spacing) * 3);
+  border-top: 1px solid var(--msf-color-border);
+  background: var(--msf-color-surface);
+}
+@keyframes msf-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .msf-modal[open] {
+    animation: none;
+  }
 }
 @media (min-width: 600px) {
   .msf-modal {
@@ -48,8 +73,10 @@ export const modalStyles = `
     height: fit-content;
     max-height: calc(100% - 4rem);
     margin: auto;
-    border-radius: var(--msf-radius);
-    box-shadow: 0 12px 32px rgb(0 0 0 / 0.25);
+    overflow: hidden;
+    border: 1px solid var(--msf-color-border);
+    border-radius: calc(var(--msf-radius) * 1.5);
+    box-shadow: var(--msf-shadow-lg);
   }
   .msf-modal--md {
     max-width: 900px;

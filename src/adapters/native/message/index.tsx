@@ -7,7 +7,7 @@ const Message = ({ field, severity }: MessageProps) => {
 
   return (
     <div role="alert" className={`msf-alert msf-alert--${severity}`}>
-      <Icon name="info" />
+      <Icon name={severity} />
       <span>{field.label}</span>
     </div>
   );

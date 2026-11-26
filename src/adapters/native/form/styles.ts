@@ -10,18 +10,25 @@ export const formStyles = `
   font-family: var(--msf-font-family);
   font-size: var(--msf-font-size);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 .msf-form,
 .msf-form *,
 .msf-form *::before,
-.msf-form *::after {
+.msf-form *::after,
+.msf-modal,
+.msf-modal *,
+.msf-modal *::before,
+.msf-modal *::after {
   box-sizing: border-box;
 }
-.msf-form :focus-visible {
+.msf-form :focus-visible,
+.msf-modal :focus-visible {
   outline: 2px solid var(--msf-color-primary);
   outline-offset: 2px;
 }
-.msf-form .msf-input:focus-visible {
+.msf-form .msf-input:focus-visible,
+.msf-modal .msf-input:focus-visible {
   outline: none;
 }
 .msf-form-body {
@@ -31,7 +38,7 @@ export const formStyles = `
   gap: calc(var(--msf-spacing) * 3);
 }
 .msf-form-body--with-steps {
-  margin-top: calc(var(--msf-spacing) * 2);
+  margin-top: var(--msf-spacing);
 }
 .msf-loading {
   position: fixed;
@@ -42,7 +49,11 @@ export const formStyles = `
   align-items: center;
   justify-content: center;
   gap: calc(var(--msf-spacing) * 2);
-  background: color-mix(in srgb, var(--msf-color-background) 80%, transparent);
+  background: color-mix(in srgb, var(--msf-color-background) 75%, transparent);
+  color: var(--msf-color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  backdrop-filter: blur(2px);
 }
 .msf-loading p {
   margin: 0;
@@ -60,7 +71,7 @@ export const formStyles = `
 }
 @media (min-width: 900px) {
   .msf-form-body--with-steps {
-    margin-top: calc(var(--msf-spacing) * 4);
+    margin-top: calc(var(--msf-spacing) * 2);
   }
 }
 `;

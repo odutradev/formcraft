@@ -5,6 +5,7 @@ export const searchResultsStyles = `
   overflow: auto;
   border: 1px solid var(--msf-color-border);
   border-radius: var(--msf-radius);
+  background: var(--msf-color-background);
 }
 .msf-results-empty {
   display: flex;
@@ -14,12 +15,16 @@ export const searchResultsStyles = `
   justify-content: center;
   gap: var(--msf-spacing);
   color: var(--msf-color-text-secondary);
+  font-size: 0.875rem;
 }
 .msf-results-empty p {
   margin: 0;
 }
-.msf-results-empty .msf-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+.msf-results-empty > .msf-icon {
+  width: 3rem;
+  height: 3rem;
+  padding: calc(var(--msf-spacing) * 1.5);
+  border-radius: 50%;
+  background: var(--msf-color-surface);
 }
 `;

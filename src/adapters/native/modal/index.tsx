@@ -1,9 +1,13 @@
 import { useEffect, useId, useRef } from "react";
 
+import useFormRuntime from "@core/hooks/useFormRuntime";
+import Icon from "@adapters/native/icon";
+
 import type { MouseEvent, SyntheticEvent } from "react";
 import type { ModalProps } from "./types";
 
 const Modal = ({ title, size, actions, onClose, children }: ModalProps) => {
+  const { labels } = useFormRuntime();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
@@ -30,6 +34,9 @@ const Modal = ({ title, size, actions, onClose, children }: ModalProps) => {
           <h2 id={titleId} className="msf-modal-title">
             {title}
           </h2>
+          <button type="button" className="msf-icon-button" aria-label={labels.close} onClick={onClose}>
+            <Icon name="close" />
+          </button>
         </header>
         <div className="msf-modal-body">{children}</div>
         <footer className="msf-modal-footer">{actions}</footer>

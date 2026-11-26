@@ -67,7 +67,7 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
                   </button>
                 )}
                 {!isReadOnly && (
-                  <button type="button" className="msf-icon-button" aria-label={labels.fileRemove} onClick={handleRemove}>
+                  <button type="button" className="msf-icon-button msf-icon-button--danger" aria-label={labels.fileRemove} onClick={handleRemove}>
                     <Icon name="delete" />
                   </button>
                 )}
@@ -76,11 +76,12 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
             {!fileValue && !isReadOnly && (
               <button
                 type="button"
-                className="msf-icon-button msf-icon-button--primary"
-                aria-label={labels.fileAttach}
+                className="msf-button msf-button--outlined msf-button--primary msf-button--small"
+                title={labels.fileAttach}
                 onClick={() => inputRef.current?.click()}
               >
                 <Icon name="upload" />
+                <span className="msf-file-attach-label">{labels.fileAttach}</span>
               </button>
             )}
           </div>

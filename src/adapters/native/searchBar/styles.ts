@@ -3,6 +3,10 @@ export const searchBarStyles = `
   display: flex;
   flex-direction: column;
   gap: calc(var(--msf-spacing) * 2);
+  padding: calc(var(--msf-spacing) * 2);
+  border: 1px solid var(--msf-color-border);
+  border-radius: var(--msf-radius);
+  background: var(--msf-color-surface);
 }
 .msf-search-filters {
   min-width: 0;
