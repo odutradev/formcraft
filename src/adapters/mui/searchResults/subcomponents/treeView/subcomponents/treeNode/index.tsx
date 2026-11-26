@@ -3,7 +3,7 @@ import { Box, Checkbox, Collapse, IconButton } from "@mui/material";
 import { useState } from "react";
 
 import { NodeContainer, NodeLabel, Spacer } from "./styles";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 
 import type { FormRow } from "@core/types";

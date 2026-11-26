@@ -1,4 +1,4 @@
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import Spinner from "@adapters/native/spinner";
 import Icon from "@adapters/native/icon";
 

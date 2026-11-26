@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef } from "react";
 
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import Icon from "@adapters/native/icon";
 
 import type { MouseEvent, SyntheticEvent } from "react";

@@ -1,6 +1,6 @@
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 import { ResultRow } from "./styles";
 

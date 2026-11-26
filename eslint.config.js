@@ -6,7 +6,7 @@ import js from "@eslint/js";
 export default tseslint.config(
   { ignores: ["dist", "node_modules"] },
   {
-    files: ["src/**/*.{ts,tsx}"],
+    files: ["src/**/*.{ts,tsx}", "lib/**/*.ts"],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     languageOptions: { globals: globals.browser },
     plugins: { "react-hooks": reactHooks },

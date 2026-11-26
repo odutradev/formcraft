@@ -1,7 +1,7 @@
 import { Autocomplete, TextField } from "@mui/material";
 
 import FieldLabel, { tooltipLabelSx } from "@adapters/mui/fieldLabel";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 
 import type { AutocompleteRenderInputParams, FilterOptionsState } from "@mui/material";

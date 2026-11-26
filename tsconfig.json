@@ -14,12 +14,11 @@
     "noEmit": true,
     "types": ["vite/client"],
     "paths": {
-      "@core/*": ["./src/core/*"],
-      "@multiStepForm": ["./src/multiStepForm"],
-      "@multiStepFormProvider": ["./src/multiStepFormProvider"],
-      "@renderer/*": ["./src/renderer/*"],
-      "@adapters/*": ["./src/adapters/*"]
+      "@components/*": ["./src/components/*"],
+      "@adapters/*": ["./src/adapters/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@core/*": ["./src/core/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "lib"]
 }

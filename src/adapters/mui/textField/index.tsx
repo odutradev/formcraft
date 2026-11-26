@@ -2,7 +2,7 @@ import { IconButton, InputAdornment, TextField as MuiTextField } from "@mui/mate
 import { Search } from "@mui/icons-material";
 
 import FieldLabel, { tooltipLabelSx } from "@adapters/mui/fieldLabel";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 import { PercentSign } from "./styles";
 

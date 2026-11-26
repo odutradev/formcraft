@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 import Icon from "@adapters/native/icon";
 

@@ -1,7 +1,7 @@
 import { useId, useRef, useState } from "react";
 
 import joinClassNames from "@adapters/native/functions/joinClassNames";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import Icon from "@adapters/native/icon";
 
 import type { FileFieldValue } from "@core/types";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import Pagination from "./subcomponents/pagination";
 import Spinner from "@adapters/native/spinner";
 import TableView from "./subcomponents/tableView";

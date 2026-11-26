@@ -1,5 +1,5 @@
 import joinClassNames from "@adapters/native/functions/joinClassNames";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import stylesheet from "@adapters/native/stylesheet";
 import Spinner from "@adapters/native/spinner";
 

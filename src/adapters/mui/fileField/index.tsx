@@ -18,7 +18,7 @@ import {
   RequiredChip,
   SaveDescriptionButton
 } from "./styles";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 
 import type { FileFieldValue } from "@core/types";
 import type { FileFieldProps } from "./types";

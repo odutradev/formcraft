@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import Icon from "@adapters/native/icon";
 
 import type { TableProps } from "./types";

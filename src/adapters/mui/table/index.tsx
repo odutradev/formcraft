@@ -3,7 +3,7 @@ import { KeyboardArrowDown, KeyboardArrowRight, MoreVert } from "@mui/icons-mate
 import { Fragment, useState } from "react";
 
 import { DetailCell, HeaderContainer, MenuIconWrapper, TableContainerWrapper } from "./styles";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 
 import type { FormRow, TableAction } from "@core/types";
 import type { OpenMenu, TableProps } from "./types";

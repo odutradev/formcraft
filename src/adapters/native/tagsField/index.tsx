@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
 
 import joinClassNames from "@adapters/native/functions/joinClassNames";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import FieldFrame from "@adapters/native/fieldFrame";
 import Chip from "@adapters/native/chip";
 

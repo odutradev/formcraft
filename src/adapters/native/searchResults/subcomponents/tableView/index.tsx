@@ -1,4 +1,4 @@
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 
 import type { TableViewProps } from "./types";

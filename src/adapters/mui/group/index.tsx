@@ -3,7 +3,7 @@ import { Collapse } from "@mui/material";
 import { useId } from "react";
 
 import { CollapseButton, FramedContent, FramedGroup, GroupHeader, GroupTitle, HeaderLine, PlainGroup, PlainTitle } from "./styles";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 
 import type { GroupProps } from "./types";
 import type { MouseEvent } from "react";

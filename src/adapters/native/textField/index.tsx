@@ -1,7 +1,7 @@
 import { useId } from "react";
 
 import joinClassNames from "@adapters/native/functions/joinClassNames";
-import useFormRuntime from "@core/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import FieldFrame from "@adapters/native/fieldFrame";
 import toText from "@core/functions/toText";
 import Icon from "@adapters/native/icon";

@@ -8,20 +8,19 @@ const resolvePath = (path: string) => fileURLToPath(new URL(path, import.meta.ur
 const externalPackages = [/^react($|\/)/, /^react-dom($|\/)/, /^@mui\//, /^@emotion\//, /^dayjs($|\/)/];
 
 export default defineConfig({
-  plugins: [react(), dts({ entryRoot: "src", include: ["src"], tsconfigPath: "./tsconfig.json" })],
+  plugins: [react(), dts({ entryRoot: ".", include: ["src", "lib"], tsconfigPath: "./tsconfig.json" })],
   resolve: {
     alias: {
-      "@core": resolvePath("./src/core"),
-      "@multiStepFormProvider": resolvePath("./src/multiStepFormProvider"),
-      "@multiStepForm": resolvePath("./src/multiStepForm"),
-      "@renderer": resolvePath("./src/renderer"),
-      "@adapters": resolvePath("./src/adapters")
+      "@components": resolvePath("./src/components"),
+      "@adapters": resolvePath("./src/adapters"),
+      "@hooks": resolvePath("./src/hooks"),
+      "@core": resolvePath("./src/core")
     }
   },
   build: {
     sourcemap: true,
     lib: {
-      entry: { index: resolvePath("./src/lib/index.ts"), mui: resolvePath("./src/lib/mui/index.ts"), native: resolvePath("./src/lib/native/index.ts") },
+      entry: { index: resolvePath("./lib/index.ts"), mui: resolvePath("./lib/mui/index.ts"), native: resolvePath("./lib/native/index.ts") },
       formats: ["es", "cjs"],
       fileName: (format, entryName) => `${entryName}.${format === "es" ? "js" : "cjs"}`
     },
