@@ -14,7 +14,7 @@ It is a library, not an application: there are no pages, routes, authentication,
 
 ### Current state
 
-The code at the repository root is the original component, before the library extraction. It still uses `react-hook-form`, is coupled to MUI and uses the old code style (single quotes, no semicolons). The planned refactor moves it into the structure below. Any file touched during that work must be brought to this guide's standards.
+The original `react-hook-form` component was replaced by the structure below. The MUI adapter is the only adapter so far. There is no automated test suite.
 
 ## 2. Stack
 
@@ -22,10 +22,10 @@ The code at the repository root is the original component, before the library ex
 | :--- | :--- |
 | Framework | React (library), built with Vite in library mode |
 | Language | TypeScript (100% typed), emitting `.d.ts` |
-| Form engine | Own engine in `core` (no `react-hook-form`) |
+| Form engine | Own engine in `core`: a reducer-driven store read with `useSyncExternalStore` (no `react-hook-form`) |
 | Base components | Adapter pattern: the renderer receives a component map; MUI is the default adapter |
 | Styling | Defined by each adapter; the MUI adapter uses `styled` from `@mui/material/styles` with theme tokens |
-| State | `useState` / `useReducer` + React context inside the library. No global store |
+| State | Form store per form or modal + `useState` for UI state + React context for the runtime. No global store |
 | Requests | None. The library never calls HTTP; async work arrives through config callbacks |
 | Unit tests | Not required |
 | E2E tests | None |
@@ -36,38 +36,50 @@ The code at the repository root is the original component, before the library ex
 .
 └── src/
     ├── core/
+    │   ├── context/
+    │   │   └── index.ts  # FormRuntimeContext: components, labels, reportError
     │   ├── engine/
-    │   │   └── index.ts  # reducer: values, errors, touched, current step
+    │   │   └── index.ts  # createFormStore and formReducer: values and errors
     │   ├── functions/
     │   │   └── resolveValue/
     │   │       └── index.ts  # pure helpers: visibility, validation, masks, formatting
     │   ├── hooks/
-    │   │   └── useMultiStepForm/
-    │   │       ├── index.ts  # form orchestrator
-    │   │       └── types.ts
+    │   │   ├── useMultiStepForm/
+    │   │   │   ├── index.ts  # form orchestrator: steps, validation, actions
+    │   │   │   └── types.ts
+    │   │   ├── useSearch/
+    │   │   ├── useDevTools/
+    │   │   ├── useFormStore/
+    │   │   └── useFormRuntime/
+    │   ├── labels/
+    │   │   └── index.ts  # defaultLabels in pt-BR
     │   └── types/
-    │       └── index.ts  # FormConfig, FormStep, FormField, ActionContext, adapter contract
+    │       └── index.ts  # FormConfig, FormField, ActionContext, adapter contract (FormComponents)
     ├── renderer/
     │   └── multiStepForm/
     │       ├── subcomponents/
-    │       │   ├── stepIndicator/
-    │       │   ├── groupRenderer/
-    │       │   └── fieldRenderer/  # picks the adapter component by field type
+    │       │   ├── groupList/
+    │       │   ├── groupBlock/
+    │       │   ├── fieldList/
+    │       │   ├── fieldRenderer/  # picks the adapter component by field type
+    │       │   ├── buttonField/
+    │       │   ├── tableField/
+    │       │   ├── formModal/
+    │       │   ├── searchDialog/
+    │       │   └── actionBar/
     │       ├── index.tsx
     │       └── types.ts
     ├── adapters/
     │   └── mui/
+    │       ├── functions/
+    │       │   └── shouldForwardProp/
     │       ├── textField/
     │       │   ├── index.tsx
     │       │   ├── styles.ts
     │       │   └── types.ts
     │       ├── selectField/
-    │       ├── dateField/
+    │       ├── devTools/
     │       └── index.ts  # exports the muiComponents map
-    ├── devTools/
-    │   ├── index.tsx
-    │   ├── styles.ts
-    │   └── types.ts
     └── index.ts  # public API
 ```
 
@@ -75,9 +87,10 @@ The code at the repository root is the original component, before the library ex
 
 - `core` depends only on React. It never imports from `renderer`, `adapters`, MUI or any UI library.
 - `renderer` imports from `core` only. It never renders a UI-library component directly: it asks the component map for one.
-- `adapters/<name>` implement the adapter contract declared in `core/types`. They may import `core` types and their own UI library, never another adapter.
-- Every field type in `FormField["type"]` must have a component in each adapter, or a documented fallback.
-- `devTools` is opt-in through a `devTools` prop. It is never enabled automatically, and it is never active in production builds.
+- `adapters/<name>` implement the `FormComponents` contract declared in `core/types`. They may import `core` types, hooks (`useFormRuntime` for labels) and display helpers (`toText`) and their own UI library, never `renderer` or another adapter.
+- Every input type in `InputFieldType` must have a component in each adapter's `inputs` map.
+- Each form and each modal (form modal, search filters) owns a store from `createFormStore`. Only core functions (`changeField`, `createActionContext`) and core hooks dispatch to it.
+- DevTools logic lives in `core/hooks/useDevTools`; its panel is an adapter component. It is opt-in through the `isDevToolsEnabled` prop, which consumers set from their own environment flag (for example `import.meta.env.DEV`). The library never turns it on by itself.
 
 **Public API:**
 
@@ -100,14 +113,14 @@ The code at the repository root is the original component, before the library ex
 
 ## 4. Naming
 
-- **Identifier language:** English. User-facing copy stays in Portuguese, and every user-facing string can be overridden by the consumer through a `labels` prop.
+- **Identifier language:** English. User-facing copy stays in Portuguese, and every user-facing string lives in `FormLabels` so the consumer can override it through the `labels` prop. The development-only DevTools panel is the one exception.
 
 | Element | Standard | Example |
 | :--- | :--- | :--- |
 | Components | PascalCase | `<StepIndicator />` |
 | Functions and hooks | camelCase | `resolveValue(), useMultiStepForm()` |
 | Variables and props | camelCase | `currentStepIndex, visibleGroups` |
-| Types and interfaces | PascalCase | `interface FieldComponentProps {}` |
+| Types and interfaces | PascalCase | `interface InputFieldProps {}` |
 | Constants and static data | camelCase | `const defaultLabels = {}` |
 | Component folders and files | camelCase | `stepIndicator/` |
 | Utility files | camelCase, folder + `index.ts` | `resolveValue/index.ts` |
@@ -121,7 +134,7 @@ The code at the repository root is the original component, before the library ex
 ## 5. Components
 
 - **Declaration:** arrow function with typed props.
-- **Structure:** one component per folder with `index.tsx`, `styles.ts` and `types.ts`. Core and renderer components have no `styles.ts`: styling belongs to the adapters.
+- **Structure:** one component per folder with `index.tsx`, `styles.ts` and `types.ts`. Core and renderer components have no `styles.ts`: styling belongs to the adapters. An adapter component without styles of its own has no `styles.ts`.
 - **Exports:** default for the file's main component, hook or function; named for types and for entry files.
 - **Props:** always typed in the component's `types.ts`.
 - **Adapter components** receive the adapter contract props (`field`, `value`, `error`, `isRequired`, `isDisabled`, `isReadOnly`, `onChange`) and contain no form logic: no validation, no visibility rules, no value formatting.
@@ -129,7 +142,8 @@ The code at the repository root is the original component, before the library ex
 ## 6. State
 
 - **Local:** `useState` for state only the component uses (open menus, collapsed groups).
-- **Form state:** lives in the core engine (`useReducer`) and is shared with the renderer and adapters through a React context created by `MultiStepForm`. Only `useMultiStepForm` writes to it.
+- **Form state:** lives in a store from `createFormStore` (`core/engine`), read with `useFormStore`. The renderer passes it to fields through a `FieldBinding`. Adapters never touch the store: they receive `value` and call `onChange`.
+- **Runtime:** components, labels and `reportError` reach every component through `FormRuntimeContext`, read with `useFormRuntime`.
 - **No global store and no persistence.** Consumers persist data themselves with `initialData` and the change callbacks.
 
 ## 7. Async work and errors
@@ -141,7 +155,7 @@ The code at the repository root is the original component, before the library ex
 
 ## 8. Code style
 
-- **Imports:** one alias per `src` root folder (`@core`, `@renderer`, `@adapters`, `@devTools`). The build resolves every alias: published files never contain one.
+- **Imports:** one alias per `src` root folder (`@core`, `@renderer`, `@adapters`). The build resolves every alias: published files never contain one.
 - **Import organization:** 3 blocks separated by a blank line: external, internal and `import type`, each sorted from longest to shortest line. Destructuring always on one line.
 - **Semicolons:** always.
 - **Quotes:** double quotes, also in JSX attributes.
@@ -369,75 +383,69 @@ const resolveValue = <T>(value: Resolvable<T> | undefined, context: ActionContex
 export default resolveValue;
 ```
 
-### `src/adapters/mui/textField/index.tsx`
+### `src/adapters/mui/fieldSlot/index.tsx`
 
 ```tsx
-import { TextField as MuiTextField } from "@mui/material";
-
 import { FieldWrapper } from "./styles";
 
-import type { TextFieldProps } from "./types";
+import type { FieldSlotProps } from "./types";
 
-const TextField = ({ field, value, error, isRequired, isDisabled, isReadOnly, onChange }: TextFieldProps) => (
-  <FieldWrapper $colSpan={field.colSpan}>
-    <MuiTextField
-      label={field.label}
-      value={value ?? ""}
-      required={isRequired}
-      disabled={isDisabled}
-      error={!!error}
-      helperText={error}
-      onChange={(event) => onChange(event.target.value)}
-      InputProps={{ readOnly: isReadOnly }}
-      fullWidth
-    />
+const FieldSlot = ({ colSpan, isNewRow, children }: FieldSlotProps) => (
+  <FieldWrapper $colSpan={colSpan} $isNewRow={isNewRow}>
+    {children}
   </FieldWrapper>
 );
 
-export default TextField;
+export default FieldSlot;
 ```
 
-### `src/adapters/mui/textField/styles.ts`
+### `src/adapters/mui/fieldSlot/styles.ts`
 
 ```typescript
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
-import type { BoxProps } from "@mui/material";
+import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
-interface FieldWrapperProps extends BoxProps {
-  $colSpan?: number;
-}
+const smallScreenColumns = 2;
 
-export const FieldWrapper = styled(Box, { shouldForwardProp: (prop) => prop !== "$colSpan" })<FieldWrapperProps>(({ theme, $colSpan }) => ({
+export const FieldWrapper = styled(Box, { shouldForwardProp })<{ $colSpan?: number; $isNewRow: boolean }>(({ theme, $colSpan, $isNewRow }) => ({
+  width: "100%",
+  minWidth: 0,
   gridColumn: "1 / -1",
-  padding: theme.spacing(1),
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: $colSpan ? `span ${Math.min($colSpan, smallScreenColumns)}` : "auto",
+    ...($isNewRow && { gridColumnStart: 1 })
+  },
   [theme.breakpoints.up("md")]: {
-    gridColumn: $colSpan ? `span ${$colSpan}` : "auto"
+    gridColumn: $colSpan ? `span ${$colSpan}` : "auto",
+    ...($isNewRow && { gridColumnStart: 1 })
   }
 }));
 ```
 
-### `src/adapters/mui/textField/types.ts`
+### `src/adapters/mui/fieldSlot/types.ts`
 
 ```typescript
-import type { FieldComponentProps } from "@core/types";
+import type { FieldSlotProps as CoreFieldSlotProps } from "@core/types";
 
-export type TextFieldProps = FieldComponentProps<string>;
+export type FieldSlotProps = CoreFieldSlotProps;
 ```
 
 ### `src/index.ts`
 
 ```typescript
 export { default as MultiStepForm } from "@renderer/multiStepForm";
+export { default as useFormRuntime } from "@core/hooks/useFormRuntime";
+export { default as defaultLabels } from "@core/labels";
 
-export type { FormConfig, FormStep, FormGroup, FormField, ActionContext, FieldComponentProps } from "@core/types";
+export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldProps, MultiStepFormProps } from "@core/types";
 ```
 
 ## 15. Checklist before delivering
 
 - [ ] Names follow the naming table and are in English.
-- [ ] Files are in the right layer (`core`, `renderer`, `adapters`, `devTools`).
+- [ ] Files are in the right layer (`core`, `renderer`, `adapters`).
 - [ ] `core` imports nothing from `renderer`, `adapters` or any UI library.
 - [ ] Adapter components contain no form logic.
 - [ ] Components follow "folder with index, styles and types" and "arrow with typed props".
