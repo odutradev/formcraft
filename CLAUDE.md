@@ -14,7 +14,7 @@ It is a library, not an application: there are no pages, routes, authentication,
 
 ### Current state
 
-The original `react-hook-form` component was replaced by the structure below. The MUI adapter is the only adapter so far. There is no automated test suite.
+The original `react-hook-form` component was replaced by the structure below. There are two adapters: MUI and native (plain HTML styled with CSS variables). There is no automated test suite.
 
 ## 2. Stack
 
@@ -24,7 +24,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 | Language | TypeScript (100% typed), emitting `.d.ts` |
 | Form engine | Own engine in `core`: a reducer-driven store read with `useSyncExternalStore` (no `react-hook-form`) |
 | Base components | Adapter pattern: the renderer receives a component map; MUI is the default adapter |
-| Styling | Defined by each adapter; the MUI adapter uses `styled` from `@mui/material/styles` with theme tokens |
+| Styling | Defined by each adapter; the MUI adapter uses `styled` from `@mui/material/styles` with theme tokens; the native adapter uses plain CSS strings in each `styles.ts`, joined by `stylesheet/` inside `@layer multi-step-form` and themed by `--msf-*` variables |
 | State | Form store per form or modal + `useState` for UI state + React context for the runtime. No global store |
 | Requests | None. The library never calls HTTP; async work arrives through config callbacks |
 | Unit tests | Not required |
@@ -94,7 +94,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 
 **Public API:**
 
-- `src/index.ts` is the only entry for the core and renderer. Each adapter has its own entry (`<package>/mui`) declared in `package.json` `exports`.
+- `src/index.ts` is the only entry for the core and renderer. Each adapter has its own entry (`<package>/mui`, `<package>/native`) declared in `package.json` `exports`.
 - Anything not exported from an entry file is private and may change without a major version.
 - Removing or renaming an export, changing a prop or changing the behavior of a config option is a **breaking change**.
 
@@ -272,7 +272,7 @@ Semantic elements, labels on icon buttons, errors linked to their fields and vis
 
 ### Theme colors and spacing
 
-No hard-coded colors or spacing in adapters: use the host theme's tokens.
+No hard-coded colors or spacing in adapters: use the host theme's tokens. In the native adapter the tokens are the `--msf-*` variables declared in `adapters/native/theme`; that file is the only place with literal default values.
 
 ✅ Do:
 ```typescript
@@ -291,7 +291,7 @@ color: "#666"
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
 - Behavior changes are checked by hand in the playground (`npm run dev`, config in `playground/sampleConfig.ts`).
-- The playground consumes the built package, not `src`: it imports from `multi-step-form` and `multi-step-form/mui`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src` or the `@core`, `@renderer` and `@adapters` aliases in the playground.
+- The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src` or the `@core`, `@renderer` and `@adapters` aliases in the playground.
 
 ## 11. Commits and Git
 

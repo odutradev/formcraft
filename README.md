@@ -2,7 +2,7 @@
 
 Biblioteca React para formulários em etapas orientados a configuração. Você descreve as etapas, os grupos e os campos em um objeto `FormConfig`, e a biblioteca cuida da renderização, da validação, da navegação entre etapas e dos campos condicionais.
 
-O núcleo é **headless**: depende só do React. A parte visual vem de um **adapter**, que é um mapa de componentes. A biblioteca já inclui um adapter pronto para o [Material UI](https://mui.com).
+O núcleo é **headless**: depende só do React. A parte visual vem de um **adapter**, que é um mapa de componentes. A biblioteca já inclui dois adapters prontos: um para o [Material UI](https://mui.com) e um nativo, em HTML puro, que não depende de nenhuma biblioteca visual.
 
 ## Recursos
 
@@ -17,7 +17,8 @@ O núcleo é **headless**: depende só do React. A parte visual vem de um **adap
 - Valores aninhados por caminho (`company.cnpj`).
 - Textos da interface em pt-BR, todos substituíveis.
 - DevTools opcional para preencher dados de teste e inspecionar o estado.
-- Layout mobile-first e componentes acessíveis no adapter MUI.
+- Layout mobile-first e componentes acessíveis nos dois adapters.
+- Adapter nativo sem dependências, com tema controlado por variáveis CSS.
 
 ## Instalação
 
@@ -27,7 +28,7 @@ A biblioteca é instalada a partir do GitHub. O script `prepare` gera o build du
 npm install github:odutradev/multiStepForm
 ```
 
-O React é uma dependência de pares (peer dependency) obrigatória. Para usar o adapter MUI, instale também as dependências dele:
+O React é uma dependência de pares (peer dependency) obrigatória. O adapter nativo não precisa de mais nada. Para usar o adapter MUI, instale também as dependências dele:
 
 ```bash
 npm install react react-dom @mui/material @mui/icons-material @mui/x-date-pickers @emotion/react @emotion/styled dayjs
@@ -89,12 +90,20 @@ const RegistrationPage = () => {
 
 O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `LocalizationProvider` do date picker, configurado em pt-BR.
 
+Para usar o adapter nativo, troque só o mapa de componentes:
+
+```tsx
+import { nativeComponents } from "multi-step-form/native";
+
+<MultiStepForm config={config} components={nativeComponents} onSubmit={handleSubmit} />;
+```
+
 ## Propriedades do `MultiStepForm`
 
 | Propriedade | Tipo | Padrão | Descrição |
 | :--- | :--- | :--- | :--- |
 | `config` | `FormConfig` | `-` | Configuração das etapas, dos grupos e dos campos. |
-| `components` | `FormComponents` | `-` | Mapa de componentes visuais. Use `muiComponents` ou um adapter próprio. |
+| `components` | `FormComponents` | `-` | Mapa de componentes visuais. Use `muiComponents`, `nativeComponents` ou um adapter próprio. |
 | `onSubmit` | `(data: FormValues) => void \| Promise<void>` | `-` | Chamada por uma ação `submit` quando todas as etapas visíveis são válidas. |
 | `onError` | `(error: unknown) => void` | `undefined` | Recebe os erros lançados por `onSubmit`, `action.onClick` e `searchConfig.onSearch`. |
 | `initialData` | `FormValues` | `{}` | Valores iniciais do formulário. |
@@ -318,7 +327,49 @@ A biblioteca nunca ativa o painel sozinha. Ligue-o apenas em desenvolvimento:
 
 O `components` recebe um objeto `FormComponents`, com um componente para cada peça visual: layout, indicador de etapas, grupos, grid, cada tipo de campo, botões, tabela, modal, busca e DevTools. Os tipos de props de cada peça são exportados pela biblioteca (`InputFieldProps`, `GroupProps`, `ModalProps` e outros).
 
-Para trocar só algumas peças, estenda o adapter MUI:
+| Adapter | Import | Dependências |
+| :--- | :--- | :--- |
+| Material UI | `import { muiComponents } from "multi-step-form/mui"` | MUI, Emotion e Day.js |
+| Nativo | `import { nativeComponents } from "multi-step-form/native"` | Nenhuma |
+
+### Adapter nativo
+
+O adapter nativo usa elementos HTML (`input`, `select`, `datalist`, `dialog`, `table`) e injeta o próprio CSS quando o formulário aparece, sem nenhum import de CSS. O campo de data usa o seletor do navegador, e o autocomplete usa `datalist`.
+
+O tema é controlado por variáveis CSS. Defina-as em qualquer elemento que envolva o formulário, ou no `:root` para mudar todos:
+
+```css
+.cadastro {
+  --msf-color-primary: #7c3aed;
+  --msf-radius: 12px;
+  --msf-font-family: Georgia, serif;
+}
+```
+
+| Variável | Padrão | Uso |
+| :--- | :--- | :--- |
+| `--msf-color-primary` | `#2563eb` | Botões, etapa atual, foco e destaques |
+| `--msf-color-primary-contrast` | `#ffffff` | Texto sobre a cor primária |
+| `--msf-color-text` | `#1f2937` | Texto principal |
+| `--msf-color-text-secondary` | `#6b7280` | Rótulos, dicas e textos de apoio |
+| `--msf-color-background` | `#ffffff` | Fundo dos campos, grupos e modais |
+| `--msf-color-surface` | `#f3f4f6` | Cabeçalhos, linhas em destaque e chips |
+| `--msf-color-border` | `#d1d5db` | Bordas e divisores |
+| `--msf-color-error` | `#dc2626` | Erros e campos inválidos |
+| `--msf-color-warning` | `#b45309` | Avisos |
+| `--msf-color-info` | `#0284c7` | Botões informativos do DevTools |
+| `--msf-color-scheme` | `light` | `color-scheme` dos controles nativos. Use `dark` no tema escuro. |
+| `--msf-font-family` | `system-ui, ...` | Fonte |
+| `--msf-font-size` | `1rem` | Tamanho base do texto |
+| `--msf-radius` | `8px` | Arredondamento |
+| `--msf-spacing` | `8px` | Unidade de espaçamento. Os espaços são múltiplos dela. |
+| `--msf-shadow` | `0 1px 3px rgb(0 0 0 / 0.12)` | Sombra de cards e botões |
+
+Para ir além das variáveis, sobrescreva as classes `msf-*` (por exemplo `.msf-button`, `.msf-control`, `.msf-group`). O CSS do adapter fica na camada `@layer multi-step-form`, então qualquer CSS seu, fora de camadas, tem prioridade sem precisar de `!important` ou de seletores mais específicos.
+
+### Estender ou criar um adapter
+
+Para trocar só algumas peças, estenda um adapter existente:
 
 ```tsx
 import { muiComponents } from "multi-step-form/mui";
@@ -369,9 +420,9 @@ npm install
 npm run dev
 ```
 
-O `npm run dev` abre o playground (`playground/`), um formulário de exemplo que usa quase todos os recursos. A configuração dele fica em `playground/sampleConfig.ts`.
+O `npm run dev` abre o playground (`playground/`), que mostra a mesma configuração de exemplo, com quase todos os recursos, em dois formulários: um com o adapter MUI e outro com o adapter nativo. Uma barra no topo muda a cor primária, o modo claro ou escuro, o arredondamento, o espaçamento e a fonte dos dois, e permite ver os dois lado a lado ou um de cada vez. A configuração fica em `playground/sampleConfig.ts`.
 
-O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form` e `multi-step-form/mui`, e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
+O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form`, `multi-step-form/mui` e `multi-step-form/native`, e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
 
 | Script | O que faz |
 | :--- | :--- |
@@ -389,7 +440,8 @@ src/
 ├── core/       # motor, tipos, hooks e funções puras (só React)
 ├── renderer/   # monta o formulário usando o mapa de componentes
 ├── adapters/
-│   └── mui/    # adapter Material UI
+│   ├── mui/    # adapter Material UI
+│   └── native/ # adapter HTML nativo com variáveis CSS
 └── index.ts    # API pública
 ```
 

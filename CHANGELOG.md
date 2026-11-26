@@ -2,6 +2,18 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Adicionado
+
+- Adapter nativo (`multi-step-form/native`), em HTML puro e sem dependências além do React. O CSS é injetado pelo próprio formulário dentro de `@layer multi-step-form`, e o tema é controlado por variáveis CSS `--msf-*`.
+- Textos `previousPage`, `nextPage` e `remove` em `FormLabels`.
+- Playground com os formulários MUI e nativo lado a lado e controles de cor, modo claro ou escuro, arredondamento, espaçamento e fonte.
+
+### Alterado
+
+- O playground importa o pacote gerado em `dist/` (`multi-step-form`, `multi-step-form/mui` e `multi-step-form/native`), como um projeto que instalou a biblioteca.
+
 ## [0.1.1] - 2026-11-26
 
 Primeira versão como biblioteca, extraída do componente `MultiStepForm` da aplicação `asprec-form`. O histórico anterior está preservado no git.
