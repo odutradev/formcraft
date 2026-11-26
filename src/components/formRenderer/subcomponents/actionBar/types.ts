@@ -1,4 +1,4 @@
-import type { ActionContext, FormAction } from "@/types";
+import type { ActionContext, FormAction } from "@typings";
 
 export interface ActionBarProps {
   actions: FormAction[];

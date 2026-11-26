@@ -1,5 +1,5 @@
 import type { FieldPreSets } from "./types";
-import type { FormField } from "@/types";
+import type { FormField } from "@typings";
 
 const mergePreSet = (field: FormField, preSets: FieldPreSets): FormField => {
   const preSet = field.preSet ? preSets?.[field.preSet] : undefined;

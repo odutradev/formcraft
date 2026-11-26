@@ -1,4 +1,4 @@
-import type { ActionContext, FormRow, FormValues, Resolvable } from "@/types/values";
+import type { ActionContext, FormRow, FormValues, Resolvable } from "@typings/values";
 import type { ReactNode } from "react";
 
 export type InputFieldType = "text" | "number" | "email" | "select" | "autocomplete" | "tags" | "date" | "currency" | "percentage" | "file";

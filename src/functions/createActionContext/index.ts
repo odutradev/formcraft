@@ -1,7 +1,7 @@
-import getByPath from "@/functions/getByPath";
+import getByPath from "@functions/getByPath";
 
-import type { ActionContext, FormValues, ValuesGetter } from "@/types";
-import type { FormStore } from "@/engine/types";
+import type { ActionContext, FormValues, ValuesGetter } from "@typings";
+import type { FormStore } from "@engine/types";
 
 const createActionContext = (store: FormStore, values: FormValues, parentContext?: ActionContext): ActionContext => {
   const getValues = ((name?: string) => {

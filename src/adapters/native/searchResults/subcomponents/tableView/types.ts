@@ -1,4 +1,4 @@
-import type { FormRow, SearchResultColumn } from "@/types";
+import type { FormRow, SearchResultColumn } from "@typings";
 
 export interface TableViewProps {
   results: FormRow[];

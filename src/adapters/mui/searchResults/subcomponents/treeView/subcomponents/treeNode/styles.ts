@@ -1,7 +1,7 @@
 import { Box, ButtonBase } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import shouldForwardProp from "@/adapters/mui/functions/shouldForwardProp";
+import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
 import type { NodeContainerProps } from "./types";
 

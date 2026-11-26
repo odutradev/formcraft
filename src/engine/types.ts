@@ -1,4 +1,4 @@
-import type { FormErrors, FormValues } from "@/types";
+import type { FormErrors, FormValues } from "@typings";
 
 export interface FormState {
   values: FormValues;

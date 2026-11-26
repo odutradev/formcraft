@@ -1,7 +1,7 @@
 import { useId } from "react";
 
-import useFormRuntime from "@/hooks/useFormRuntime";
-import Icon from "@/adapters/native/icon";
+import useFormRuntime from "@hooks/useFormRuntime";
+import Icon from "@adapters/native/icon";
 
 import type { PaginationProps } from "./types";
 

@@ -1,4 +1,4 @@
-import type { FormRow, TreeConfig } from "@/types";
+import type { FormRow, TreeConfig } from "@typings";
 
 export interface TreeNodeProps {
   item: FormRow;

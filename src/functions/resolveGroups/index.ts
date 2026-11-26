@@ -1,7 +1,7 @@
-import resolveField from "@/functions/resolveField";
-import isVisible from "@/functions/isVisible";
+import resolveField from "@functions/resolveField";
+import isVisible from "@functions/isVisible";
 
-import type { ActionContext, FormConfig, FormField, FormGroup } from "@/types";
+import type { ActionContext, FormConfig, FormField, FormGroup } from "@typings";
 
 export const resolveFields = (fields: FormField[], context: ActionContext, preSets: FormConfig["fieldPreSets"]): FormField[] =>
   fields.map((field) => resolveField(field, preSets)).filter((field) => isVisible(field, context));

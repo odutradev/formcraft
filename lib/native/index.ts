@@ -1,1 +1,1 @@
-export { nativeComponents } from "@/adapters/native";
+export { nativeComponents } from "@adapters/native";

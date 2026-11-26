@@ -1,4 +1,4 @@
-import type { SearchConfig } from "@/types";
+import type { SearchConfig } from "@typings";
 
 export interface UseSearchOptions {
   config: SearchConfig;

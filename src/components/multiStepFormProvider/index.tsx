@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
-import mergeFormDefaults from "@/functions/mergeFormDefaults";
-import FormDefaultsContext from "@/context/formDefaults";
-import useFormDefaults from "@/hooks/useFormDefaults";
+import mergeFormDefaults from "@functions/mergeFormDefaults";
+import FormDefaultsContext from "@context/formDefaults";
+import useFormDefaults from "@hooks/useFormDefaults";
 
 import type { MultiStepFormProviderProps } from "./types";
 

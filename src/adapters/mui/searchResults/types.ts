@@ -1,4 +1,4 @@
-import type { FormRow, SearchResultsProps as CoreSearchResultsProps } from "@/types";
+import type { FormRow, SearchResultsProps as CoreSearchResultsProps } from "@typings";
 
 export type SearchResultsProps = CoreSearchResultsProps;
 

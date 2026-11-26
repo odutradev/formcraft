@@ -1,5 +1,5 @@
-import type { ActionContext, FormComponents, MultiStepFormProps } from "@/types";
-import type { FormState, FormStore } from "@/engine/types";
+import type { ActionContext, FormComponents, MultiStepFormProps } from "@typings";
+import type { FormState, FormStore } from "@engine/types";
 
 export interface FormRendererProps extends MultiStepFormProps {
   components: FormComponents;

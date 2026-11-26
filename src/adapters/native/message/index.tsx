@@ -1,4 +1,4 @@
-import Icon from "@/adapters/native/icon";
+import Icon from "@adapters/native/icon";
 
 import type { MessageProps } from "./types";
 

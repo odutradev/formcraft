@@ -1,3 +1,3 @@
-import type { InputFieldProps } from "@/types";
+import type { InputFieldProps } from "@typings";
 
 export type FileFieldProps = InputFieldProps;

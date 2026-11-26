@@ -1,4 +1,4 @@
-import type { FormValues } from "@/types";
+import type { FormValues } from "@typings";
 
 const isPlainObject = (value: unknown): value is FormValues => value !== null && typeof value === "object" && !Array.isArray(value);
 

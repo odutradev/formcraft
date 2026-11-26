@@ -1,5 +1,5 @@
-import type { ButtonVariant, FieldOption, FormField, InputFieldType, MessageFieldType, SearchResultColumn, TableAction, TableColumn, TreeConfig } from "@/types/config";
-import type { FormRow, FormValues } from "@/types/values";
+import type { ButtonVariant, FieldOption, FormField, InputFieldType, MessageFieldType, SearchResultColumn, TableAction, TableColumn, TreeConfig } from "@typings/config";
+import type { FormRow, FormValues } from "@typings/values";
 import type { ComponentType, ReactNode } from "react";
 
 export interface ContainerProps {

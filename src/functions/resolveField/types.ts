@@ -1,3 +1,3 @@
-import type { FormConfig } from "@/types";
+import type { FormConfig } from "@typings";
 
 export type FieldPreSets = FormConfig["fieldPreSets"];

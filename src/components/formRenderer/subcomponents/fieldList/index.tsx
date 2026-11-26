@@ -1,4 +1,4 @@
-import useFormRuntime from "@/hooks/useFormRuntime";
+import useFormRuntime from "@hooks/useFormRuntime";
 import FieldRenderer from "../fieldRenderer";
 
 import type { FieldListProps } from "./types";

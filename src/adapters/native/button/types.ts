@@ -1,3 +1,3 @@
-import type { ButtonProps as CoreButtonProps } from "@/types";
+import type { ButtonProps as CoreButtonProps } from "@typings";
 
 export type ButtonProps = CoreButtonProps;

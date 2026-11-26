@@ -1,7 +1,7 @@
-import formatNumericValue from "@/functions/formatNumericValue";
-import applyMask from "@/functions/applyMask";
+import formatNumericValue from "@functions/formatNumericValue";
+import applyMask from "@functions/applyMask";
 
-import type { FormField } from "@/types";
+import type { FormField } from "@typings";
 
 const formatFieldInput = (field: FormField, value: unknown, previousValue: unknown): unknown => {
   const isNumericInput = typeof value === "string" || typeof value === "number";

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import FormDefaultsContext from "@/context/formDefaults";
+import FormDefaultsContext from "@context/formDefaults";
 
-import type { MultiStepFormDefaults } from "@/types";
+import type { MultiStepFormDefaults } from "@typings";
 
 const useFormDefaults = (): MultiStepFormDefaults => useContext(FormDefaultsContext);
 

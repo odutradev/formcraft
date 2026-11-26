@@ -1,4 +1,4 @@
-import type { FormValues } from "@/types";
+import type { FormValues } from "@typings";
 
 const getByPath = (source: FormValues, path: string): unknown => {
   if (path in source) return source[path];

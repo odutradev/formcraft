@@ -1,6 +1,6 @@
-import mergeComponents from "@/functions/mergeComponents";
+import mergeComponents from "@functions/mergeComponents";
 
-import type { MultiStepFormDefaults } from "@/types";
+import type { MultiStepFormDefaults } from "@typings";
 
 const mergeFormDefaults = (parent: MultiStepFormDefaults, child: MultiStepFormDefaults): MultiStepFormDefaults => ({
   components: parent.components ? mergeComponents(parent.components, child.components) : child.components,

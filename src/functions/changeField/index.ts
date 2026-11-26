@@ -1,7 +1,7 @@
-import createActionContext from "@/functions/createActionContext";
-import formatFieldInput from "@/functions/formatFieldInput";
-import validateField from "@/functions/validateField";
-import getByPath from "@/functions/getByPath";
+import createActionContext from "@functions/createActionContext";
+import formatFieldInput from "@functions/formatFieldInput";
+import validateField from "@functions/validateField";
+import getByPath from "@functions/getByPath";
 
 import type { ChangeFieldOptions } from "./types";
 

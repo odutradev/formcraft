@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
-import shouldForwardProp from "@/adapters/mui/functions/shouldForwardProp";
+import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
 import type { PercentSignProps } from "./types";
 

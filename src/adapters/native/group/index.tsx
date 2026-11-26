@@ -1,8 +1,8 @@
 import { useId } from "react";
 
-import joinClassNames from "@/adapters/native/functions/joinClassNames";
-import useFormRuntime from "@/hooks/useFormRuntime";
-import Icon from "@/adapters/native/icon";
+import joinClassNames from "@adapters/native/functions/joinClassNames";
+import useFormRuntime from "@hooks/useFormRuntime";
+import Icon from "@adapters/native/icon";
 
 import type { GroupProps } from "./types";
 import type { MouseEvent } from "react";

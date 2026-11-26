@@ -1,4 +1,4 @@
-import type { FormField } from "@/types";
+import type { FormField } from "@typings";
 
 export interface FieldsByVisibility {
   visibleFields: FormField[];

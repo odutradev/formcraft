@@ -1,4 +1,4 @@
-import type { FormLayoutProps } from "@/types";
+import type { FormLayoutProps } from "@typings";
 
 export type FormProps = FormLayoutProps;
 

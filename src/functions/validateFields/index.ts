@@ -1,7 +1,7 @@
-import validateField from "@/functions/validateField";
-import getByPath from "@/functions/getByPath";
+import validateField from "@functions/validateField";
+import getByPath from "@functions/getByPath";
 
-import type { ActionContext, FormErrors, FormField } from "@/types";
+import type { ActionContext, FormErrors, FormField } from "@typings";
 
 const validateFields = (fields: FormField[], context: ActionContext, requiredMessage: string): FormErrors =>
   Object.fromEntries(

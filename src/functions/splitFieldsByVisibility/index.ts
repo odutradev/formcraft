@@ -1,8 +1,8 @@
-import collectFields from "@/functions/collectFields";
-import resolveField from "@/functions/resolveField";
-import isVisible from "@/functions/isVisible";
+import collectFields from "@functions/collectFields";
+import resolveField from "@functions/resolveField";
+import isVisible from "@functions/isVisible";
 
-import type { ActionContext, FormConfig, FormGroup } from "@/types";
+import type { ActionContext, FormConfig, FormGroup } from "@typings";
 import type { FieldsByVisibility } from "./types";
 
 const emptySplit: FieldsByVisibility = { visibleFields: [], hiddenFields: [] };

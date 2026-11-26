@@ -1,8 +1,8 @@
-import type { FormComponentsOverride } from "@/types/components";
-import type { MultiStepFormDefaults } from "@/types/runtime";
-import type { FormConfig } from "@/types/config";
-import type { FormLabels } from "@/types/labels";
-import type { FormValues } from "@/types/values";
+import type { FormComponentsOverride } from "@typings/components";
+import type { MultiStepFormDefaults } from "@typings/runtime";
+import type { FormConfig } from "@typings/config";
+import type { FormLabels } from "@typings/labels";
+import type { FormValues } from "@typings/values";
 import type { ReactNode } from "react";
 
 export interface MultiStepFormProviderProps extends MultiStepFormDefaults {

@@ -1,9 +1,9 @@
 import { useId } from "react";
 
-import joinClassNames from "@/adapters/native/functions/joinClassNames";
-import toIsoDate from "@/adapters/native/functions/toIsoDate";
-import FieldFrame from "@/adapters/native/fieldFrame";
-import toText from "@/functions/toText";
+import joinClassNames from "@adapters/native/functions/joinClassNames";
+import toIsoDate from "@adapters/native/functions/toIsoDate";
+import FieldFrame from "@adapters/native/fieldFrame";
+import toText from "@functions/toText";
 
 import type { DateFieldProps } from "./types";
 

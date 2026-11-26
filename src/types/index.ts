@@ -1,6 +1,6 @@
-export type * from "@/types/components";
-export type * from "@/types/runtime";
-export type * from "@/types/values";
-export type * from "@/types/labels";
-export type * from "@/types/config";
-export type * from "@/types/props";
+export type * from "@typings/components";
+export type * from "@typings/runtime";
+export type * from "@typings/values";
+export type * from "@typings/labels";
+export type * from "@typings/config";
+export type * from "@typings/props";

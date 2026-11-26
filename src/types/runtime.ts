@@ -1,6 +1,6 @@
-import type { FormComponents, FormComponentsOverride } from "@/types/components";
-import type { FormConfig } from "@/types/config";
-import type { FormLabels } from "@/types/labels";
+import type { FormComponents, FormComponentsOverride } from "@typings/components";
+import type { FormConfig } from "@typings/config";
+import type { FormLabels } from "@typings/labels";
 
 export interface FormRuntime {
   components: FormComponents;

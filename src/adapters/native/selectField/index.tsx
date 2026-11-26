@@ -1,12 +1,12 @@
 import { useId } from "react";
 
-import AutocompleteField from "@/adapters/native/autocompleteField";
-import FieldFrame from "@/adapters/native/fieldFrame";
-import ComboBox from "@/adapters/native/comboBox";
-import toText from "@/functions/toText";
+import AutocompleteField from "@adapters/native/autocompleteField";
+import FieldFrame from "@adapters/native/fieldFrame";
+import ComboBox from "@adapters/native/comboBox";
+import toText from "@functions/toText";
 
 import type { SelectFieldProps } from "./types";
-import type { FieldOption } from "@/types";
+import type { FieldOption } from "@typings";
 
 const SelectField = (props: SelectFieldProps) => {
   const { field, value, error, options, isRequired, isDisabled, isReadOnly, onChange } = props;

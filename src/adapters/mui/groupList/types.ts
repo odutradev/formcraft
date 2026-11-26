@@ -1,3 +1,3 @@
-import type { ContainerProps } from "@/types";
+import type { ContainerProps } from "@typings";
 
 export type GroupListProps = ContainerProps;

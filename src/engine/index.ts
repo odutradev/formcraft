@@ -1,8 +1,8 @@
-import getByPath from "@/functions/getByPath";
-import setByPath from "@/functions/setByPath";
+import getByPath from "@functions/getByPath";
+import setByPath from "@functions/setByPath";
 
 import type { FormEvent, FormState, FormStore } from "./types";
-import type { FormErrors, FormValues } from "@/types";
+import type { FormErrors, FormValues } from "@typings";
 
 const setValues = (state: FormState, values: FormValues): FormState => {
   const entries = Object.entries(values);

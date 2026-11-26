@@ -10,7 +10,16 @@ const externalPackages = [/^react($|\/)/, /^react-dom($|\/)/, /^@mui\//, /^@emot
 export default defineConfig({
   plugins: [react(), dts({ entryRoot: ".", include: ["src", "lib"], tsconfigPath: "./tsconfig.json" })],
   resolve: {
-    alias: [{ find: /^@\//, replacement: resolvePath("./src/") }]
+    alias: [
+      { find: /^@components(?=\/|$)/, replacement: resolvePath("./src/components") },
+      { find: /^@functions(?=\/|$)/, replacement: resolvePath("./src/functions") },
+      { find: /^@adapters(?=\/|$)/, replacement: resolvePath("./src/adapters") },
+      { find: /^@context(?=\/|$)/, replacement: resolvePath("./src/context") },
+      { find: /^@typings(?=\/|$)/, replacement: resolvePath("./src/types") },
+      { find: /^@engine(?=\/|$)/, replacement: resolvePath("./src/engine") },
+      { find: /^@labels(?=\/|$)/, replacement: resolvePath("./src/labels") },
+      { find: /^@hooks(?=\/|$)/, replacement: resolvePath("./src/hooks") }
+    ]
   },
   build: {
     sourcemap: true,

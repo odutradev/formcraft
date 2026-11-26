@@ -1,5 +1,5 @@
-import type { ActionContext, FormField } from "@/types";
-import type { FormStore } from "@/engine/types";
+import type { ActionContext, FormField } from "@typings";
+import type { FormStore } from "@engine/types";
 
 export interface ChangeFieldOptions {
   store: FormStore;

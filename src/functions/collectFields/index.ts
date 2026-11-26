@@ -1,4 +1,4 @@
-import type { FormField, FormGroup } from "@/types";
+import type { FormField, FormGroup } from "@typings";
 
 const collectFields = (group: FormGroup): FormField[] => [...group.fields, ...(group.subGroups ?? []).flatMap(collectFields)];
 

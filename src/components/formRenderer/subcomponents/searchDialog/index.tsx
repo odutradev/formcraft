@@ -1,15 +1,15 @@
 import { useMemo } from "react";
 
-import createActionContext from "@/functions/createActionContext";
-import isEmptyValue from "@/functions/isEmptyValue";
-import useFormRuntime from "@/hooks/useFormRuntime";
-import useFormStore from "@/hooks/useFormStore";
-import useSearch from "@/hooks/useSearch";
+import createActionContext from "@functions/createActionContext";
+import isEmptyValue from "@functions/isEmptyValue";
+import useFormRuntime from "@hooks/useFormRuntime";
+import useFormStore from "@hooks/useFormStore";
+import useSearch from "@hooks/useSearch";
 import FieldList from "../fieldList";
 
-import type { FieldBinding } from "@/components/formRenderer/types";
+import type { FieldBinding } from "@components/formRenderer/types";
 import type { SearchDialogProps } from "./types";
-import type { FormRow } from "@/types";
+import type { FormRow } from "@typings";
 
 const SearchDialog = ({ config, context, initialValue, onClose }: SearchDialogProps) => {
   const { components, labels, reportError } = useFormRuntime();

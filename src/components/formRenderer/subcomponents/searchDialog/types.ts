@@ -1,4 +1,4 @@
-import type { ActionContext, SearchConfig } from "@/types";
+import type { ActionContext, SearchConfig } from "@typings";
 
 export interface SearchDialogProps {
   config: SearchConfig;

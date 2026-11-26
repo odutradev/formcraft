@@ -2,7 +2,7 @@ import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Check } from "@mui/icons-material";
 
-import shouldForwardProp from "@/adapters/mui/functions/shouldForwardProp";
+import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
 import type { FileRowStateProps, OrderBadgeProps } from "./types";
 

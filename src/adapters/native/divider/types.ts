@@ -1,3 +1,3 @@
-import type { DividerFieldProps } from "@/types";
+import type { DividerFieldProps } from "@typings";
 
 export type DividerProps = DividerFieldProps;

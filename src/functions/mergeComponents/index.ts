@@ -1,4 +1,4 @@
-import type { FormComponentsOverride } from "@/types";
+import type { FormComponentsOverride } from "@typings";
 
 const mergeComponents = <Base extends FormComponentsOverride>(base: Base, override?: FormComponentsOverride): Base => {
   if (!override) return base;

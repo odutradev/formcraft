@@ -1,7 +1,7 @@
-import resolveValue from "@/functions/resolveValue";
-import isEmptyValue from "@/functions/isEmptyValue";
+import resolveValue from "@functions/resolveValue";
+import isEmptyValue from "@functions/isEmptyValue";
 
-import type { ActionContext, FieldType, FormField } from "@/types";
+import type { ActionContext, FieldType, FormField } from "@typings";
 
 const unvalidatedTypes: FieldType[] = ["info", "error", "warning", "divider", "button"];
 

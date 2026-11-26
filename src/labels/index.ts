@@ -1,4 +1,4 @@
-import type { FormLabels } from "@/types";
+import type { FormLabels } from "@typings";
 
 const defaultLabels: FormLabels = {
   required: "Campo obrigatório",

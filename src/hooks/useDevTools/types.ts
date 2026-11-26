@@ -1,5 +1,5 @@
-import type { FormStore } from "@/engine/types";
-import type { FormConfig } from "@/types";
+import type { FormStore } from "@engine/types";
+import type { FormConfig } from "@typings";
 
 export interface UseDevToolsOptions {
   config: FormConfig;

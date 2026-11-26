@@ -1,6 +1,6 @@
-import useFormRuntime from "@/hooks/useFormRuntime";
-import Spinner from "@/adapters/native/spinner";
-import Icon from "@/adapters/native/icon";
+import useFormRuntime from "@hooks/useFormRuntime";
+import Spinner from "@adapters/native/spinner";
+import Icon from "@adapters/native/icon";
 
 import type { SearchBarProps } from "./types";
 

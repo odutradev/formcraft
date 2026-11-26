@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 
-import buildEmptyValues from "@/functions/buildEmptyValues";
-import buildFormSchema from "@/functions/buildFormSchema";
-import collectFields from "@/functions/collectFields";
+import buildEmptyValues from "@functions/buildEmptyValues";
+import buildFormSchema from "@functions/buildFormSchema";
+import collectFields from "@functions/collectFields";
 
-import type { FormStep, FormValues } from "@/types";
+import type { FormStep, FormValues } from "@typings";
 import type { UseDevToolsOptions } from "./types";
 
 const toggleKeyCode = "KeyQ";

@@ -1,8 +1,8 @@
-export { default as MultiStepFormProvider } from "@/components/multiStepFormProvider";
-export { default as MultiStepForm } from "@/components/multiStepForm";
-export { nativeComponents } from "@/adapters/native";
-export { default as useFormRuntime } from "@/hooks/useFormRuntime";
-export { default as defaultLabels } from "@/labels";
+export { default as MultiStepFormProvider } from "@components/multiStepFormProvider";
+export { default as MultiStepForm } from "@components/multiStepForm";
+export { nativeComponents } from "@adapters/native";
+export { default as useFormRuntime } from "@hooks/useFormRuntime";
+export { default as defaultLabels } from "@labels";
 
 export type {
   ActionContext,
@@ -50,4 +50,4 @@ export type {
   TableColumn,
   TableFieldProps,
   TreeConfig
-} from "@/types";
+} from "@typings";

@@ -1,4 +1,4 @@
-import type { FieldOption } from "@/types";
+import type { FieldOption } from "@typings";
 
 export interface ComboBoxProps {
   id: string;

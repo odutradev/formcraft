@@ -1,1 +1,1 @@
-export type { MultiStepFormProps } from "@/types";
+export type { MultiStepFormProps } from "@typings";

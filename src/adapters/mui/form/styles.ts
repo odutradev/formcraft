@@ -1,7 +1,7 @@
 import { alpha, styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
-import shouldForwardProp from "@/adapters/mui/functions/shouldForwardProp";
+import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
 
 import type { StepContainerProps } from "./types";
 

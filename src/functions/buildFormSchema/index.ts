@@ -1,8 +1,8 @@
-import collectFields from "@/functions/collectFields";
-import resolveField from "@/functions/resolveField";
-import setByPath from "@/functions/setByPath";
+import collectFields from "@functions/collectFields";
+import resolveField from "@functions/resolveField";
+import setByPath from "@functions/setByPath";
 
-import type { FieldType, FormConfig, FormField, FormValues } from "@/types";
+import type { FieldType, FormConfig, FormField, FormValues } from "@typings";
 
 const schemaExcludedTypes: FieldType[] = ["info", "error", "warning", "button", "divider"];
 

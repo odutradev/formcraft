@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import resolveValue from "@/functions/resolveValue";
-import useFormRuntime from "@/hooks/useFormRuntime";
-import getByPath from "@/functions/getByPath";
+import resolveValue from "@functions/resolveValue";
+import useFormRuntime from "@hooks/useFormRuntime";
+import getByPath from "@functions/getByPath";
 import FormModal from "../formModal";
 
 import type { ButtonFieldProps } from "./types";

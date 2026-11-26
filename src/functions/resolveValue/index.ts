@@ -1,4 +1,4 @@
-import type { ActionContext, Resolvable } from "@/types";
+import type { ActionContext, Resolvable } from "@typings";
 
 const resolveValue = <T>(value: Resolvable<T> | undefined, context: ActionContext, fallback: T): T => {
   if (value === undefined) return fallback;

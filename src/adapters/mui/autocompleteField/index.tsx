@@ -1,12 +1,12 @@
 import { Autocomplete, TextField } from "@mui/material";
 
-import FieldLabel, { tooltipLabelSx } from "@/adapters/mui/fieldLabel";
-import useFormRuntime from "@/hooks/useFormRuntime";
-import toText from "@/functions/toText";
+import FieldLabel, { tooltipLabelSx } from "@adapters/mui/fieldLabel";
+import useFormRuntime from "@hooks/useFormRuntime";
+import toText from "@functions/toText";
 
 import type { AutocompleteRenderInputParams, FilterOptionsState } from "@mui/material";
 import type { AutocompleteFieldProps } from "./types";
-import type { FieldOption } from "@/types";
+import type { FieldOption } from "@typings";
 
 const getOptionLabel = (option: FieldOption | string) => (typeof option === "string" ? option : option.label);
 
