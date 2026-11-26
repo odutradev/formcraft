@@ -2,6 +2,14 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Alterado
+
+- As entradas públicas saem de `src/lib` para `lib/` na raiz do projeto. Os caminhos de importação do pacote não mudam.
+- O antigo `core` foi dividido em pastas próprias dentro de `src`: `types`, `labels`, `engine`, `functions`, `context` e `hooks`. Os componentes ficam em `src/components` (`multiStepForm`, `multiStepFormProvider` e `formRenderer`).
+- Os imports internos usam um único alias, `@/`, apontando para `src`.
+
 ## [0.1.7] - 2026-11-26
 
 ### Alterado

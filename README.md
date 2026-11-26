@@ -487,21 +487,24 @@ O playground usa o pacote gerado em `dist/`, como um projeto que instalou a bibl
 A estrutura do código e as regras do projeto estão no [CLAUDE.md](CLAUDE.md). Resumo:
 
 ```text
+lib/                 # entradas públicas do pacote (só reexportam)
+├── index.ts         # multi-step-form
+├── mui/index.ts     # multi-step-form/mui
+└── native/index.ts  # multi-step-form/native
 src/
-├── core/       # motor, tipos, hooks e funções puras (só React)
-├── renderer/   # monta o formulário usando o mapa de componentes
-├── multiStepForm/          # componente público MultiStepForm
-├── multiStepFormProvider/  # MultiStepFormProvider
-├── adapters/
-│   ├── mui/    # adapter Material UI
-│   └── native/ # adapter HTML nativo com variáveis CSS
-└── lib/        # entradas públicas do pacote
-    ├── index.ts         # multi-step-form
-    ├── mui/index.ts     # multi-step-form/mui
-    └── native/index.ts  # multi-step-form/native
+├── types/       # tipos compartilhados e o contrato dos adapters
+├── labels/      # textos padrão em pt-BR
+├── engine/      # store do formulário
+├── functions/   # funções puras: validação, máscaras, visibilidade, mesclagens
+├── context/     # contextos React
+├── hooks/       # hooks com a lógica do formulário
+├── components/  # MultiStepForm, MultiStepFormProvider e o renderer interno
+└── adapters/
+    ├── mui/     # adapter Material UI
+    └── native/  # adapter HTML nativo com variáveis CSS
 ```
 
-Cada pasta tem `index.ts(x)` e, quando declara tipos, um `types.ts` ao lado; os componentes dos adapters também têm `styles.ts`. Os tipos compartilhados do core ficam em `core/types`, divididos por assunto (`config`, `components`, `labels`, `values`, `runtime`, `props`).
+Cada pasta tem `index.ts(x)` e, quando declara tipos, um `types.ts` ao lado; os componentes dos adapters também têm `styles.ts`. Dentro de `src` os imports usam o alias `@/` (`@/types`, `@/hooks/useFormRuntime`).
 
 ## Publicação
 

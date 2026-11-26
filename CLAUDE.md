@@ -2,7 +2,7 @@
 
 This guide defines this library's architecture, component, state and code rules. Following it is **mandatory**.
 
-**Directive:** before creating or refactoring components, hooks or core logic, read this guide and follow exactly the structure and standards described here. Before creating a component, hook or helper, look for an existing equivalent in the project.
+**Directive:** before creating or refactoring components, hooks or headless logic, read this guide and follow exactly the structure and standards described here. Before creating a component, hook or helper, look for an existing equivalent in the project.
 
 **Reply language:** always talk to the user in Brazilian Portuguese (pt-BR): answers, explanations, questions, plans and summaries. This guide is written in English only because AI models follow English instructions more reliably. Code, identifiers and commit messages follow the rules below.
 
@@ -22,58 +22,64 @@ The original `react-hook-form` component was replaced by the structure below. Th
 | :--- | :--- |
 | Framework | React (library), built with Vite in library mode |
 | Language | TypeScript (100% typed), emitting `.d.ts` |
-| Form engine | Own engine in `core`: a reducer-driven store read with `useSyncExternalStore` (no `react-hook-form`) |
-| Base components | Adapter pattern: the renderer receives a component map; MUI is the default adapter |
+| Form engine | Own engine in `src/engine`: a reducer-driven store read with `useSyncExternalStore` (no `react-hook-form`) |
+| Base components | Adapter pattern: `formRenderer` receives a component map; MUI is the default adapter |
 | Styling | Defined by each adapter; the MUI adapter uses `styled` from `@mui/material/styles` with theme tokens; the native adapter uses plain CSS strings in each `styles.ts`, joined by `stylesheet/` inside `@layer multi-step-form` and themed by `--msf-*` variables |
 | State | Form store per form or modal + `useState` for UI state + React context for the runtime. No global store |
 | Requests | None. The library never calls HTTP; async work arrives through config callbacks |
 | Unit tests | Not required |
 | E2E tests | None |
 
-## 3. Architecture: core, renderer and adapters
+## 3. Architecture
 
 ```text
 .
+├── lib/  # public package entries: re-exports only
+│   ├── index.ts  # multi-step-form
+│   ├── mui/
+│   │   └── index.ts  # multi-step-form/mui
+│   └── native/
+│       └── index.ts  # multi-step-form/native
 └── src/
-    ├── core/
-    │   ├── context/
-    │   │   ├── formDefaults/
-    │   │   │   └── index.ts  # FormDefaultsContext: provider defaults
-    │   │   └── formRuntime/
-    │   │       └── index.ts  # FormRuntimeContext: components, labels, reportError
-    │   ├── engine/
-    │   │   ├── index.ts  # createFormStore and formReducer: values and errors
-    │   │   └── types.ts  # FormState, FormEvent, FormStore
-    │   ├── functions/
-    │   │   └── changeField/
-    │   │       ├── index.ts  # pure helpers: visibility, validation, masks, formatting
-    │   │       └── types.ts  # only when the helper declares its own types
-    │   ├── hooks/
-    │   │   ├── useMultiStepForm/
-    │   │   │   ├── index.ts  # form orchestrator: steps, validation, actions
-    │   │   │   └── types.ts
-    │   │   ├── useSearch/
-    │   │   ├── useDevTools/
-    │   │   ├── useFormStore/
-    │   │   └── useFormRuntime/
-    │   ├── labels/
-    │   │   └── index.ts  # defaultLabels in pt-BR
-    │   └── types/
-    │       ├── values.ts  # FormValues, FormErrors, ActionContext, Resolvable
-    │       ├── config.ts  # FormConfig, FormStep, FormGroup, FormField and their options
-    │       ├── labels.ts  # FormLabels
-    │       ├── components.ts  # adapter contract: FormComponents and every component's props
-    │       ├── runtime.ts  # FormRuntime, MultiStepFormDefaults
-    │       ├── props.ts  # MultiStepFormProps, MultiStepFormProviderProps
-    │       └── index.ts  # re-exports every file above
-    ├── multiStepForm/
-    │   ├── index.tsx  # public MultiStepForm: merges native adapter, provider defaults and props
-    │   └── types.ts
-    ├── multiStepFormProvider/
-    │   ├── index.tsx  # MultiStepFormProvider: global defaults, merged with parent providers
-    │   └── types.ts
-    ├── renderer/
-    │   └── multiStepForm/
+    ├── types/
+    │   ├── values.ts  # FormValues, FormErrors, ActionContext, Resolvable
+    │   ├── config.ts  # FormConfig, FormStep, FormGroup, FormField and their options
+    │   ├── labels.ts  # FormLabels
+    │   ├── components.ts  # adapter contract: FormComponents and every component's props
+    │   ├── runtime.ts  # FormRuntime, MultiStepFormDefaults
+    │   ├── props.ts  # MultiStepFormProps, MultiStepFormProviderProps
+    │   └── index.ts  # re-exports every file above
+    ├── labels/
+    │   └── index.ts  # defaultLabels in pt-BR
+    ├── engine/
+    │   ├── index.ts  # createFormStore and formReducer: values and errors
+    │   └── types.ts  # FormState, FormEvent, FormStore
+    ├── functions/
+    │   └── changeField/
+    │       ├── index.ts  # pure helpers: visibility, validation, masks, formatting, merges
+    │       └── types.ts  # only when the helper declares its own types
+    ├── context/
+    │   ├── formDefaults/
+    │   │   └── index.ts  # FormDefaultsContext: provider defaults
+    │   └── formRuntime/
+    │       └── index.ts  # FormRuntimeContext: components, labels, reportError
+    ├── hooks/
+    │   ├── useMultiStepForm/
+    │   │   ├── index.ts  # form orchestrator: steps, validation, actions
+    │   │   └── types.ts
+    │   ├── useSearch/
+    │   ├── useDevTools/
+    │   ├── useFormStore/
+    │   ├── useFormRuntime/
+    │   └── useFormDefaults/
+    ├── components/
+    │   ├── multiStepForm/
+    │   │   ├── index.tsx  # public MultiStepForm: merges native adapter, provider defaults and props
+    │   │   └── types.ts
+    │   ├── multiStepFormProvider/
+    │   │   ├── index.tsx  # MultiStepFormProvider: global defaults, merged with parent providers
+    │   │   └── types.ts
+    │   └── formRenderer/
     │       ├── subcomponents/
     │       │   ├── groupList/
     │       │   ├── groupBlock/
@@ -84,42 +90,51 @@ The original `react-hook-form` component was replaced by the structure below. Th
     │       │   ├── formModal/
     │       │   ├── searchDialog/
     │       │   └── actionBar/
-    │       ├── index.tsx
+    │       ├── index.tsx  # FormRenderer: renders the form through the component map
     │       └── types.ts
-    ├── adapters/
-    │   └── mui/
-    │       ├── functions/
-    │       │   └── shouldForwardProp/
-    │       ├── textField/
-    │       │   ├── index.tsx
-    │       │   ├── styles.ts
-    │       │   └── types.ts
-    │       ├── selectField/
-    │       ├── devTools/
-    │       └── index.ts  # builds the muiComponents map
-    └── lib/
-        ├── index.ts  # package entry: multi-step-form
+    └── adapters/
         ├── mui/
-        │   └── index.ts  # package entry: multi-step-form/mui
-        └── native/
-            └── index.ts  # package entry: multi-step-form/native
+        │   ├── functions/
+        │   │   └── shouldForwardProp/
+        │   ├── textField/
+        │   │   ├── index.tsx
+        │   │   ├── styles.ts
+        │   │   └── types.ts
+        │   ├── selectField/
+        │   ├── devTools/
+        │   └── index.ts  # builds the muiComponents map
+        └── native/  # same layout, plus theme/ and stylesheet/
 ```
+
+**Folder roles:**
+
+| Folder | Holds | May import |
+| :--- | :--- | :--- |
+| `types` | Shared types and the adapter contract | `react` types, other `types` files |
+| `labels` | Default user-facing copy | `types` |
+| `engine` | The form store | `types`, `functions` |
+| `functions` | Pure helpers, no React | `types`, `engine` types, other `functions` |
+| `context` | React contexts | `types` |
+| `hooks` | React hooks with the form logic | `types`, `labels`, `engine`, `functions`, `context`, other `hooks` |
+| `components` | Library components with no UI library | everything above and, only in `multiStepForm`, `adapters/native` |
+| `adapters/<name>` | UI implementations of `FormComponents` | `types`, `hooks` (`useFormRuntime`), display helpers (`toText`) and their own UI library |
+| `lib` (project root) | Public entries | anything in `src` |
 
 **Layer rules:**
 
-- `core` depends only on React. It never imports from `renderer`, `adapters`, MUI or any UI library.
-- `multiStepForm` is the public component. It is the only place that joins the renderer with the default adapter (`nativeComponents`) and with the provider defaults; the merge rules live in `core/functions` (`mergeComponents`, `mergeFormDefaults`).
-- `multiStepFormProvider` only reads the parent defaults from `core/context/formDefaults`, merges its own and provides the result. Precedence is always: library defaults, outer provider, inner provider, form props and `config`.
-- `renderer` imports from `core` only. It never renders a UI-library component directly: it asks the component map for one.
-- `adapters/<name>` implement the `FormComponents` contract declared in `core/types`. They may import `core` types, hooks (`useFormRuntime` for labels) and display helpers (`toText`) and their own UI library, never `renderer` or another adapter.
+- `types`, `labels`, `engine`, `functions`, `context` and `hooks` are the headless layer: they depend only on React and never import from `components`, `adapters`, MUI or any UI library.
+- `components/multiStepForm` is the public component. It is the only place that joins `formRenderer` with the default adapter (`nativeComponents`) and with the provider defaults; the merge rules live in `functions` (`mergeComponents`, `mergeFormDefaults`).
+- `components/multiStepFormProvider` only reads the parent defaults from `context/formDefaults`, merges its own and provides the result. Precedence is always: library defaults, outer provider, inner provider, form props and `config`.
+- `components/formRenderer` never renders a UI-library component directly: it asks the component map for one.
+- `adapters/<name>` implement the `FormComponents` contract declared in `types`. They never import `components` or another adapter.
 - Every input type in `InputFieldType` must have a component in each adapter's `inputs` map.
-- Each form and each modal (form modal, search filters) owns a store from `createFormStore`. Only core functions (`changeField`, `createActionContext`) and core hooks dispatch to it.
-- DevTools logic lives in `core/hooks/useDevTools`; its panel is an adapter component. It is opt-in through the `isDevToolsEnabled` prop, which consumers set from their own environment flag (for example `import.meta.env.DEV`). The library never turns it on by itself.
+- Each form and each modal (form modal, search filters) owns a store from `createFormStore`. Only `functions` (`changeField`, `createActionContext`) and `hooks` dispatch to it.
+- DevTools logic lives in `hooks/useDevTools`; its panel is an adapter component. It is opt-in through the `isDevToolsEnabled` prop, which consumers set from their own environment flag (for example `import.meta.env.DEV`). The library never turns it on by itself.
 
 **Public API:**
 
-- Every public entry lives in `src/lib` and only re-exports: it declares nothing. `src/lib/index.ts` is the only entry for the core, the renderer and the default native adapter (`nativeComponents`). Each adapter has its own entry folder (`src/lib/mui`, `src/lib/native`), built as `<package>/mui` and `<package>/native` and declared in `package.json` `exports`.
-- A new public entry gets a folder in `src/lib`, a key in the `build.lib.entry` of `vite.config.ts` and a subpath in `package.json` `exports` pointing at `dist/lib/<name>/index.d.ts`. Nothing inside `src` imports from `src/lib`.
+- Every public entry lives in `lib/` at the project root and only re-exports: it declares nothing. `lib/index.ts` is the only entry for the headless layer, the components and the default native adapter (`nativeComponents`). Each adapter has its own entry folder (`lib/mui`, `lib/native`), built as `<package>/mui` and `<package>/native` and declared in `package.json` `exports`.
+- A new public entry gets a folder in `lib/`, a key in the `build.lib.entry` of `vite.config.ts` and a subpath in `package.json` `exports` pointing at `dist/lib/<name>/index.d.ts`. Nothing inside `src` imports from `lib`.
 - Anything not exported from an entry file is private and may change without a major version.
 - Removing or renaming an export, changing a prop or changing the behavior of a config option is a **breaking change**.
 
@@ -127,14 +142,14 @@ The original `react-hook-form` component was replaced by the structure below. Th
 
 - `react` and `react-dom` are `peerDependencies`.
 - Adapter libraries (`@mui/material`, `@mui/icons-material`, `@mui/x-date-pickers`, `dayjs`) are optional `peerDependencies` (`peerDependenciesMeta`), needed only by the adapter that uses them.
-- The core has no runtime dependency besides React. Masks, date handling and number formatting are implemented in `core/functions` with native APIs (`Intl`, `Date`).
+- The headless layer has no runtime dependency besides React. Masks, date handling and number formatting are implemented in `functions` with native APIs (`Intl`, `Date`).
 - Never import a whole icon package (`import * as Icons`). Icons are passed as `ReactNode` or imported one by one.
 - Never depend on anything from a consumer application (loading components, toasts, loggers, stores).
 
 **Local and shared scope:**
 
 - What only one component uses lives in its `subcomponents/`, one folder per subcomponent.
-- Once something is used by more than one component, move it up to the shared folder of its layer (`core/functions`, `core/hooks`).
+- Once something is used by more than one component, move it up to the shared folder of its kind (`functions`, `hooks`, `types`).
 
 ## 4. Naming
 
@@ -159,16 +174,16 @@ The original `react-hook-form` component was replaced by the structure below. Th
 ## 5. Components
 
 - **Declaration:** arrow function with typed props.
-- **Structure:** one component per folder with `index.tsx`, `styles.ts` and `types.ts`. Core and renderer components have no `styles.ts`: styling belongs to the adapters. An adapter component without styles of its own has no `styles.ts`.
+- **Structure:** one component per folder with `index.tsx`, `styles.ts` and `types.ts`. Components in `components/` have no `styles.ts`: styling belongs to the adapters. An adapter component without styles of its own has no `styles.ts`.
 - **Exports:** default for the file's main component, hook or function; named for types and for entry files.
 - **Props:** always typed in the component's `types.ts`.
-- **Types files:** every type and interface lives in a `types.ts` next to the file that uses it (component, hook, helper, engine), never inline in `index.ts(x)` or `styles.ts`. That includes the transient props of MUI `styled` components (`FieldWrapperProps`) and helper options (`ChangeFieldOptions`). Types shared across a layer go to that layer's `types/` folder (`core/types`, `adapters/native/types`). A folder that declares no type has no `types.ts`.
+- **Types files:** every type and interface lives in a `types.ts` next to the file that uses it (component, hook, helper, engine), never inline in `index.ts(x)` or `styles.ts`. That includes the transient props of MUI `styled` components (`FieldWrapperProps`) and helper options (`ChangeFieldOptions`). Types shared across the library go to `src/types`; types shared inside one adapter go to its `types/` folder (`adapters/native/types`). A folder that declares no type has no `types.ts`.
 - **Adapter components** receive the adapter contract props (`field`, `value`, `error`, `isRequired`, `isDisabled`, `isReadOnly`, `onChange`) and contain no form logic: no validation, no visibility rules, no value formatting.
 
 ## 6. State
 
 - **Local:** `useState` for state only the component uses (open menus, collapsed groups).
-- **Form state:** lives in a store from `createFormStore` (`core/engine`), read with `useFormStore`. The renderer passes it to fields through a `FieldBinding`. Adapters never touch the store: they receive `value` and call `onChange`.
+- **Form state:** lives in a store from `createFormStore` (`engine`), read with `useFormStore`. `formRenderer` passes it to fields through a `FieldBinding`. Adapters never touch the store: they receive `value` and call `onChange`.
 - **Runtime:** components, labels and `reportError` reach every component through `FormRuntimeContext`, read with `useFormRuntime`.
 - **No global store and no persistence.** Consumers persist data themselves with `initialData` and the change callbacks.
 
@@ -181,7 +196,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 
 ## 8. Code style
 
-- **Imports:** one alias per `src` root folder (`@core`, `@renderer`, `@adapters`, `@multiStepForm`, `@multiStepFormProvider`). The build resolves every alias: published files never contain one.
+- **Imports:** one alias, `@/`, pointing at `src/` (`@/types`, `@/hooks/useFormRuntime`, `@/adapters/native`). Files import siblings in their own folder with `./` (`./types`, `./styles`, `./subcomponents/...`). The build resolves the alias: published files never contain it.
 - **Import organization:** 3 blocks separated by a blank line: external, internal and `import type`, each sorted from longest to shortest line. Destructuring always on one line.
 - **Semicolons:** always.
 - **Quotes:** double quotes, also in JSX attributes.
@@ -255,11 +270,11 @@ const handleNext = () => useMultiStepForm(props).executeAction(nextAction);
 
 ### Don't reinvent utilities
 
-Before writing a helper, look for one in `core/functions`. Never duplicate a helper between layers or adapters.
+Before writing a helper, look for one in `src/functions`. Never duplicate a helper between layers or adapters.
 
 ✅ Do:
 ```typescript
-import resolveValue from "@core/functions/resolveValue";
+import resolveValue from "@/functions/resolveValue";
 ```
 
 ❌ Don't:
@@ -317,7 +332,7 @@ color: "#666"
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
 - Behavior changes are checked by hand in the playground (`npm run dev`). The full form config is in `playground/config/sampleConfig`; the components gallery, one single-step form per feature group, is in `playground/config/showcaseSections`. A new field type or config option gets an example in the gallery.
-- The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src` or the `@core`, `@renderer` and `@adapters` aliases in the playground.
+- The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src`, `lib` or the `@/` alias in the playground.
 - The playground follows the same folder rules as the library: `components/<name>/` (`index.tsx`, `styles.css`, `types.ts`), `config/`, `data/`, `functions/<name>/index.ts` and `types/`, imported through the `@playground` alias.
 
 ## 11. Commits and Git
@@ -398,10 +413,10 @@ If the tool is not available, ask the same question in text as the last line of 
 
 Use these files as a template. They follow every rule above. Where an example differs from the sections above, follow the sections.
 
-### `src/core/functions/resolveValue/index.ts`
+### `src/functions/resolveValue/index.ts`
 
 ```typescript
-import type { ActionContext, Resolvable } from "@core/types";
+import type { ActionContext, Resolvable } from "@/types";
 
 const resolveValue = <T>(value: Resolvable<T> | undefined, context: ActionContext, fallback: T): T => {
   if (value === undefined) return fallback;
@@ -434,7 +449,7 @@ export default FieldSlot;
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
-import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
+import shouldForwardProp from "@/adapters/mui/functions/shouldForwardProp";
 
 import type { FieldWrapperProps } from "./types";
 
@@ -458,7 +473,7 @@ export const FieldWrapper = styled(Box, { shouldForwardProp })<FieldWrapperProps
 ### `src/adapters/mui/fieldSlot/types.ts`
 
 ```typescript
-import type { FieldSlotProps as CoreFieldSlotProps } from "@core/types";
+import type { FieldSlotProps as CoreFieldSlotProps } from "@/types";
 
 export type FieldSlotProps = CoreFieldSlotProps;
 
@@ -468,30 +483,30 @@ export interface FieldWrapperProps {
 }
 ```
 
-### `src/lib/index.ts`
+### `lib/index.ts`
 
 ```typescript
-export { default as MultiStepFormProvider } from "@multiStepFormProvider";
-export { default as MultiStepForm } from "@multiStepForm";
-export { default as useFormRuntime } from "@core/hooks/useFormRuntime";
-export { default as defaultLabels } from "@core/labels";
+export { default as MultiStepFormProvider } from "@/components/multiStepFormProvider";
+export { default as MultiStepForm } from "@/components/multiStepForm";
+export { default as useFormRuntime } from "@/hooks/useFormRuntime";
+export { default as defaultLabels } from "@/labels";
 
-export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldProps, MultiStepFormProps } from "@core/types";
+export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldProps, MultiStepFormProps } from "@/types";
 ```
 
 ## 15. Checklist before delivering
 
 - [ ] Names follow the naming table and are in English.
-- [ ] Files are in the right layer (`core`, `renderer`, `adapters`, `lib` for public entries).
-- [ ] Every type and interface is in a `types.ts` (or a layer `types/` folder), none inline.
-- [ ] `core` imports nothing from `renderer`, `adapters` or any UI library.
+- [ ] Files are in the right folder (`types`, `labels`, `engine`, `functions`, `context`, `hooks`, `components`, `adapters`, `lib` for public entries).
+- [ ] Every type and interface is in a `types.ts` (or a `types/` folder), none inline.
+- [ ] The headless folders import nothing from `components`, `adapters` or any UI library.
 - [ ] Adapter components contain no form logic.
 - [ ] Components follow "folder with index, styles and types" and "arrow with typed props".
 - [ ] Props and state are typed, with no `any`.
 - [ ] Async callbacks have their rejections handled and reported through `onError`.
 - [ ] No `console.*`, no consumer-app dependencies, no whole-package icon imports.
 - [ ] New dependencies are `peerDependencies` (optional when adapter-only).
-- [ ] Imports follow "alias per folder" and the 3-block order.
+- [ ] Imports use the `@/` alias and the 3-block order.
 - [ ] Principles applied: early returns, immutability, strict typing, hooks rules, no reinvented utilities, mobile-first, accessibility, theme tokens.
 - [ ] Public API changes classified as patch, minor or major.
 - [ ] Typecheck, lint and build pass.
