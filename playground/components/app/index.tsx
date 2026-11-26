@@ -1,8 +1,10 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { MultiStepFormProvider } from "multi-step-form";
 import { useMemo, useState } from "react";
 
 import buildNativeStyle from "@playground/functions/buildNativeStyle";
 import FormComparison from "@playground/components/formComparison";
+import { globalFormDefaults } from "@playground/data/formDefaults";
 import { defaultSettings } from "@playground/data/styleOptions";
 import ThemePanel from "@playground/components/themePanel";
 import sampleConfig from "@playground/config/sampleConfig";
@@ -34,37 +36,39 @@ const App = () => {
 
   return (
     <ThemeProvider theme={muiTheme}>
-      <CssBaseline />
-      <div className="playground" data-mode={settings.colorMode} style={buildNativeStyle(settings)}>
-        <Header
-          tab={tab}
-          adapterView={adapterView}
-          colorMode={settings.colorMode}
-          onTabChange={setTab}
-          onAdapterViewChange={setAdapterView}
-          onColorModeChange={(colorMode) => setSettings((previous) => ({ ...previous, colorMode }))}
-        />
-        <div className="layout">
-          <div className="layout-sidebar">
-            <ThemePanel settings={settings} onSettingsChange={setSettings} onReset={() => setSettings(defaultSettings)} />
-          </div>
-          <main className="layout-main">
-            {tab === "form" && (
-              <div className="form-page">
-                <div className="page-intro">
-                  <h1>Formulário completo</h1>
-                  <p>
-                    A mesma config de duas etapas renderizada pelos dois adapters, com busca, máscara, subgrupo condicional, modal, tabela e DevTools. Use o
-                    DevTools para preencher os dados de teste.
-                  </p>
+      <MultiStepFormProvider {...globalFormDefaults}>
+        <CssBaseline />
+        <div className="playground" data-mode={settings.colorMode} style={buildNativeStyle(settings)}>
+          <Header
+            tab={tab}
+            adapterView={adapterView}
+            colorMode={settings.colorMode}
+            onTabChange={setTab}
+            onAdapterViewChange={setAdapterView}
+            onColorModeChange={(colorMode) => setSettings((previous) => ({ ...previous, colorMode }))}
+          />
+          <div className="layout">
+            <div className="layout-sidebar">
+              <ThemePanel settings={settings} onSettingsChange={setSettings} onReset={() => setSettings(defaultSettings)} />
+            </div>
+            <main className="layout-main">
+              {tab === "form" && (
+                <div className="form-page">
+                  <div className="page-intro">
+                    <h1>Formulário completo</h1>
+                    <p>
+                      A mesma config de duas etapas renderizada pelos dois adapters, com busca, máscara, subgrupo condicional, modal, tabela e DevTools. Use o
+                      DevTools para preencher os dados de teste.
+                    </p>
+                  </div>
+                  <FormComparison config={sampleConfig} adapterView={adapterView} isDevToolsEnabled />
                 </div>
-                <FormComparison config={sampleConfig} adapterView={adapterView} isDevToolsEnabled />
-              </div>
-            )}
-            {tab === "showcase" && <Showcase adapterView={adapterView} />}
-          </main>
+              )}
+              {tab === "showcase" && <Showcase adapterView={adapterView} />}
+            </main>
+          </div>
         </div>
-      </div>
+      </MultiStepFormProvider>
     </ThemeProvider>
   );
 };

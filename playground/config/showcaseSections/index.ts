@@ -1,4 +1,5 @@
 import searchPeople from "@playground/functions/searchPeople";
+import { sectionFormDefaults } from "@playground/data/formDefaults";
 import { departments, people } from "@playground/data/people";
 
 import type { ShowcaseSection } from "@playground/types";
@@ -379,6 +380,35 @@ const showcaseSections: ShowcaseSection[] = [
               title: "Grupo fixo",
               collapsible: false,
               fields: [{ name: "fixedNote", label: "Este card não pode ser recolhido (collapsible: false)." }]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "provider",
+    title: "Provider",
+    description:
+      "Os presets phone e zipCode vêm do MultiStepFormProvider global do app. Um Provider aninhado nesta seção define formStyle collapsed e o texto de obrigatório. A config local troca o preset zipCode e um campo troca o rótulo do preset.",
+    features: ["MultiStepFormProvider", "fieldPreSets global", "Provider aninhado", "labels", "formStyle"],
+    defaults: sectionFormDefaults,
+    config: {
+      fieldPreSets: { zipCode: { label: "CEP de entrega", mask: "00000-000" } },
+      steps: [
+        {
+          id: "provider",
+          title: "Provider",
+          actions: validateAction,
+          groups: [
+            {
+              title: "Contato",
+              gridColumns: 2,
+              fields: [
+                { name: "phone", preSet: "phone", required: true },
+                { name: "workPhone", preSet: "phone", label: "Telefone comercial" },
+                { name: "zipCode", preSet: "zipCode", required: true }
+              ]
             }
           ]
         }

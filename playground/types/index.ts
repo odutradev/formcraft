@@ -1,4 +1,4 @@
-import type { FormConfig } from "multi-step-form";
+import type { FormConfig, MultiStepFormDefaults } from "multi-step-form";
 
 export type AdapterName = "mui" | "native";
 
@@ -27,4 +27,5 @@ export interface ShowcaseSection {
   description: string;
   features: string[];
   config: FormConfig;
+  defaults?: MultiStepFormDefaults;
 }
