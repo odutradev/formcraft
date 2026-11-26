@@ -197,7 +197,17 @@ const showcaseSections: ShowcaseSection[] = [
                     gridColumns: 2,
                     fields: [
                       { name: "contactName", label: "Nome", required: true },
-                      { name: "contactPhone", label: "Telefone", mask: "(00) 00000-0000" }
+                      { name: "contactPhone", label: "Telefone", mask: "(00) 00000-0000" },
+                      {
+                        name: "contactType",
+                        label: "Tipo de contato",
+                        type: "select",
+                        colSpan: 2,
+                        options: [
+                          { label: "Pessoal", value: "personal" },
+                          { label: "Trabalho", value: "work" }
+                        ]
+                      }
                     ],
                     onConfirm: (values, context) => {
                       const list = toRows(context.getValues("contacts"));
@@ -419,7 +429,7 @@ const showcaseSections: ShowcaseSection[] = [
     id: "locale",
     title: "Idiomas",
     description:
-      "Os textos da biblioteca vêm em português e inglês. Por padrão o idioma segue o navegador (locale auto); esta seção fixa locale: \"en\" num Provider aninhado, sem depender do seletor do painel. Valide vazio para ver as mensagens.",
+      "Os textos da biblioteca vêm em português e inglês. Por padrão o idioma segue o navegador (locale auto); esta seção fixa locale en num Provider aninhado, sem depender do seletor do painel. Valide vazio para ver as mensagens.",
     features: ["locale", "auto", "pt-BR", "en", "enLabels"],
     defaults: englishFormDefaults,
     config: {

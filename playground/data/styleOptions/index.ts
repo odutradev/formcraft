@@ -1,4 +1,4 @@
-import type { AdapterView, ColorMode, PageTab, StyleOption, StyleSettings } from "@playground/types";
+import type { AdapterDetails, AdapterName, AdapterView, ColorMode, PageTab, StyleOption, StyleSettings } from "@playground/types";
 import type { FormLocaleOption } from "multi-step-form";
 
 export const defaultSettings: StyleSettings = {
@@ -31,9 +31,13 @@ export const tabOptions: StyleOption<PageTab>[] = [
 ];
 
 export const adapterOptions: StyleOption<AdapterView>[] = [
-  { label: "Lado a lado", value: "both" },
+  { label: "Todos", value: "all" },
+  { label: "Nativo", value: "native" },
   { label: "MUI", value: "mui" },
-  { label: "Nativo", value: "native" }
+  { label: "Mantine", value: "mantine" },
+  { label: "Ant Design", value: "antd" },
+  { label: "Chakra", value: "chakra" },
+  { label: "Enchase", value: "enchase" }
 ];
 
 export const colorModeOptions: StyleOption<ColorMode>[] = [
@@ -41,9 +45,13 @@ export const colorModeOptions: StyleOption<ColorMode>[] = [
   { label: "Escuro", value: "dark" }
 ];
 
-export const adapterDetails = {
-  mui: { title: "Material UI", description: "components={muiComponents}" },
-  native: { title: "Nativo", description: "padrão, sem a prop components" }
+export const adapterDetails: Record<AdapterName, AdapterDetails> = {
+  native: { title: "Nativo", description: "padrão, sem a prop components", accent: "#f59e0b" },
+  mui: { title: "Material UI", description: "components={muiComponents}", accent: "#1976d2" },
+  mantine: { title: "Mantine", description: "components={mantineComponents}", accent: "#228be6" },
+  antd: { title: "Ant Design", description: "components={antdComponents}", accent: "#1677ff" },
+  chakra: { title: "Chakra UI", description: "components={chakraComponents}", accent: "#14b8a6" },
+  enchase: { title: "Enchase", description: "components={enchaseComponents}", accent: "#0f766e" }
 };
 
 export const darkNativePalette: Record<string, string> = {
@@ -60,3 +68,5 @@ export const darkNativePalette: Record<string, string> = {
   "--msf-color-overlay": "rgb(2 6 23 / 0.7)",
   "--msf-color-scheme": "dark"
 };
+
+export const cssLayerOrder = "@layer reset, base, tokens, recipes, mantine, enchase-theme, enchase-base, enchase, multi-step-form;";

@@ -1,17 +1,15 @@
 import { useState } from "react";
 
 import AdapterForm from "@playground/components/adapterForm";
+import { adapterNames } from "@playground/data/adapterComponents";
 import FormPanel from "@playground/components/formPanel";
 import "./styles.css";
 
 import type { FormComparisonProps, SubmittedByAdapter } from "./types";
-import type { AdapterName } from "@playground/types";
-
-const adapters: AdapterName[] = ["mui", "native"];
 
 const FormComparison = ({ config, adapterView, isDevToolsEnabled }: FormComparisonProps) => {
   const [submitted, setSubmitted] = useState<SubmittedByAdapter>({});
-  const visibleAdapters = adapters.filter((adapter) => adapterView === "both" || adapterView === adapter);
+  const visibleAdapters = adapterNames.filter((adapter) => adapterView === "all" || adapterView === adapter);
 
   return (
     <div className="comparison" data-view={adapterView}>

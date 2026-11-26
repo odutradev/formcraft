@@ -23,7 +23,10 @@ const ThemePanel = ({ settings, onSettingsChange, onReset }: ThemePanelProps) =>
           Restaurar
         </button>
       </div>
-      <p className="theme-panel-hint">Os controles mudam ao mesmo tempo o tema MUI (createTheme) e as variáveis --msf-* do adapter nativo. O idioma vale para todos os formulários.</p>
+      <p className="theme-panel-hint">
+        Os controles mudam ao mesmo tempo o tema de cada biblioteca (MUI, Mantine, Ant Design, Chakra e Enchase) e as variáveis --msf-* do adapter nativo. O
+        idioma vale para todos os formulários.
+      </p>
 
       <div className="theme-control">
         <span className="theme-control-label">Cor primária</span>

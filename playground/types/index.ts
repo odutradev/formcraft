@@ -1,8 +1,8 @@
 import type { FormConfig, FormLocaleOption, MultiStepFormDefaults } from "multi-step-form";
 
-export type AdapterName = "mui" | "native";
+export type AdapterName = "native" | "mui" | "mantine" | "antd" | "chakra" | "enchase";
 
-export type AdapterView = "both" | AdapterName;
+export type AdapterView = "all" | AdapterName;
 
 export type PageTab = "form" | "showcase";
 
@@ -15,6 +15,12 @@ export interface StyleSettings {
   borderRadius: number;
   spacing: number;
   fontFamily: string;
+}
+
+export interface AdapterDetails {
+  title: string;
+  description: string;
+  accent: string;
 }
 
 export interface StyleOption<Value extends string> {
