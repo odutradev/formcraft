@@ -419,7 +419,7 @@ const showcaseSections: ShowcaseSection[] = [
     id: "locale",
     title: "Idiomas",
     description:
-      "Os textos da biblioteca vêm em português e inglês. Por padrão o idioma segue o navegador (locale auto); esta seção fixa locale: \"en\" num Provider aninhado, sem depender do seletor do painel. Valide vazio para ver as mensagens.",
+      "Os textos da biblioteca vêm em português e inglês. Por padrão o idioma segue o navegador (locale auto); esta seção fixa locale en num Provider aninhado, sem depender do seletor do painel. Valide vazio para ver as mensagens.",
     features: ["locale", "auto", "pt-BR", "en", "enLabels"],
     defaults: englishFormDefaults,
     config: {

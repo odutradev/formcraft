@@ -5,13 +5,12 @@
   align-items: start;
 }
 
-.comparison[data-view="mui"],
-.comparison[data-view="native"] {
+.comparison:not([data-view="all"]) {
   max-width: 960px;
 }
 
 @media (min-width: 1440px) {
-  .comparison[data-view="both"] {
+  .comparison[data-view="all"] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
