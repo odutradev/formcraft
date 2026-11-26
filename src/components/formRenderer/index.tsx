@@ -5,15 +5,14 @@ import FormRuntimeContext from "@context/formRuntime";
 import ActionBar from "./subcomponents/actionBar";
 import GroupList from "./subcomponents/groupList";
 import useDevTools from "@hooks/useDevTools";
-import defaultLabels from "@labels";
 
 import type { FieldBinding, FormRendererProps } from "./types";
 import type { FormRuntime } from "@typings";
 
 const ignoreError = () => undefined;
 
-const FormRenderer = ({ config, components, onSubmit, onError, initialData, labels, isDevToolsEnabled = false }: FormRendererProps) => {
-  const runtime = useMemo<FormRuntime>(() => ({ components, labels: { ...defaultLabels, ...labels }, reportError: onError ?? ignoreError }), [components, labels, onError]);
+const FormRenderer = ({ config, components, onSubmit, onError, initialData, locale, labels, isDevToolsEnabled = false }: FormRendererProps) => {
+  const runtime = useMemo<FormRuntime>(() => ({ components, locale, labels, reportError: onError ?? ignoreError }), [components, locale, labels, onError]);
 
   const { store, state, context, visibleSteps, currentStep, currentStepIndex, visibleGroups, isStepReadOnly, isActionLoading, isCurrentStepValid, executeAction } =
     useMultiStepForm({ config, initialData, onSubmit, requiredMessage: runtime.labels.required, reportError: runtime.reportError });

@@ -3,6 +3,8 @@ export { default as MultiStepForm } from "@components/multiStepForm";
 export { nativeComponents } from "@adapters/native";
 export { default as useFormRuntime } from "@hooks/useFormRuntime";
 export { default as defaultLabels } from "@labels";
+export { default as ptBRLabels } from "@labels/ptBR";
+export { default as enLabels } from "@labels/en";
 
 export type {
   ActionContext,
@@ -26,6 +28,8 @@ export type {
   FormField,
   FormGroup,
   FormLabels,
+  FormLocale,
+  FormLocaleOption,
   FormLayoutProps,
   FormModalConfig,
   FormRow,

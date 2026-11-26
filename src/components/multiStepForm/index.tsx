@@ -4,17 +4,20 @@ import mergeComponents from "@functions/mergeComponents";
 import useFormDefaults from "@hooks/useFormDefaults";
 import { nativeComponents } from "@adapters/native";
 import FormRenderer from "@components/formRenderer";
+import useFormLocale from "@hooks/useFormLocale";
+import { labelsByLocale } from "@labels";
 
 import type { MultiStepFormProps } from "./types";
 
-const MultiStepForm = ({ config, components, labels, onError, isDevToolsEnabled, ...props }: MultiStepFormProps) => {
+const MultiStepForm = ({ config, components, locale, labels, onError, isDevToolsEnabled, ...props }: MultiStepFormProps) => {
   const defaults = useFormDefaults();
+  const resolvedLocale = useFormLocale(locale ?? defaults.locale ?? "auto");
 
   const resolvedComponents = useMemo(
     () => mergeComponents(mergeComponents(nativeComponents, defaults.components), components),
     [defaults.components, components]
   );
-  const resolvedLabels = useMemo(() => ({ ...defaults.labels, ...labels }), [defaults.labels, labels]);
+  const resolvedLabels = useMemo(() => ({ ...labelsByLocale[resolvedLocale], ...defaults.labels, ...labels }), [resolvedLocale, defaults.labels, labels]);
   const resolvedConfig = useMemo(
     () => ({ ...config, formStyle: config.formStyle ?? defaults.formStyle, fieldPreSets: { ...defaults.fieldPreSets, ...config.fieldPreSets } }),
     [config, defaults.formStyle, defaults.fieldPreSets]
@@ -25,6 +28,7 @@ const MultiStepForm = ({ config, components, labels, onError, isDevToolsEnabled,
       {...props}
       config={resolvedConfig}
       components={resolvedComponents}
+      locale={resolvedLocale}
       labels={resolvedLabels}
       onError={onError ?? defaults.onError}
       isDevToolsEnabled={isDevToolsEnabled ?? defaults.isDevToolsEnabled}

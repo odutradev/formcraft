@@ -6,13 +6,16 @@ import "dayjs/locale/pt-br";
 import { FormContainer, LoadingOverlay, StepContainer } from "./styles";
 import useFormRuntime from "@hooks/useFormRuntime";
 
+import type { FormLocale } from "@typings";
 import type { FormProps } from "./types";
 
+const dateLocales: Record<FormLocale, string> = { "pt-BR": "pt-br", en: "en" };
+
 const Form = ({ header, isLoading, hasStepIndicator, children }: FormProps) => {
-  const { labels } = useFormRuntime();
+  const { labels, locale } = useFormRuntime();
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={dateLocales[locale]}>
       <FormContainer noValidate onSubmit={(event) => event.preventDefault()}>
         {header}
         <StepContainer $hasIndicator={hasStepIndicator}>{children}</StepContainer>

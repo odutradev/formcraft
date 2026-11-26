@@ -1,33 +1,12 @@
-import type { FormLabels } from "@typings";
+import ptBRLabels from "@labels/ptBR";
+import enLabels from "@labels/en";
 
-const defaultLabels: FormLabels = {
-  required: "Campo obrigatório",
-  processing: "Processando",
-  noOptions: "Nenhuma opção disponível",
-  searchHint: "Pressione Enter para pesquisar",
-  tagsHint: "Digite e pressione Enter para adicionar",
-  search: "Buscar",
-  openSearch: "Abrir pesquisa",
-  searching: "Buscando resultados...",
-  noResults: "Nenhum resultado encontrado.",
-  select: "Selecionar",
-  actions: "Ações",
-  moreActions: "Mais ações",
-  close: "Fechar",
-  cancel: "Cancelar",
-  save: "Salvar",
-  expand: "Expandir",
-  collapse: "Recolher",
-  rowsPerPage: "Linhas por página:",
-  previousPage: "Página anterior",
-  nextPage: "Próxima página",
-  remove: "Remover",
-  displayedRows: ({ from, to, count }) => `${from}-${to} de ${count}`,
-  fileRequired: "Obrigatório",
-  fileAttach: "Anexar PDF",
-  fileRemove: "Remover documento",
-  fileDescription: "Descrição (opcional)",
-  fileEditDescription: "Editar descrição"
-};
+import type { FormLabels, FormLocale } from "@typings";
+
+export const labelsByLocale: Record<FormLocale, FormLabels> = { "pt-BR": ptBRLabels, en: enLabels };
+
+export const fallbackLocale: FormLocale = "en";
+
+const defaultLabels = ptBRLabels;
 
 export default defaultLabels;

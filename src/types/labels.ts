@@ -1,3 +1,7 @@
+export type FormLocale = "pt-BR" | "en";
+
+export type FormLocaleOption = FormLocale | "auto";
+
 export interface DisplayedRowsRange {
   from: number;
   to: number;
