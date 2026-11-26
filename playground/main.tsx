@@ -1,11 +1,10 @@
 import { createRoot } from "react-dom/client";
 import { StrictMode } from "react";
 
-import Playground from "./app";
-import "./styles.css";
+import App from "@playground/components/app";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-    <Playground />
+    <App />
   </StrictMode>
 );

@@ -1,0 +1,47 @@
+.panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--page-border);
+  border-radius: 12px;
+  background: var(--page-surface);
+}
+
+.panel-native {
+  background: var(--msf-color-background);
+  color: var(--msf-color-text);
+}
+
+.panel-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--page-border);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.panel-header p {
+  margin: 4px 0 0;
+  color: var(--page-muted);
+  font-size: 0.8125rem;
+}
+
+.panel-result {
+  margin-top: 16px;
+  font-size: 0.8125rem;
+}
+
+.panel-result summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.panel-result pre {
+  max-height: 320px;
+  overflow: auto;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--page-background);
+}

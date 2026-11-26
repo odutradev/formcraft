@@ -1,33 +1,8 @@
-import type { ColorMode, StyleSettings, ViewMode } from "./types";
-import type { Dispatch, SetStateAction } from "react";
+import { colorModeOptions, colorPresets, fontOptions, viewOptions } from "@playground/data/styleOptions";
+import "./styles.css";
 
-interface StyleControlsProps {
-  settings: StyleSettings;
-  viewMode: ViewMode;
-  onSettingsChange: Dispatch<SetStateAction<StyleSettings>>;
-  onViewModeChange: (viewMode: ViewMode) => void;
-  onReset: () => void;
-}
-
-const colorPresets = ["#1976d2", "#7c3aed", "#059669", "#dc2626", "#ea580c", "#db2777", "#0f172a"];
-
-const fontOptions = [
-  { label: "Roboto", value: 'Roboto, "Helvetica Neue", Arial, sans-serif' },
-  { label: "Sistema", value: 'system-ui, -apple-system, "Segoe UI", sans-serif' },
-  { label: "Serif", value: 'Georgia, "Times New Roman", serif' },
-  { label: "Monoespaçada", value: 'ui-monospace, "Cascadia Code", Consolas, monospace' }
-];
-
-const viewOptions: { label: string; value: ViewMode }[] = [
-  { label: "Lado a lado", value: "both" },
-  { label: "MUI", value: "mui" },
-  { label: "Nativo", value: "native" }
-];
-
-const colorModeOptions: { label: string; value: ColorMode }[] = [
-  { label: "Claro", value: "light" },
-  { label: "Escuro", value: "dark" }
-];
+import type { StyleSettings } from "@playground/types";
+import type { StyleControlsProps } from "./types";
 
 const StyleControls = ({ settings, viewMode, onSettingsChange, onViewModeChange, onReset }: StyleControlsProps) => {
   const update = <Key extends keyof StyleSettings>(key: Key, value: StyleSettings[Key]) => onSettingsChange((previous) => ({ ...previous, [key]: value }));

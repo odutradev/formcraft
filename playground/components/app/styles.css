@@ -1,0 +1,45 @@
+.playground {
+  --page-background: #eef1f5;
+  --page-surface: #ffffff;
+  --page-text: #1f2937;
+  --page-muted: #6b7280;
+  --page-border: #d1d5db;
+
+  min-height: 100vh;
+  padding: 16px;
+  background: var(--page-background);
+  color: var(--page-text);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+}
+
+.playground[data-mode="dark"] {
+  --page-background: #0a0a0a;
+  --page-surface: #121212;
+  --page-text: #e5e7eb;
+  --page-muted: #9ca3af;
+  --page-border: #3f3f46;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.panels[data-view="mui"],
+.panels[data-view="native"] {
+  max-width: 1000px;
+}
+
+@media (min-width: 1280px) {
+  .panels[data-view="both"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}

@@ -9,3 +9,8 @@ export interface StyleSettings {
   spacing: number;
   fontFamily: string;
 }
+
+export interface StyleOption<Value extends string> {
+  label: string;
+  value: Value;
+}

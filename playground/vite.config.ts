@@ -31,6 +31,7 @@ export default defineConfig({
   plugins: [react(), watchLibraryBuild()],
   resolve: {
     alias: [
+      { find: /^@playground\//, replacement: resolvePath("./") },
       { find: new RegExp(`^${packageName}/mui$`), replacement: resolvePath("../dist/mui.js") },
       { find: new RegExp(`^${packageName}/native$`), replacement: resolvePath("../dist/native.js") },
       { find: new RegExp(`^${packageName}$`), replacement: resolvePath("../dist/index.js") }
