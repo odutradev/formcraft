@@ -1,28 +1,30 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { muiComponents } from "multi-step-form/mui";
-import { MultiStepForm } from "multi-step-form";
 import { useMemo, useState } from "react";
 
 import buildNativeStyle from "@playground/functions/buildNativeStyle";
-import StyleControls from "@playground/components/styleControls";
+import FormComparison from "@playground/components/formComparison";
 import { defaultSettings } from "@playground/data/styleOptions";
-import FormPanel from "@playground/components/formPanel";
+import ThemePanel from "@playground/components/themePanel";
 import sampleConfig from "@playground/config/sampleConfig";
+import Showcase from "@playground/components/showcase";
+import Header from "@playground/components/header";
 import "./styles.css";
 
-import type { StyleSettings, ViewMode } from "@playground/types";
-import type { FormValues } from "multi-step-form";
+import type { AdapterView, PageTab, StyleSettings } from "@playground/types";
 
 const App = () => {
   const [settings, setSettings] = useState<StyleSettings>(defaultSettings);
-  const [viewMode, setViewMode] = useState<ViewMode>("both");
-  const [muiSubmitted, setMuiSubmitted] = useState<FormValues | null>(null);
-  const [nativeSubmitted, setNativeSubmitted] = useState<FormValues | null>(null);
+  const [adapterView, setAdapterView] = useState<AdapterView>("both");
+  const [tab, setTab] = useState<PageTab>("form");
 
   const muiTheme = useMemo(
     () =>
       createTheme({
-        palette: { mode: settings.colorMode, primary: { main: settings.primaryColor } },
+        palette: {
+          mode: settings.colorMode,
+          primary: { main: settings.primaryColor },
+          ...(settings.colorMode === "dark" && { background: { default: "#0b1120", paper: "#111827" } })
+        },
         shape: { borderRadius: settings.borderRadius },
         spacing: settings.spacing,
         typography: { fontFamily: settings.fontFamily }
@@ -30,42 +32,38 @@ const App = () => {
     [settings]
   );
 
-  const nativeStyle = buildNativeStyle(settings);
-
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
-      <div className="playground" data-mode={settings.colorMode}>
-        <StyleControls
-          settings={settings}
-          viewMode={viewMode}
-          onSettingsChange={setSettings}
-          onViewModeChange={setViewMode}
-          onReset={() => setSettings(defaultSettings)}
+      <div className="playground" data-mode={settings.colorMode} style={buildNativeStyle(settings)}>
+        <Header
+          tab={tab}
+          adapterView={adapterView}
+          colorMode={settings.colorMode}
+          onTabChange={setTab}
+          onAdapterViewChange={setAdapterView}
+          onColorModeChange={(colorMode) => setSettings((previous) => ({ ...previous, colorMode }))}
         />
-        <main className="panels" data-view={viewMode}>
-          {viewMode !== "native" && (
-            <FormPanel
-              title="Material UI"
-              description='Adapter "multi-step-form/mui", tema criado com createTheme.'
-              className="panel-mui"
-              submitted={muiSubmitted}
-            >
-              <MultiStepForm config={sampleConfig} components={muiComponents} onSubmit={setMuiSubmitted} isDevToolsEnabled />
-            </FormPanel>
-          )}
-          {viewMode !== "mui" && (
-            <FormPanel
-              title="Nativo"
-              description="Adapter padrão: sem a prop components, HTML puro estilizado por variáveis CSS --msf-*."
-              className="panel-native"
-              style={nativeStyle}
-              submitted={nativeSubmitted}
-            >
-              <MultiStepForm config={sampleConfig} onSubmit={setNativeSubmitted} isDevToolsEnabled />
-            </FormPanel>
-          )}
-        </main>
+        <div className="layout">
+          <div className="layout-sidebar">
+            <ThemePanel settings={settings} onSettingsChange={setSettings} onReset={() => setSettings(defaultSettings)} />
+          </div>
+          <main className="layout-main">
+            {tab === "form" && (
+              <div className="form-page">
+                <div className="page-intro">
+                  <h1>Formulário completo</h1>
+                  <p>
+                    A mesma config de duas etapas renderizada pelos dois adapters, com busca, máscara, subgrupo condicional, modal, tabela e DevTools. Use o
+                    DevTools para preencher os dados de teste.
+                  </p>
+                </div>
+                <FormComparison config={sampleConfig} adapterView={adapterView} isDevToolsEnabled />
+              </div>
+            )}
+            {tab === "showcase" && <Showcase adapterView={adapterView} />}
+          </main>
+        </div>
       </div>
     </ThemeProvider>
   );

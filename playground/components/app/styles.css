@@ -1,45 +1,89 @@
 .playground {
-  --page-background: #eef1f5;
+  --page-background: #f3f5f9;
   --page-surface: #ffffff;
-  --page-text: #1f2937;
-  --page-muted: #6b7280;
-  --page-border: #d1d5db;
+  --page-subtle: #f6f8fb;
+  --page-text: #0f172a;
+  --page-muted: #64748b;
+  --page-border: #e2e8f0;
+  --page-code: #0f172a;
+  --page-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 4px 16px -8px rgb(15 23 42 / 0.08);
+  --header-height: 0px;
 
   min-height: 100vh;
-  padding: 16px;
-  background: var(--page-background);
+  background: radial-gradient(1200px 400px at 10% -10%, color-mix(in srgb, var(--msf-color-primary) 10%, transparent), transparent), var(--page-background);
   color: var(--page-text);
   font-family:
+    Inter,
     system-ui,
     -apple-system,
     "Segoe UI",
     sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .playground[data-mode="dark"] {
-  --page-background: #0a0a0a;
-  --page-surface: #121212;
-  --page-text: #e5e7eb;
-  --page-muted: #9ca3af;
-  --page-border: #3f3f46;
+  --page-background: #0b1120;
+  --page-surface: #111827;
+  --page-subtle: #151e2e;
+  --page-text: #e2e8f0;
+  --page-muted: #94a3b8;
+  --page-border: #1f2a3c;
+  --page-code: #020617;
+  --page-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
 }
 
-.panels {
+.layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
-  max-width: 1800px;
+  gap: 24px;
+  max-width: 1760px;
   margin: 0 auto;
+  padding: 20px;
 }
 
-.panels[data-view="mui"],
-.panels[data-view="native"] {
-  max-width: 1000px;
+.layout-sidebar {
+  order: 2;
 }
 
-@media (min-width: 1280px) {
-  .panels[data-view="both"] {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.layout-main {
+  min-width: 0;
+}
+
+.form-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page-intro h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.page-intro p {
+  max-width: 80ch;
+  margin: 6px 0 0;
+  color: var(--page-muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 1100px) {
+  .playground {
+    --header-height: 61px;
+  }
+
+  .layout {
+    grid-template-columns: 280px minmax(0, 1fr);
     align-items: start;
+    padding: 28px 24px;
+  }
+
+  .layout-sidebar {
+    order: 0;
+    position: sticky;
+    top: calc(var(--header-height) + 28px);
   }
 }

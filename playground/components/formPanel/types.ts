@@ -1,11 +1,9 @@
+import type { AdapterName } from "@playground/types";
 import type { FormValues } from "multi-step-form";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export interface FormPanelProps {
-  title: string;
-  description: string;
-  className?: string;
-  style?: CSSProperties;
+  adapter: AdapterName;
   submitted: FormValues | null;
   children: ReactNode;
 }

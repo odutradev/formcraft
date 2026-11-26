@@ -1,16 +1,6 @@
+import searchPeople from "@playground/functions/searchPeople";
+
 import type { FormConfig, FormRow } from "multi-step-form";
-
-const people: FormRow[] = [
-  { id: "1", name: "Ana Souza", document: "111.222.333-44" },
-  { id: "2", name: "Bruno Lima", document: "555.666.777-88" },
-  { id: "3", name: "Carla Dias", document: "999.000.111-22" }
-];
-
-const searchPeople = async (filters: Record<string, unknown>): Promise<FormRow[]> => {
-  const term = String(filters.name ?? "").toLowerCase();
-  await new Promise((resolve) => setTimeout(resolve, 300));
-  return people.filter((person) => String(person.name).toLowerCase().includes(term));
-};
 
 const sampleConfig: FormConfig = {
   formStyle: "collapsed",

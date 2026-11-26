@@ -1,8 +1,10 @@
 .panel {
+  display: flex;
   min-width: 0;
-  padding: 16px;
+  flex-direction: column;
+  overflow: hidden;
   border: 1px solid var(--page-border);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--page-surface);
 }
 
@@ -12,36 +14,88 @@
 }
 
 .panel-header {
-  margin-bottom: 16px;
-  padding-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
   border-bottom: 1px solid var(--page-border);
+  background: var(--page-subtle);
 }
 
-.panel-header h2 {
+.panel-header h3 {
   margin: 0;
-  font-size: 1rem;
+  color: var(--page-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
 }
 
-.panel-header p {
-  margin: 4px 0 0;
+.panel-header code {
+  margin-left: auto;
   color: var(--page-muted);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
+}
+
+.panel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1976d2;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #1976d2 25%, transparent);
+}
+
+.panel-native .panel-dot {
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #f59e0b 25%, transparent);
+}
+
+.panel-body {
+  padding: 20px;
 }
 
 .panel-result {
-  margin-top: 16px;
+  margin: 0 20px 20px;
+  border: 1px solid var(--page-border);
+  border-radius: 10px;
   font-size: 0.8125rem;
 }
 
 .panel-result summary {
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  color: var(--page-text);
   font-weight: 600;
+  cursor: pointer;
+}
+
+.panel-result-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, #16a34a 15%, transparent);
+  color: #16a34a;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .panel-result pre {
   max-height: 320px;
+  margin: 0;
   overflow: auto;
   padding: 12px;
-  border-radius: 8px;
-  background: var(--page-background);
+  border-top: 1px solid var(--page-border);
+  border-radius: 0 0 10px 10px;
+  background: var(--page-code);
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 900px) {
+  .panel-body {
+    padding: 24px;
+  }
 }

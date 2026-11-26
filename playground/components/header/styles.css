@@ -1,0 +1,126 @@
+.header {
+  position: relative;
+  z-index: 20;
+  border-bottom: 1px solid var(--page-border);
+  background: color-mix(in srgb, var(--page-surface) 85%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 12px 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+}
+
+.brand-logo {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--msf-color-primary), color-mix(in srgb, var(--msf-color-primary) 55%, #000));
+  box-shadow: 0 6px 16px -6px var(--msf-color-primary);
+}
+
+.brand-logo span {
+  width: 5px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.brand-logo span:nth-child(1) {
+  height: 8px;
+  opacity: 0.6;
+}
+
+.brand-logo span:nth-child(2) {
+  height: 14px;
+  opacity: 0.8;
+}
+
+.brand-logo span:nth-child(3) {
+  height: 20px;
+}
+
+.brand-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-tagline {
+  margin: 0;
+  color: var(--page-muted);
+  font-size: 0.75rem;
+}
+
+.header-tabs {
+  display: flex;
+  gap: 4px;
+  order: 3;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.header-tab {
+  position: relative;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--page-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.header-tab:hover {
+  background: var(--page-subtle);
+  color: var(--page-text);
+}
+
+.header-tab[aria-current="page"] {
+  background: color-mix(in srgb, var(--msf-color-primary) 12%, transparent);
+  color: var(--msf-color-primary);
+}
+
+.header-tab:focus-visible {
+  outline: 2px solid var(--msf-color-primary);
+  outline-offset: 1px;
+}
+
+.header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (min-width: 1100px) {
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
+  .header-tabs {
+    order: 0;
+    width: auto;
+  }
+}
