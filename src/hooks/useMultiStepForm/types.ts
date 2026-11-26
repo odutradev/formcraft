@@ -1,4 +1,4 @@
-import type { FormConfig, FormValues } from "@core/types";
+import type { FormConfig, FormValues } from "@/types";
 
 export interface UseMultiStepFormOptions {
   config: FormConfig;

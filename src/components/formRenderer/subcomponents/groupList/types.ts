@@ -1,5 +1,5 @@
-import type { FieldBinding } from "@components/formRenderer/types";
-import type { FormConfig, FormGroup } from "@core/types";
+import type { FieldBinding } from "@/components/formRenderer/types";
+import type { FormConfig, FormGroup } from "@/types";
 
 export interface GroupListProps {
   groups: FormGroup[];

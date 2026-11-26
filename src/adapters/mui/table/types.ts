@@ -1,4 +1,4 @@
-import type { FormRow, TableFieldProps } from "@core/types";
+import type { FormRow, TableFieldProps } from "@/types";
 
 export type TableProps = TableFieldProps;
 

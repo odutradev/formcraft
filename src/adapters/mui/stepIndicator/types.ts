@@ -1,3 +1,3 @@
-import type { StepIndicatorProps as CoreStepIndicatorProps } from "@core/types";
+import type { StepIndicatorProps as CoreStepIndicatorProps } from "@/types";
 
 export type StepIndicatorProps = CoreStepIndicatorProps;

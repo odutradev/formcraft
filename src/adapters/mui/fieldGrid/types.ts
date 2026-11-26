@@ -1,4 +1,4 @@
-import type { FieldGridProps as CoreFieldGridProps } from "@core/types";
+import type { FieldGridProps as CoreFieldGridProps } from "@/types";
 
 export type FieldGridProps = CoreFieldGridProps;
 

@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 
-import splitFieldsByVisibility from "@core/functions/splitFieldsByVisibility";
-import createActionContext from "@core/functions/createActionContext";
-import validateFields from "@core/functions/validateFields";
-import resolveGroups from "@core/functions/resolveGroups";
-import collectFields from "@core/functions/collectFields";
-import resolveValue from "@core/functions/resolveValue";
-import isEmptyValue from "@core/functions/isEmptyValue";
-import getByPath from "@core/functions/getByPath";
-import isVisible from "@core/functions/isVisible";
-import useFormStore from "@hooks/useFormStore";
-import createFormStore from "@core/engine";
+import splitFieldsByVisibility from "@/functions/splitFieldsByVisibility";
+import createActionContext from "@/functions/createActionContext";
+import validateFields from "@/functions/validateFields";
+import resolveGroups from "@/functions/resolveGroups";
+import collectFields from "@/functions/collectFields";
+import resolveValue from "@/functions/resolveValue";
+import isEmptyValue from "@/functions/isEmptyValue";
+import useFormStore from "@/hooks/useFormStore";
+import getByPath from "@/functions/getByPath";
+import isVisible from "@/functions/isVisible";
+import createFormStore from "@/engine";
 
-import type { ActionContext, FormAction, FormConfig, FormErrors, FormStep } from "@core/types";
+import type { ActionContext, FormAction, FormConfig, FormErrors, FormStep } from "@/types";
 import type { StepPointer, UseMultiStepFormOptions } from "./types";
 
 const getVisibleSteps = (steps: FormStep[], context: ActionContext): FormStep[] => steps.filter((step) => isVisible(step, context));

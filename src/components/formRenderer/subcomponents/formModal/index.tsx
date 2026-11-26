@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
 
-import createActionContext from "@core/functions/createActionContext";
-import validateFields from "@core/functions/validateFields";
-import useFormRuntime from "@hooks/useFormRuntime";
-import isVisible from "@core/functions/isVisible";
-import useFormStore from "@hooks/useFormStore";
-import createFormStore from "@core/engine";
+import createActionContext from "@/functions/createActionContext";
+import validateFields from "@/functions/validateFields";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import useFormStore from "@/hooks/useFormStore";
+import isVisible from "@/functions/isVisible";
+import createFormStore from "@/engine";
 import FieldList from "../fieldList";
 
-import type { FieldBinding } from "@components/formRenderer/types";
+import type { FieldBinding } from "@/components/formRenderer/types";
 import type { FormModalProps } from "./types";
 
 const defaultModalColumns = 2;

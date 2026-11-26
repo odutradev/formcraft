@@ -1,7 +1,7 @@
-import useFormRuntime from "@hooks/useFormRuntime";
-import getByPath from "@core/functions/getByPath";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import getByPath from "@/functions/getByPath";
 
-import type { FormRow, TableAction, TableColumn } from "@core/types";
+import type { FormRow, TableAction, TableColumn } from "@/types";
 import type { TableFieldProps } from "./types";
 
 const TableField = ({ field, binding, isReadOnly }: TableFieldProps) => {

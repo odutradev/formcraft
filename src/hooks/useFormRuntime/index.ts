@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import FormRuntimeContext from "@core/context/formRuntime";
+import FormRuntimeContext from "@/context/formRuntime";
 
-import type { FormRuntime } from "@core/types";
+import type { FormRuntime } from "@/types";
 
 const useFormRuntime = (): FormRuntime => {
   const runtime = useContext(FormRuntimeContext);

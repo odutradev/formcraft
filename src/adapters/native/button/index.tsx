@@ -1,4 +1,4 @@
-import joinClassNames from "@adapters/native/functions/joinClassNames";
+import joinClassNames from "@/adapters/native/functions/joinClassNames";
 
 import type { ButtonProps } from "./types";
 

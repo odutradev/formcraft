@@ -1,3 +1,3 @@
-import type { DevToolsPanelProps } from "@core/types";
+import type { DevToolsPanelProps } from "@/types";
 
 export type DevToolsProps = DevToolsPanelProps;

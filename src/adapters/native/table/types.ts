@@ -1,3 +1,3 @@
-import type { TableFieldProps } from "@core/types";
+import type { TableFieldProps } from "@/types";
 
 export type TableProps = TableFieldProps;

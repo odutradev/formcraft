@@ -1,11 +1,11 @@
 import { useId, useState } from "react";
 
-import FieldFrame from "@adapters/native/fieldFrame";
-import ComboBox from "@adapters/native/comboBox";
-import toText from "@core/functions/toText";
+import FieldFrame from "@/adapters/native/fieldFrame";
+import ComboBox from "@/adapters/native/comboBox";
+import toText from "@/functions/toText";
 
 import type { AutocompleteFieldProps } from "./types";
-import type { FieldOption } from "@core/types";
+import type { FieldOption } from "@/types";
 
 const AutocompleteField = ({ field, value, error, options, isRequired, isDisabled, isReadOnly, onChange }: AutocompleteFieldProps) => {
   const [draft, setDraft] = useState<string | null>(null);

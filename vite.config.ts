@@ -10,12 +10,7 @@ const externalPackages = [/^react($|\/)/, /^react-dom($|\/)/, /^@mui\//, /^@emot
 export default defineConfig({
   plugins: [react(), dts({ entryRoot: ".", include: ["src", "lib"], tsconfigPath: "./tsconfig.json" })],
   resolve: {
-    alias: {
-      "@components": resolvePath("./src/components"),
-      "@adapters": resolvePath("./src/adapters"),
-      "@hooks": resolvePath("./src/hooks"),
-      "@core": resolvePath("./src/core")
-    }
+    alias: [{ find: /^@\//, replacement: resolvePath("./src/") }]
   },
   build: {
     sourcemap: true,

@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 
-import FormRuntimeContext from "@core/context/formRuntime";
-import useMultiStepForm from "@hooks/useMultiStepForm";
+import useMultiStepForm from "@/hooks/useMultiStepForm";
+import FormRuntimeContext from "@/context/formRuntime";
 import ActionBar from "./subcomponents/actionBar";
 import GroupList from "./subcomponents/groupList";
-import useDevTools from "@hooks/useDevTools";
-import defaultLabels from "@core/labels";
+import useDevTools from "@/hooks/useDevTools";
+import defaultLabels from "@/labels";
 
 import type { FieldBinding, FormRendererProps } from "./types";
-import type { FormRuntime } from "@core/types";
+import type { FormRuntime } from "@/types";
 
 const ignoreError = () => undefined;
 

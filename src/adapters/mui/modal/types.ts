@@ -1,3 +1,3 @@
-import type { ModalProps as CoreModalProps } from "@core/types";
+import type { ModalProps as CoreModalProps } from "@/types";
 
 export type ModalProps = CoreModalProps;

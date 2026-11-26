@@ -1,3 +1,3 @@
-import type { GroupProps as CoreGroupProps } from "@core/types";
+import type { GroupProps as CoreGroupProps } from "@/types";
 
 export type GroupProps = CoreGroupProps;

@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import resolveValue from "@core/functions/resolveValue";
-import changeField from "@core/functions/changeField";
-import useFormRuntime from "@hooks/useFormRuntime";
-import getByPath from "@core/functions/getByPath";
+import resolveValue from "@/functions/resolveValue";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import changeField from "@/functions/changeField";
+import getByPath from "@/functions/getByPath";
 import SearchDialog from "../searchDialog";
 import ButtonField from "../buttonField";
 import TableField from "../tableField";

@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef } from "react";
 
-import useFormRuntime from "@hooks/useFormRuntime";
-import Icon from "@adapters/native/icon";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import Icon from "@/adapters/native/icon";
 
 import type { MouseEvent, SyntheticEvent } from "react";
 import type { ModalProps } from "./types";

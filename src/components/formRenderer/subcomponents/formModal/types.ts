@@ -1,4 +1,4 @@
-import type { ActionContext, FormModalConfig } from "@core/types";
+import type { ActionContext, FormModalConfig } from "@/types";
 
 export interface FormModalProps {
   config: FormModalConfig;

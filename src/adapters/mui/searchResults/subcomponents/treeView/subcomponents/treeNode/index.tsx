@@ -3,11 +3,11 @@ import { Box, Checkbox, Collapse, IconButton } from "@mui/material";
 import { useState } from "react";
 
 import { NodeContainer, NodeLabel, Spacer } from "./styles";
-import useFormRuntime from "@hooks/useFormRuntime";
-import toText from "@core/functions/toText";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import toText from "@/functions/toText";
 
 import type { TreeNodeProps } from "./types";
-import type { FormRow } from "@core/types";
+import type { FormRow } from "@/types";
 
 const TreeNode = ({ item, config, level, isExpandedByDefault, onSelect }: TreeNodeProps) => {
   const { labels } = useFormRuntime();

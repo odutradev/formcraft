@@ -1,4 +1,4 @@
-import type { FieldSlotProps as CoreFieldSlotProps } from "@core/types";
+import type { FieldSlotProps as CoreFieldSlotProps } from "@/types";
 
 export type FieldSlotProps = CoreFieldSlotProps;
 

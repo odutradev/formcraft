@@ -14,10 +14,7 @@
     "noEmit": true,
     "types": ["vite/client"],
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@adapters/*": ["./src/adapters/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@core/*": ["./src/core/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src", "lib"]

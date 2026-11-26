@@ -1,10 +1,10 @@
 import { useId, useRef, useState } from "react";
 
-import joinClassNames from "@adapters/native/functions/joinClassNames";
-import useFormRuntime from "@hooks/useFormRuntime";
-import Icon from "@adapters/native/icon";
+import joinClassNames from "@/adapters/native/functions/joinClassNames";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import Icon from "@/adapters/native/icon";
 
-import type { FileFieldValue } from "@core/types";
+import type { FileFieldValue } from "@/types";
 import type { FileFieldProps } from "./types";
 import type { ChangeEvent } from "react";
 

@@ -1,7 +1,7 @@
-import joinClassNames from "@adapters/native/functions/joinClassNames";
-import stylesheet from "@adapters/native/stylesheet";
-import useFormRuntime from "@hooks/useFormRuntime";
-import Spinner from "@adapters/native/spinner";
+import joinClassNames from "@/adapters/native/functions/joinClassNames";
+import stylesheet from "@/adapters/native/stylesheet";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import Spinner from "@/adapters/native/spinner";
 
 import type { FormProps } from "./types";
 

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import Pagination from "./subcomponents/pagination";
-import useFormRuntime from "@hooks/useFormRuntime";
+import useFormRuntime from "@/hooks/useFormRuntime";
 import TableView from "./subcomponents/tableView";
 import TreeView from "./subcomponents/treeView";
-import Spinner from "@adapters/native/spinner";
-import Icon from "@adapters/native/icon";
+import Spinner from "@/adapters/native/spinner";
+import Icon from "@/adapters/native/icon";
 
 import type { PaginationState, SearchResultsProps } from "./types";
 

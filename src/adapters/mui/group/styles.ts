@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
-import shouldForwardProp from "@adapters/mui/functions/shouldForwardProp";
+import shouldForwardProp from "@/adapters/mui/functions/shouldForwardProp";
 
 import type { FramedProps, HighlightProps, VariantProps } from "./types";
 

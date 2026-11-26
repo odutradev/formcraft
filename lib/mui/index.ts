@@ -1,1 +1,1 @@
-export { muiComponents } from "@adapters/mui";
+export { muiComponents } from "@/adapters/mui";

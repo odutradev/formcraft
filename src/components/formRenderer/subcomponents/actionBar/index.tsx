@@ -1,8 +1,8 @@
-import resolveValue from "@core/functions/resolveValue";
-import useFormRuntime from "@hooks/useFormRuntime";
+import resolveValue from "@/functions/resolveValue";
+import useFormRuntime from "@/hooks/useFormRuntime";
 
-import type { FormAction } from "@core/types";
 import type { ActionBarProps } from "./types";
+import type { FormAction } from "@/types";
 
 const ActionBar = ({ actions, context, isActionLoading, isNextDisabled, onExecuteAction }: ActionBarProps) => {
   const { components } = useFormRuntime();

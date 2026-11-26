@@ -1,3 +1,3 @@
-import type { MessageFieldProps } from "@core/types";
+import type { MessageFieldProps } from "@/types";
 
 export type MessageProps = MessageFieldProps;

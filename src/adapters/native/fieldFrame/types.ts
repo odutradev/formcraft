@@ -1,4 +1,4 @@
-import type { FormField } from "@core/types";
+import type { FormField } from "@/types";
 import type { ReactNode } from "react";
 
 export interface FieldFrameProps {

@@ -1,9 +1,9 @@
 import { useId, useState } from "react";
 
-import joinClassNames from "@adapters/native/functions/joinClassNames";
-import FieldFrame from "@adapters/native/fieldFrame";
-import useFormRuntime from "@hooks/useFormRuntime";
-import Chip from "@adapters/native/chip";
+import joinClassNames from "@/adapters/native/functions/joinClassNames";
+import FieldFrame from "@/adapters/native/fieldFrame";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import Chip from "@/adapters/native/chip";
 
 import type { TagsFieldProps } from "./types";
 import type { KeyboardEvent } from "react";

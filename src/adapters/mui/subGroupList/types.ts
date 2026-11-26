@@ -1,3 +1,3 @@
-import type { ContainerProps } from "@core/types";
+import type { ContainerProps } from "@/types";
 
 export type SubGroupListProps = ContainerProps;

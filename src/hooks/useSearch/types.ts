@@ -1,4 +1,4 @@
-import type { SearchConfig } from "@core/types";
+import type { SearchConfig } from "@/types";
 
 export interface UseSearchOptions {
   config: SearchConfig;

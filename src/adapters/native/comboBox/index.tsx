@@ -1,9 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-import joinClassNames from "@adapters/native/functions/joinClassNames";
-import useFormRuntime from "@hooks/useFormRuntime";
-import Chip from "@adapters/native/chip";
-import Icon from "@adapters/native/icon";
+import joinClassNames from "@/adapters/native/functions/joinClassNames";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import Chip from "@/adapters/native/chip";
+import Icon from "@/adapters/native/icon";
 
 import type { FocusEvent, KeyboardEvent } from "react";
 import type { ComboBoxProps } from "./types";

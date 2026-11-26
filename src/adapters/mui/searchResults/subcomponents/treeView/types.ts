@@ -1,4 +1,4 @@
-import type { FormRow, TreeConfig } from "@core/types";
+import type { FormRow, TreeConfig } from "@/types";
 
 export interface TreeViewProps {
   results: FormRow[];

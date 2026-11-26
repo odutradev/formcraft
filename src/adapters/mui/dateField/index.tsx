@@ -1,8 +1,8 @@
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-import FieldLabel, { tooltipLabelSx } from "@adapters/mui/fieldLabel";
-import toText from "@core/functions/toText";
+import FieldLabel, { tooltipLabelSx } from "@/adapters/mui/fieldLabel";
+import toText from "@/functions/toText";
 
 import type { DateFieldProps } from "./types";
 import type { Dayjs } from "dayjs";

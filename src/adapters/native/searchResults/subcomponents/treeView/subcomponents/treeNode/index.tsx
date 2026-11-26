@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import useFormRuntime from "@hooks/useFormRuntime";
-import toText from "@core/functions/toText";
-import Icon from "@adapters/native/icon";
+import useFormRuntime from "@/hooks/useFormRuntime";
+import Icon from "@/adapters/native/icon";
+import toText from "@/functions/toText";
 
-import type { CssVariables } from "@adapters/native/types";
+import type { CssVariables } from "@/adapters/native/types";
 import type { TreeNodeProps } from "./types";
-import type { FormRow } from "@core/types";
+import type { FormRow } from "@/types";
 
 const TreeNode = ({ item, config, level, isExpandedByDefault, onSelect }: TreeNodeProps) => {
   const { labels } = useFormRuntime();

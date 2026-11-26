@@ -1,7 +1,7 @@
 import { Autocomplete, Chip, TextField } from "@mui/material";
 
-import FieldLabel, { tooltipLabelSx } from "@adapters/mui/fieldLabel";
-import useFormRuntime from "@hooks/useFormRuntime";
+import FieldLabel, { tooltipLabelSx } from "@/adapters/mui/fieldLabel";
+import useFormRuntime from "@/hooks/useFormRuntime";
 
 import type { TagsFieldProps } from "./types";
 

@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 
-import mergeComponents from "@core/functions/mergeComponents";
-import useFormDefaults from "@hooks/useFormDefaults";
-import { nativeComponents } from "@adapters/native";
-import FormRenderer from "@components/formRenderer";
+import mergeComponents from "@/functions/mergeComponents";
+import useFormDefaults from "@/hooks/useFormDefaults";
+import { nativeComponents } from "@/adapters/native";
+import FormRenderer from "@/components/formRenderer";
 
 import type { MultiStepFormProps } from "./types";
 
