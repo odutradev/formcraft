@@ -1,0 +1,83 @@
+{
+  "name": "multi-step-form",
+  "version": "0.1.0",
+  "description": "Config-driven multi-step form library for React with pluggable UI adapters",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./mui": {
+      "types": "./dist/adapters/mui/index.d.ts",
+      "import": "./dist/mui.js",
+      "require": "./dist/mui.cjs"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "@mui/material": ">=9",
+    "@mui/icons-material": ">=9",
+    "@mui/x-date-pickers": ">=9",
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
+    "dayjs": ">=1.11"
+  },
+  "peerDependenciesMeta": {
+    "@mui/material": {
+      "optional": true
+    },
+    "@mui/icons-material": {
+      "optional": true
+    },
+    "@mui/x-date-pickers": {
+      "optional": true
+    },
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
+      "optional": true
+    },
+    "dayjs": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@eslint/js": "^9.39.5",
+    "@mui/icons-material": "^9.6.0",
+    "@mui/material": "^9.6.0",
+    "@mui/x-date-pickers": "^9.18.0",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "dayjs": "^1.11.23",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.74.0",
+    "vite": "^8.4.0",
+    "vite-plugin-dts": "^5.1.2"
+  }
+}
