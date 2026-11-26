@@ -1,4 +1,4 @@
-import type { FormConfig, FormRow } from "../src";
+import type { FormConfig, FormRow } from "multi-step-form";
 
 const people: FormRow[] = [
   { id: "1", name: "Ana Souza", document: "111.222.333-44" },

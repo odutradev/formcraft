@@ -2,11 +2,11 @@ import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { createRoot } from "react-dom/client";
 import { StrictMode, useState } from "react";
 
-import { muiComponents } from "@adapters/mui";
-import { MultiStepForm } from "../src";
+import { muiComponents } from "multi-step-form/mui";
+import { MultiStepForm } from "multi-step-form";
 import sampleConfig from "./sampleConfig";
 
-import type { FormValues } from "../src";
+import type { FormValues } from "multi-step-form";
 
 const theme = createTheme();
 
