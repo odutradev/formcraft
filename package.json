@@ -2,10 +2,30 @@
   "name": "multi-step-form",
   "version": "0.1.0",
   "description": "Config-driven multi-step form library for React with pluggable UI adapters",
+  "keywords": [
+    "react",
+    "form",
+    "multi-step",
+    "wizard",
+    "headless",
+    "mui",
+    "config-driven"
+  ],
+  "license": "MIT",
+  "author": "odutradev",
+  "homepage": "https://github.com/odutradev/multiStepForm#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odutradev/multiStepForm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/odutradev/multiStepForm/issues"
+  },
   "type": "module",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -27,7 +47,8 @@
     "build": "vite build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=19",
