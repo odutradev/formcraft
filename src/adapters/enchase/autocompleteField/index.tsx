@@ -9,7 +9,15 @@ import type { AutocompleteFieldProps } from "./types";
 const AutocompleteField = ({ field, value, error, options, isRequired, isDisabled, isReadOnly, onChange }: AutocompleteFieldProps) => {
   const { labels } = useFormRuntime();
   const listId = useId();
-  const commonProps = { fullWidth: true, label: field.label, helperText: field.tooltip, error, required: isRequired, disabled: isDisabled, readOnly: isReadOnly };
+  const commonProps = {
+    fullWidth: true,
+    label: field.label,
+    helperText: field.tooltip,
+    error,
+    required: isRequired,
+    disabled: isDisabled,
+    readOnly: isReadOnly
+  };
 
   if (field.multiple) {
     return (
@@ -26,9 +34,11 @@ const AutocompleteField = ({ field, value, error, options, isRequired, isDisable
 
   if (field.freeSolo) {
     const handleTextChange = (text: string) => onChange(options.find((option) => option.label === text)?.value ?? text);
+    const text = toText(value);
+    const displayText = options.find((option) => option.value === text)?.label ?? text;
     return (
       <>
-        <Input {...commonProps} list={listId} value={toText(value)} onChange={(event) => handleTextChange(event.target.value)} />
+        <Input {...commonProps} list={listId} value={displayText} onChange={(event) => handleTextChange(event.target.value)} />
         <datalist id={listId}>
           {options.map((option) => (
             <option key={option.value} value={option.label} />

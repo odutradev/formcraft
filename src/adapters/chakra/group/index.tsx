@@ -1,4 +1,4 @@
-import { Card, Collapsible, Flex, IconButton, Stack, Text } from "@chakra-ui/react";
+import { Card, Collapsible, IconButton, Stack, Text } from "@chakra-ui/react";
 import { ChevronDown } from "lucide-react";
 
 import useFormRuntime from "@hooks/useFormRuntime";
@@ -30,24 +30,25 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
       <Card.Root size="sm" variant={variant === "subGroup" ? "subtle" : "outline"} borderWidth={isSeamless ? "0" : undefined}>
         {title && (
           <Card.Header
-            asChild
-            cursor={isCollapsible ? "pointer" : undefined}
-            onClick={isCollapsible ? onToggle : undefined}
-            borderBottomWidth={isCollapsed ? "0" : "1px"}
+            flexDirection="row"
+            justifyContent="space-between"
+            alignItems="center"
+            gap="2"
             pb="3"
+            cursor={isCollapsible ? "pointer" : undefined}
+            borderBottomWidth={isCollapsed ? "0" : "1px"}
+            onClick={isCollapsible ? onToggle : undefined}
           >
-            <Flex justify="space-between" align="center" gap="2">
-              <Text fontWeight="semibold" textStyle={variant === "card" ? "md" : "sm"}>
-                {title}
-              </Text>
-              {isCollapsible && (
-                <Collapsible.Trigger asChild>
-                  <IconButton size="xs" variant="ghost" aria-label={isCollapsed ? labels.expand : labels.collapse} onClick={handleButtonClick}>
-                    <ChevronDown style={{ transform: isCollapsed ? "rotate(-90deg)" : undefined, transition: "transform 0.2s" }} />
-                  </IconButton>
-                </Collapsible.Trigger>
-              )}
-            </Flex>
+            <Text fontWeight="semibold" textStyle={variant === "card" ? "md" : "sm"}>
+              {title}
+            </Text>
+            {isCollapsible && (
+              <Collapsible.Trigger asChild>
+                <IconButton size="xs" variant="ghost" aria-label={isCollapsed ? labels.expand : labels.collapse} onClick={handleButtonClick}>
+                  <ChevronDown style={{ transform: isCollapsed ? "rotate(-90deg)" : undefined, transition: "transform 0.2s" }} />
+                </IconButton>
+              </Collapsible.Trigger>
+            )}
           </Card.Header>
         )}
         <Collapsible.Content>

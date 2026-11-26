@@ -24,7 +24,7 @@ const SelectField = (props: SelectFieldProps) => {
         collection={collection}
         multiple={field.multiple}
         value={selected}
-        positioning={{ sameWidth: true, strategy: "fixed" }}
+        positioning={{ sameWidth: true }}
         onValueChange={(details) => onChange(field.multiple ? details.value : (details.value[0] ?? ""))}
       >
         <Select.HiddenSelect />
@@ -37,7 +37,7 @@ const SelectField = (props: SelectFieldProps) => {
             <Select.Indicator />
           </Select.IndicatorGroup>
         </Select.Control>
-        <Select.Positioner>
+        <Select.Positioner zIndex="popover">
           <Select.Content>
             {collection.items.length ? (
               collection.items.map((option) => (

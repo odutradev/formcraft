@@ -19,7 +19,7 @@ const SelectField = (props: SelectFieldProps) => {
       helperText={field.tooltip}
       error={error}
       options={options}
-      placeholder={options.length ? undefined : labels.noOptions}
+      placeholder={options.length ? labels.select : labels.noOptions}
       value={toText(value)}
       required={isRequired}
       disabled={isDisabled || isReadOnly}

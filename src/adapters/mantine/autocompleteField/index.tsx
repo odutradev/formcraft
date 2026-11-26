@@ -33,7 +33,9 @@ const AutocompleteField = ({ field, value, error, options, isRequired, isDisable
 
   if (field.freeSolo) {
     const handleTextChange = (text: string) => onChange(options.find((option) => option.label === text)?.value ?? text);
-    return <Autocomplete {...commonProps} data={options.map((option) => option.label)} value={toText(value)} onChange={handleTextChange} />;
+    const text = toText(value);
+    const displayText = options.find((option) => option.value === text)?.label ?? text;
+    return <Autocomplete {...commonProps} data={options.map((option) => option.label)} value={displayText} onChange={handleTextChange} />;
   }
 
   return (

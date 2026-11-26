@@ -38,11 +38,13 @@ const AutocompleteField = ({ field, value, error, options, isRequired, isDisable
     }
     if (field.freeSolo) {
       const handleTextChange = (text: string) => onChange(options.find((option) => option.label === text)?.value ?? text);
+      const text = toText(value);
+      const displayText = options.find((option) => option.value === text)?.label ?? text;
       return (
         <AutoComplete
           {...commonProps}
           options={options.map((option) => ({ value: option.label }))}
-          value={toText(value)}
+          value={displayText}
           showSearch={{ filterOption: (input, option) => toText(option?.value).toLowerCase().includes(input.toLowerCase()) }}
           onChange={handleTextChange}
         />

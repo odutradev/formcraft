@@ -36,7 +36,7 @@ const Form = ({ header, isLoading, children }: FormProps) => {
       <style href="multi-step-form-antd" precedence="default">
         {stylesheet}
       </style>
-      <Spin spinning={isLoading} tip={labels.processing} size="large">
+      <Spin spinning={isLoading} description={labels.processing} size="large">
         <form noValidate className="msf-antd-form" style={style} onSubmit={(event) => event.preventDefault()}>
           {header}
           {children}

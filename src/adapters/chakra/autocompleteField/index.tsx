@@ -11,10 +11,14 @@ const AutocompleteField = ({ field, value, error, options, isRequired, isDisable
   const { labels } = useFormRuntime();
   const { contains } = useFilter({ sensitivity: "base" });
   const [query, setQuery] = useState("");
-  const collection = useMemo(() => createListCollection({ items: options.filter((option) => !query || contains(option.label, query)) }), [options, query, contains]);
+  const collection = useMemo(
+    () => createListCollection({ items: options.filter((option) => !query || contains(option.label, query)) }),
+    [options, query, contains]
+  );
 
   const text = toText(value);
-  const selectedValues = field.multiple ? (Array.isArray(value) ? value.map(String) : []) : text ? [text] : [];
+  const selectedValues = field.multiple ? (Array.isArray(value) ? value.map(String) : []) : options.some((option) => option.value === text) ? [text] : [];
+  const displayText = options.find((option) => option.value === text)?.label ?? text;
   const selectedOptions = options.filter((option) => selectedValues.includes(option.value));
 
   const handleInputChange = (inputValue: string) => {
@@ -37,10 +41,10 @@ const AutocompleteField = ({ field, value, error, options, isRequired, isDisable
         collection={collection}
         multiple={field.multiple}
         value={selectedValues}
-        inputValue={field.freeSolo && !field.multiple ? text : undefined}
+        inputValue={field.freeSolo && !field.multiple ? displayText : undefined}
         allowCustomValue={field.freeSolo}
         openOnClick
-        positioning={{ sameWidth: true, strategy: "fixed" }}
+        positioning={{ sameWidth: true }}
         onInputValueChange={(details) => handleInputChange(details.inputValue)}
         onValueChange={(details) => handleValueChange(details.value)}
       >
@@ -51,7 +55,7 @@ const AutocompleteField = ({ field, value, error, options, isRequired, isDisable
             <Combobox.Trigger />
           </Combobox.IndicatorGroup>
         </Combobox.Control>
-        <Combobox.Positioner>
+        <Combobox.Positioner zIndex="popover">
           <Combobox.Content>
             <Combobox.Empty>{labels.noOptions}</Combobox.Empty>
             {collection.items.map((option) => (

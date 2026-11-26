@@ -28,8 +28,6 @@ const componentStyles = [
   devToolsStyles
 ];
 
-const stylesheet = `@layer multi-step-form {
-${componentStyles.join("\n")}
-}`;
+const stylesheet = componentStyles.join("\n");
 
 export default stylesheet;

@@ -12,7 +12,7 @@ const Modal = ({ title, size, actions, onClose, children }: ModalProps) => {
       open
       placement="center"
       scrollBehavior="inside"
-      size={{ base: "full", md: size === "lg" ? "xl" : "lg" }}
+      size={size === "lg" ? "xl" : "lg"}
       onOpenChange={(details) => {
         if (!details.open) onClose();
       }}
