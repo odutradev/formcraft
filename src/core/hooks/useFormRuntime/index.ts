@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import FormRuntimeContext from "@core/context";
+import FormRuntimeContext from "@core/context/formRuntime";
 
 import type { FormRuntime } from "@core/types";
 

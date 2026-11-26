@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 import useMultiStepForm from "@core/hooks/useMultiStepForm";
 import useDevTools from "@core/hooks/useDevTools";
-import FormRuntimeContext from "@core/context";
+import FormRuntimeContext from "@core/context/formRuntime";
 import defaultLabels from "@core/labels";
 import ActionBar from "./subcomponents/actionBar";
 import GroupList from "./subcomponents/groupList";

@@ -3,16 +3,7 @@ import formatFieldInput from "@core/functions/formatFieldInput";
 import validateField from "@core/functions/validateField";
 import getByPath from "@core/functions/getByPath";
 
-import type { ActionContext, FormField } from "@core/types";
-import type { FormStore } from "@core/engine";
-
-interface ChangeFieldOptions {
-  store: FormStore;
-  field: FormField;
-  value: unknown;
-  requiredMessage: string;
-  parentContext?: ActionContext;
-}
+import type { ChangeFieldOptions } from "./types";
 
 const changeField = ({ store, field, value, requiredMessage, parentContext }: ChangeFieldOptions) => {
   const nextValue = formatFieldInput(field, value, getByPath(store.getState().values, field.name));
