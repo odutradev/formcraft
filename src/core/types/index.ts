@@ -266,8 +266,8 @@ export interface ButtonProps {
   icon?: ReactNode;
   variant: ButtonVariant;
   color?: "primary" | "inherit";
+  placement: "field" | "action" | "dialog";
   isDisabled: boolean;
-  isFullWidth?: boolean;
   onClick: () => void;
 }
 
