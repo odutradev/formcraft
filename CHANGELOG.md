@@ -2,7 +2,7 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
-## [Não publicado]
+## [0.1.8] - 2026-11-26
 
 ### Alterado
 
