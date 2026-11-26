@@ -14,7 +14,7 @@ It is a library, not an application: there are no pages, routes, authentication,
 
 ### Current state
 
-The original `react-hook-form` component was replaced by the structure below. There are two adapters: MUI and native (plain HTML styled with CSS variables). There is no automated test suite.
+The original `react-hook-form` component was replaced by the structure below. There are six adapters: native (plain HTML styled with CSS variables, the default), MUI, Mantine, Ant Design, Chakra UI and Enchase. User-facing copy ships in pt-BR and en, picked from the browser by default (`locale="auto"`). There is no automated test suite.
 
 ## 2. Stack
 
@@ -23,8 +23,8 @@ The original `react-hook-form` component was replaced by the structure below. Th
 | Framework | React (library), built with Vite in library mode |
 | Language | TypeScript (100% typed), emitting `.d.ts` |
 | Form engine | Own engine in `src/engine`: a reducer-driven store read with `useSyncExternalStore` (no `react-hook-form`) |
-| Base components | Adapter pattern: `formRenderer` receives a component map; MUI is the default adapter |
-| Styling | Defined by each adapter; the MUI adapter uses `styled` from `@mui/material/styles` with theme tokens; the native adapter uses plain CSS strings in each `styles.ts`, joined by `stylesheet/` inside `@layer multi-step-form` and themed by `--msf-*` variables |
+| Base components | Adapter pattern: `formRenderer` receives a component map; the native adapter is the default |
+| Styling | Defined by each adapter. MUI uses `styled` with theme tokens; Chakra uses style props with its tokens; Mantine, Ant Design and Enchase use their components' props plus small CSS strings in `styles.ts`, joined by `stylesheet/` without a layer and themed by the library's CSS variables (antd's tokens are copied to `--msf-antd-*` by the form root); the native adapter uses CSS strings joined inside `@layer multi-step-form` and themed by `--msf-*` variables |
 | State | Form store per form or modal + `useState` for UI state + React context for the runtime. No global store |
 | Requests | None. The library never calls HTTP; async work arrives through config callbacks |
 | Unit tests | Not required |
@@ -38,19 +38,26 @@ The original `react-hook-form` component was replaced by the structure below. Th
 │   ├── index.ts  # multi-step-form
 │   ├── mui/
 │   │   └── index.ts  # multi-step-form/mui
+│   ├── mantine/ antd/ chakra/ enchase/
+│   │   └── index.ts  # multi-step-form/<name>
 │   └── native/
 │       └── index.ts  # multi-step-form/native
 └── src/
     ├── types/
     │   ├── values.ts  # FormValues, FormErrors, ActionContext, Resolvable
     │   ├── config.ts  # FormConfig, FormStep, FormGroup, FormField and their options
-    │   ├── labels.ts  # FormLabels
+    │   ├── labels.ts  # FormLabels, FormLocale, FormLocaleOption
     │   ├── components.ts  # adapter contract: FormComponents and every component's props
     │   ├── runtime.ts  # FormRuntime, MultiStepFormDefaults
     │   ├── props.ts  # MultiStepFormProps, MultiStepFormProviderProps
+    │   ├── styles.ts  # CssVariables, shared by the adapters
     │   └── index.ts  # re-exports every file above
     ├── labels/
-    │   └── index.ts  # defaultLabels in pt-BR
+    │   ├── ptBR/
+    │   │   └── index.ts  # ptBRLabels
+    │   ├── en/
+    │   │   └── index.ts  # enLabels
+    │   └── index.ts  # labelsByLocale, fallbackLocale and defaultLabels (pt-BR)
     ├── engine/
     │   ├── index.ts  # createFormStore and formReducer: values and errors
     │   └── types.ts  # FormState, FormEvent, FormStore
@@ -62,7 +69,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
     │   ├── formDefaults/
     │   │   └── index.ts  # FormDefaultsContext: provider defaults
     │   └── formRuntime/
-    │       └── index.ts  # FormRuntimeContext: components, labels, reportError
+    │       └── index.ts  # FormRuntimeContext: components, locale, labels, reportError
     ├── hooks/
     │   ├── useMultiStepForm/
     │   │   ├── index.ts  # form orchestrator: steps, validation, actions
@@ -71,7 +78,8 @@ The original `react-hook-form` component was replaced by the structure below. Th
     │   ├── useDevTools/
     │   ├── useFormStore/
     │   ├── useFormRuntime/
-    │   └── useFormDefaults/
+    │   ├── useFormDefaults/
+    │   └── useFormLocale/  # resolves "auto" from navigator.languages and follows languagechange
     ├── components/
     │   ├── multiStepForm/
     │   │   ├── index.tsx  # public MultiStepForm: merges native adapter, provider defaults and props
@@ -103,6 +111,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
         │   ├── selectField/
         │   ├── devTools/
         │   └── index.ts  # builds the muiComponents map
+        ├── mantine/ antd/ chakra/ enchase/  # same layout; mantine, antd and enchase add stylesheet/
         └── native/  # same layout, plus theme/ and stylesheet/
 ```
 
@@ -111,9 +120,9 @@ The original `react-hook-form` component was replaced by the structure below. Th
 | Folder | Holds | May import |
 | :--- | :--- | :--- |
 | `types` | Shared types and the adapter contract | `react` types, other `types` files |
-| `labels` | Default user-facing copy | `types` |
+| `labels` | User-facing copy per locale | `types`, other `labels` files |
 | `engine` | The form store | `types`, `functions` |
-| `functions` | Pure helpers, no React | `types`, `engine` types, other `functions` |
+| `functions` | Pure helpers, no React | `types`, `labels`, `engine` types, other `functions` |
 | `context` | React contexts | `types` |
 | `hooks` | React hooks with the form logic | `types`, `labels`, `engine`, `functions`, `context`, other `hooks` |
 | `components` | Library components with no UI library | everything above and, only in `multiStepForm`, `adapters/native` |
@@ -128,20 +137,23 @@ The original `react-hook-form` component was replaced by the structure below. Th
 - `components/formRenderer` never renders a UI-library component directly: it asks the component map for one.
 - `adapters/<name>` implement the `FormComponents` contract declared in `types`. They never import `components` or another adapter.
 - Every input type in `InputFieldType` must have a component in each adapter's `inputs` map.
+- The locale is resolved once, in `components/multiStepForm` (`useFormLocale`), and reaches adapters through `useFormRuntime().locale`. Adapters use it for date pickers and library locale providers; they never read `navigator` themselves.
+- An adapter never ships a provider the consumer must already have (theme, color mode, `MantineProvider`, `ChakraProvider`). It may wrap its form in a locale-only provider of its library (`DatesProvider`, antd `ConfigProvider` with `locale`), because nested ones inherit the consumer's theme.
 - Each form and each modal (form modal, search filters) owns a store from `createFormStore`. Only `functions` (`changeField`, `createActionContext`) and `hooks` dispatch to it.
 - DevTools logic lives in `hooks/useDevTools`; its panel is an adapter component. It is opt-in through the `isDevToolsEnabled` prop, which consumers set from their own environment flag (for example `import.meta.env.DEV`). The library never turns it on by itself.
 
 **Public API:**
 
-- Every public entry lives in `lib/` at the project root and only re-exports: it declares nothing. `lib/index.ts` is the only entry for the headless layer, the components and the default native adapter (`nativeComponents`). Each adapter has its own entry folder (`lib/mui`, `lib/native`), built as `<package>/mui` and `<package>/native` and declared in `package.json` `exports`.
-- A new public entry gets a folder in `lib/`, a key in the `build.lib.entry` of `vite.config.ts` and a subpath in `package.json` `exports` pointing at `dist/lib/<name>/index.d.ts`. Nothing inside `src` imports from `lib`.
+- Every public entry lives in `lib/` at the project root and only re-exports: it declares nothing. `lib/index.ts` is the only entry for the headless layer, the components, the labels of each locale and the default native adapter (`nativeComponents`). Each adapter has its own entry folder (`lib/mui`, `lib/native`, `lib/mantine`, `lib/antd`, `lib/chakra`, `lib/enchase`), built as `<package>/<name>` and declared in `package.json` `exports`.
+- A new public entry gets a folder in `lib/`, a key in the `build.lib.entry` of `vite.config.ts` and a subpath in `package.json` `exports` pointing at `dist/lib/<name>/index.d.ts`. A new adapter also adds its libraries to `externalPackages` in `vite.config.ts`, to `peerDependencies` and `peerDependenciesMeta` as optional, and to the playground (`data/adapterComponents`, `components/libraryProviders`, aliases in `playground/vite.config.ts` and `playground/tsconfig.json`). Nothing inside `src` imports from `lib`.
 - Anything not exported from an entry file is private and may change without a major version.
 - Removing or renaming an export, changing a prop or changing the behavior of a config option is a **breaking change**.
 
 **Dependencies:**
 
 - `react` and `react-dom` are `peerDependencies`.
-- Adapter libraries (`@mui/material`, `@mui/icons-material`, `@mui/x-date-pickers`, `dayjs`) are optional `peerDependencies` (`peerDependenciesMeta`), needed only by the adapter that uses them.
+- Adapter libraries are optional `peerDependencies` (`peerDependenciesMeta`), needed only by the adapter that uses them: MUI (`@mui/*`, `@emotion/*`, `dayjs`), Mantine (`@mantine/core`, `@mantine/dates`, `@mantine/hooks`, `@tabler/icons-react`, `dayjs`), Ant Design (`antd`, `@ant-design/icons`, `dayjs`), Chakra (`@chakra-ui/react`, `@emotion/react`, `lucide-react`) and Enchase (`enchase`, `lucide-react`).
+- Each adapter takes its icons from its library's ecosystem (`@mui/icons-material`, `@tabler/icons-react`, `@ant-design/icons`, `lucide-react`, `enchase/icons`). Never copy SVG icons into an adapter when the library or its icon package has them.
 - The headless layer has no runtime dependency besides React. Masks, date handling and number formatting are implemented in `functions` with native APIs (`Intl`, `Date`).
 - Never import a whole icon package (`import * as Icons`). Icons are passed as `ReactNode` or imported one by one.
 - Never depend on anything from a consumer application (loading components, toasts, loggers, stores).
@@ -313,7 +325,7 @@ Semantic elements, labels on icon buttons, errors linked to their fields and vis
 
 ### Theme colors and spacing
 
-No hard-coded colors or spacing in adapters: use the host theme's tokens. In the native adapter the tokens are the `--msf-*` variables declared in `adapters/native/theme`; that file is the only place with literal default values.
+No hard-coded colors or spacing in adapters: use the host theme's tokens. In the native adapter the tokens are the `--msf-*` variables declared in `adapters/native/theme`; that file is the only place with literal default values. In the other adapters the tokens are the library's own (`--mantine-*`, antd `theme.useToken()`, Chakra token names such as `fg.muted` and `colorPalette.solid`, `--enchase-*`). Media queries may use the library's default breakpoints as literals, because CSS variables do not work there.
 
 ✅ Do:
 ```typescript

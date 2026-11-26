@@ -2,7 +2,7 @@
 
 Biblioteca React para formulários em etapas orientados a configuração. Você descreve as etapas, os grupos e os campos em um objeto `FormConfig`, e a biblioteca cuida da renderização, da validação, da navegação entre etapas e dos campos condicionais.
 
-O núcleo é **headless**: depende só do React. A parte visual vem de um **adapter**, que é um mapa de componentes. A biblioteca já inclui dois adapters prontos: um para o [Material UI](https://mui.com) e um nativo, em HTML puro, que não depende de nenhuma biblioteca visual.
+O núcleo é **headless**: depende só do React. A parte visual vem de um **adapter**, que é um mapa de componentes. A biblioteca já inclui seis adapters prontos: um nativo, em HTML puro, que não depende de nenhuma biblioteca visual, e um para cada uma destas bibliotecas: [Material UI](https://mui.com), [Mantine](https://mantine.dev), [Ant Design](https://ant.design), [Chakra UI](https://chakra-ui.com) e [Enchase](https://github.com/thiagopedro99/enchase).
 
 ## Recursos
 
@@ -15,9 +15,9 @@ O núcleo é **headless**: depende só do React. A parte visual vem de um **adap
 - Tabelas com ações por linha e detalhe expansível.
 - Formulários em modal, com validação própria e acesso ao formulário pai.
 - Valores aninhados por caminho (`company.cnpj`).
-- Textos da interface em pt-BR, todos substituíveis.
+- Textos da interface em português e inglês, com o idioma do navegador escolhido sozinho e todos os textos substituíveis.
 - DevTools opcional para preencher dados de teste e inspecionar o estado.
-- Layout mobile-first e componentes acessíveis nos dois adapters.
+- Layout mobile-first e componentes acessíveis em todos os adapters.
 - Adapter nativo sem dependências, com tema controlado por variáveis CSS.
 
 ## Instalação
@@ -28,19 +28,28 @@ A biblioteca é instalada a partir do GitHub. O script `prepare` gera o build du
 npm install github:odutradev/multiStepForm
 ```
 
-O React é uma dependência de pares (peer dependency) obrigatória. O adapter nativo não precisa de mais nada. Para usar o adapter MUI, instale também as dependências dele:
+O React é uma dependência de pares (peer dependency) obrigatória. O adapter nativo não precisa de mais nada. Os outros adapters pedem a biblioteca visual deles, e você instala só a do adapter que usar:
 
 ```bash
-npm install react react-dom @mui/material @mui/icons-material @mui/x-date-pickers @emotion/react @emotion/styled dayjs
+npm install @mui/material @mui/icons-material @mui/x-date-pickers @emotion/react @emotion/styled dayjs
+npm install @mantine/core @mantine/dates @mantine/hooks @tabler/icons-react dayjs
+npm install antd @ant-design/icons dayjs
+npm install @chakra-ui/react @emotion/react lucide-react
+npm install enchase lucide-react
 ```
 
 | Pacote | Versão mínima | Necessário para |
 | :--- | :--- | :--- |
 | `react`, `react-dom` | 19 | Sempre |
-| `@mui/material`, `@mui/icons-material` | 9 | Adapter MUI |
-| `@mui/x-date-pickers` | 9 | Adapter MUI (campo de data) |
-| `@emotion/react`, `@emotion/styled` | 11 | Adapter MUI |
-| `dayjs` | 1.11 | Adapter MUI (campo de data) |
+| `@mui/material`, `@mui/icons-material`, `@mui/x-date-pickers` | 9 | Adapter MUI |
+| `@emotion/react`, `@emotion/styled` | 11 | Adapters MUI e Chakra |
+| `dayjs` | 1.11 | Adapters MUI, Mantine e Ant Design (campo de data) |
+| `@mantine/core`, `@mantine/dates`, `@mantine/hooks` | 9 | Adapter Mantine |
+| `@tabler/icons-react` | 3 | Adapter Mantine (ícones) |
+| `antd`, `@ant-design/icons` | 6 | Adapter Ant Design |
+| `@chakra-ui/react` | 3 | Adapter Chakra |
+| `enchase` | 0.27 | Adapter Enchase |
+| `lucide-react` | 1 | Adapters Chakra e Enchase (ícones) |
 
 ## Uso básico
 
@@ -97,7 +106,7 @@ import { muiComponents } from "multi-step-form/mui";
 <MultiStepForm config={config} components={muiComponents} onSubmit={handleSubmit} />;
 ```
 
-O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `LocalizationProvider` do date picker, configurado em pt-BR.
+O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `LocalizationProvider` do date picker, no idioma do formulário. Os outros adapters seguem o mesmo padrão, e a seção [Adapters](#adapters) mostra o que cada um precisa.
 
 ## Propriedades do `MultiStepForm`
 
@@ -108,10 +117,11 @@ O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `L
 | `onSubmit` | `(data: FormValues) => void \| Promise<void>` | `-` | Chamada por uma ação `submit` quando todas as etapas visíveis são válidas. |
 | `onError` | `(error: unknown) => void` | `undefined` | Recebe os erros lançados por `onSubmit`, `action.onClick` e `searchConfig.onSearch`. |
 | `initialData` | `FormValues` | `{}` | Valores iniciais do formulário. |
-| `labels` | `Partial<FormLabels>` | `defaultLabels` | Substitui os textos da interface. |
+| `locale` | `"auto" \| "pt-BR" \| "en"` | `"auto"` | Idioma dos textos. `auto` segue o idioma do navegador; um valor fixo desliga a detecção. |
+| `labels` | `Partial<FormLabels>` | textos do idioma | Substitui textos da interface, por cima dos textos do idioma. |
 | `isDevToolsEnabled` | `boolean` | `false` | Habilita o painel de DevTools (atalho `Ctrl + Shift + Q`). |
 
-Os valores padrão de `components`, `labels`, `onError` e `isDevToolsEnabled` podem vir de um `MultiStepFormProvider` (veja a próxima seção).
+Os valores padrão de `components`, `locale`, `labels`, `onError` e `isDevToolsEnabled` podem vir de um `MultiStepFormProvider` (veja a próxima seção).
 
 ## Configuração global com `MultiStepFormProvider`
 
@@ -124,6 +134,7 @@ import { muiComponents } from "multi-step-form/mui";
 const App = () => (
   <MultiStepFormProvider
     components={muiComponents}
+    locale="pt-BR"
     labels={{ required: "Preencha este campo" }}
     fieldPreSets={{ phone: { label: "Telefone", mask: "(00) 00000-0000" } }}
     formStyle="collapsed"
@@ -142,6 +153,7 @@ const App = () => (
 | Opção | Como combina com o valor local |
 | :--- | :--- |
 | `components` | Peça por peça, inclusive dentro de `inputs`. A ordem é: adapter nativo, Provider, prop `components`. |
+| `locale` | A prop do formulário ganha do global; sem nenhum dos dois, `auto`. |
 | `labels` | Texto por texto: o formulário pode trocar só um deles. |
 | `fieldPreSets` | Preset por nome. Um preset de mesmo nome em `config.fieldPreSets` ganha do global. |
 | `formStyle` | `config.formStyle` ganha do global. |
@@ -149,7 +161,7 @@ const App = () => (
 
 Os Providers podem ser aninhados: um Provider interno herda os padrões do externo e sobrescreve só o que declarar. Isso serve para padrões de uma área do app, como presets de um módulo.
 
-O tema visual não passa pelo Provider: no MUI use o `ThemeProvider` (global ou em volta de um formulário), e no adapter nativo defina as variáveis `--msf-*` no `:root` ou em um elemento acima do formulário.
+O tema visual não passa pelo Provider: em cada biblioteca use o provider de tema dela (`ThemeProvider` do MUI, `MantineProvider`, `ConfigProvider` do Ant Design, `ChakraProvider`, `ColorModeProvider` do Enchase), e no adapter nativo defina as variáveis `--msf-*` no `:root` ou em um elemento acima do formulário.
 
 ## Configuração
 
@@ -342,13 +354,25 @@ const field: FormField = {
 
 ## Textos da interface
 
-Todos os textos exibidos ficam em `defaultLabels`, em pt-BR. Passe apenas o que quiser mudar:
+A biblioteca traz os textos em português (`ptBRLabels`) e em inglês (`enLabels`). Por padrão (`locale="auto"`) o idioma segue o navegador: `navigator.languages` é lido na ordem, um idioma `pt-*` usa o português, `en-*` usa o inglês e qualquer outro usa o inglês. O formulário troca de idioma sozinho quando o navegador avisa uma mudança (`languagechange`).
+
+Para desligar a detecção, passe um idioma fixo, no formulário ou no Provider:
+
+```tsx
+<MultiStepForm config={config} onSubmit={handleSubmit} locale="en" />
+
+<MultiStepFormProvider locale="pt-BR">
+  <App />
+</MultiStepFormProvider>
+```
+
+Para trocar textos, passe só o que quiser mudar. Eles ficam por cima dos textos do idioma escolhido:
 
 ```tsx
 <MultiStepForm config={config} onSubmit={handleSubmit} labels={{ required: "Preencha este campo", search: "Pesquisar" }} />
 ```
 
-A lista completa de chaves está no tipo `FormLabels`. O painel de DevTools, que é usado só em desenvolvimento, tem textos fixos.
+A lista completa de chaves está no tipo `FormLabels`. `defaultLabels` continua exportado e é igual a `ptBRLabels`. O idioma também chega aos adapters, pelo `locale` do `useFormRuntime`: os date pickers do MUI, do Mantine, do Ant Design e do Enchase usam o idioma do formulário. A formatação de moeda continua em real (BRL). O painel de DevTools, que é usado só em desenvolvimento, tem textos fixos.
 
 ## DevTools
 
@@ -368,10 +392,23 @@ A biblioteca nunca ativa o painel sozinha. Ligue-o apenas em desenvolvimento:
 
 O `components` recebe um objeto `FormComponents`, com um componente para cada peça visual: layout, indicador de etapas, grupos, grid, cada tipo de campo, botões, tabela, modal, busca e DevTools. Os tipos de props de cada peça são exportados pela biblioteca (`InputFieldProps`, `GroupProps`, `ModalProps` e outros).
 
-| Adapter | Import | Dependências |
+| Adapter | Import | O que a aplicação precisa ter |
 | :--- | :--- | :--- |
-| Nativo (padrão) | Nenhum. Para estendê-lo: `import { nativeComponents } from "multi-step-form"` | Nenhuma |
-| Material UI | `import { muiComponents } from "multi-step-form/mui"` | MUI, Emotion e Day.js |
+| Nativo (padrão) | Nenhum. Para estendê-lo: `import { nativeComponents } from "multi-step-form"` | Nada |
+| Material UI | `import { muiComponents } from "multi-step-form/mui"` | `ThemeProvider` (opcional) |
+| Mantine | `import { mantineComponents } from "multi-step-form/mantine"` | `MantineProvider` e o CSS do Mantine (`@mantine/core/styles.css` e `@mantine/dates/styles.css`) |
+| Ant Design | `import { antdComponents } from "multi-step-form/antd"` | Nada além do `antd`; o `ConfigProvider` é opcional |
+| Chakra UI | `import { chakraComponents } from "multi-step-form/chakra"` | `ChakraProvider` com um `system` (o `defaultSystem` serve) |
+| Enchase | `import { enchaseComponents } from "multi-step-form/enchase"` | `ColorModeProvider` e `enchase/styles.css`; `UIProvider` para os textos internos do Enchase |
+
+Cada adapter usa os componentes e o tema da própria biblioteca, então o formulário segue o tema que a aplicação já tem. Os detalhes que mudam de uma biblioteca para outra:
+
+- **Mantine**: seleção com `Select` e `MultiSelect`, autocomplete com `Autocomplete`, tags com `TagsInput`, data com o `DatePickerInput` (o adapter já inclui o `DatesProvider` no idioma do formulário). Ícones do `@tabler/icons-react`.
+- **Ant Design**: cada campo fica em um `Form.Item` (rótulo, obrigatório, tooltip e erro), sem precisar de um `Form` do antd. Data com o `DatePicker`, busca com `Table` paginada e árvore com o `Tree`. O adapter já inclui o `ConfigProvider` com o idioma do formulário, que herda o tema do seu `ConfigProvider`. Ícones do `@ant-design/icons`.
+- **Chakra UI**: campos com `Field`, seleção com `Select`, autocomplete com `Combobox`, tags com `TagsInput`, modal com `Dialog`. A data usa o seletor do navegador. A cor de destaque vem da `colorPalette` (defina-a no `globalCss` do seu `system` ou num elemento acima). O Chakra precisa do `preflight` ligado, que é o padrão. Ícones do `lucide-react`.
+- **Enchase**: campos com `Input`, `Select`, `Combobox` e `DatePicker`, modal com `Modal` e resultados de busca com `Table` e `Pagination`. O `label` do Enchase só aceita texto, então o `tooltip` do campo aparece como texto de ajuda; a tabela com detalhe expansível usa uma tabela própria com os tokens do Enchase. Ícones do `enchase/icons` e do `lucide-react`.
+
+Os adapters Mantine, Ant Design e Enchase injetam um CSS pequeno, só para o grid de campos e alguns detalhes, com as variáveis de tema de cada biblioteca. Ele não fica em `@layer`, para não perder para o CSS da biblioteca visual, que não usa camadas.
 
 ### Adapter nativo
 
@@ -411,7 +448,7 @@ O tema é controlado por variáveis CSS. Defina-as em qualquer elemento que envo
 | `--msf-shadow-lg` | `0 24px 48px -12px ...` | Sombra dos modais |
 | `--msf-transition` | `0.15s ease` | Duração das transições de hover e foco |
 
-Para ir além das variáveis, sobrescreva as classes `msf-*` (por exemplo `.msf-button`, `.msf-control`, `.msf-group`). O CSS do adapter fica na camada `@layer multi-step-form`, então qualquer CSS seu, fora de camadas, tem prioridade sem precisar de `!important` ou de seletores mais específicos.
+Para ir além das variáveis, sobrescreva as classes `msf-*` (por exemplo `.msf-button`, `.msf-control`, `.msf-group`). O CSS do adapter fica na camada `@layer multi-step-form`, então qualquer CSS seu, fora de camadas, tem prioridade sem precisar de `!important` ou de seletores mais específicos. Isso vale também para resets globais em camadas que sejam declaradas depois, como o `preflight` do Chakra: se usar o adapter nativo e o Chakra na mesma página, declare a ordem das camadas com `multi-step-form` por último (`@layer reset, base, tokens, recipes, multi-step-form;`) antes de qualquer outro CSS.
 
 ### Estender ou criar um adapter
 
@@ -469,11 +506,11 @@ npm run dev
 O `npm run dev` abre o playground (`playground/`), com duas abas:
 
 - **Formulário completo:** a configuração de exemplo de duas etapas (`playground/config/sampleConfig`), com busca, máscara, subgrupo condicional, modal, tabela e DevTools.
-- **Galeria de componentes:** um formulário por grupo de recursos (`playground/config/showcaseSections`): texto e números, seleção, datas, arquivos, mensagens e divisores, botões e modal, tabela, busca em tabela e em árvore, grupos e etapas com ações. Juntos, eles usam todos os tipos de campo e opções da config.
+- **Galeria de componentes:** um formulário por grupo de recursos (`playground/config/showcaseSections`): texto e números, seleção, datas, arquivos, mensagens e divisores, botões e modal, tabela, busca em tabela e em árvore, grupos, Provider, idiomas e etapas com ações. Juntos, eles usam todos os tipos de campo e opções da config.
 
-No topo dá para ver os adapters MUI e nativo lado a lado ou um de cada vez e trocar entre modo claro e escuro. O painel de tema muda a cor primária, o arredondamento, o espaçamento e a fonte dos dois adapters e mostra o CSS equivalente para o nativo. O código do playground segue a mesma organização da biblioteca: `components/` (um componente por pasta), `config/`, `data/`, `functions/` e `types/`, importados pelo alias `@playground`.
+No topo dá para ver os seis adapters lado a lado ou um de cada vez e trocar entre modo claro e escuro. O painel lateral muda a cor primária, o arredondamento, o espaçamento, a fonte e o idioma (automático, português ou inglês) de todos os adapters e mostra o CSS equivalente para o nativo. Os providers de tema de cada biblioteca ficam em `components/libraryProviders`, e o mapa de adapters em `data/adapterComponents`. O código do playground segue a mesma organização da biblioteca: `components/` (um componente por pasta), `config/`, `data/`, `functions/` e `types/`, importados pelo alias `@playground`.
 
-O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form` e `multi-step-form/mui` (o alias também cobre `multi-step-form/native`) e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
+O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form` e das entradas de cada adapter (`multi-step-form/mui`, `/mantine`, `/antd`, `/chakra`, `/enchase`), e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
 
 | Script | O que faz |
 | :--- | :--- |
@@ -490,18 +527,26 @@ A estrutura do código e as regras do projeto estão no [CLAUDE.md](CLAUDE.md). 
 lib/                 # entradas públicas do pacote (só reexportam)
 ├── index.ts         # multi-step-form
 ├── mui/index.ts     # multi-step-form/mui
+├── mantine/index.ts # multi-step-form/mantine
+├── antd/index.ts    # multi-step-form/antd
+├── chakra/index.ts  # multi-step-form/chakra
+├── enchase/index.ts # multi-step-form/enchase
 └── native/index.ts  # multi-step-form/native
 src/
 ├── types/       # tipos compartilhados e o contrato dos adapters
-├── labels/      # textos padrão em pt-BR
+├── labels/      # textos em pt-BR e en (ptBR/, en/)
 ├── engine/      # store do formulário
 ├── functions/   # funções puras: validação, máscaras, visibilidade, mesclagens
 ├── context/     # contextos React
 ├── hooks/       # hooks com a lógica do formulário
 ├── components/  # MultiStepForm, MultiStepFormProvider e o renderer interno
 └── adapters/
-    ├── mui/     # adapter Material UI
-    └── native/  # adapter HTML nativo com variáveis CSS
+    ├── native/   # adapter HTML nativo com variáveis CSS
+    ├── mui/      # adapter Material UI
+    ├── mantine/  # adapter Mantine
+    ├── antd/     # adapter Ant Design
+    ├── chakra/   # adapter Chakra UI
+    └── enchase/  # adapter Enchase
 ```
 
 Cada pasta tem `index.ts(x)` e, quando declara tipos, um `types.ts` ao lado; os componentes dos adapters também têm `styles.ts`. Dentro de `src` cada pasta tem um alias com o nome dela (`@components`, `@hooks`, `@functions`, `@engine`, `@context`, `@labels`, `@adapters`); a pasta `types` usa `@typings`, porque o TypeScript reserva `@types/*` para os pacotes de tipos do npm.

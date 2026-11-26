@@ -4,6 +4,15 @@ Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato
 
 ## [Não publicado]
 
+### Adicionado
+
+- Adapters para Mantine (`multi-step-form/mantine`), Ant Design (`multi-step-form/antd`), Chakra UI (`multi-step-form/chakra`) e Enchase (`multi-step-form/enchase`), cada um com todos os tipos de campo, grupos, tabela, modal, busca em tabela e em árvore e DevTools. As bibliotecas de cada um são dependências de pares opcionais.
+- Textos em inglês (`enLabels`) ao lado dos textos em português (`ptBRLabels`).
+- Prop `locale` (`"auto"`, `"pt-BR"` ou `"en"`) no `MultiStepForm` e no `MultiStepFormProvider`. Em `auto`, o padrão, o idioma segue o navegador e acompanha o evento `languagechange`; um valor fixo desliga a detecção.
+- `locale` no `useFormRuntime`, usado pelos date pickers dos adapters.
+- Tipos `FormLocale`, `FormLocaleOption` e `CssVariables`.
+- Playground com os seis adapters lado a lado, seletor de idioma no painel lateral e seções "Idiomas" e modal com seleção na galeria.
+
 ### Alterado
 
 - Os imports internos voltam a usar um alias por pasta de `src` (`@components`, `@hooks`, `@functions`, `@engine`, `@context`, `@labels`, `@adapters` e `@typings`) no lugar do alias geral `@/`.
