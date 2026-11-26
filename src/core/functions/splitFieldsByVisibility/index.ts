@@ -1,5 +1,5 @@
-import resolveField from "@core/functions/resolveField";
 import collectFields from "@core/functions/collectFields";
+import resolveField from "@core/functions/resolveField";
 import isVisible from "@core/functions/isVisible";
 
 import type { ActionContext, FormConfig, FormGroup } from "@core/types";

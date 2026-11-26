@@ -6,8 +6,8 @@ import { NodeContainer, NodeLabel, Spacer } from "./styles";
 import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 
-import type { FormRow } from "@core/types";
 import type { TreeNodeProps } from "./types";
+import type { FormRow } from "@core/types";
 
 const TreeNode = ({ item, config, level, isExpandedByDefault, onSelect }: TreeNodeProps) => {
   const { labels } = useFormRuntime();

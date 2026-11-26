@@ -1,5 +1,5 @@
-import resolveField from "@core/functions/resolveField";
 import collectFields from "@core/functions/collectFields";
+import resolveField from "@core/functions/resolveField";
 import setByPath from "@core/functions/setByPath";
 
 import type { FieldType, FormConfig, FormField, FormValues } from "@core/types";

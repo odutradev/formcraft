@@ -1,8 +1,8 @@
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import { useId } from "react";
 
-import AutocompleteField from "@adapters/mui/autocompleteField";
 import FieldLabel, { tooltipLabelSx } from "@adapters/mui/fieldLabel";
+import AutocompleteField from "@adapters/mui/autocompleteField";
 import useFormRuntime from "@hooks/useFormRuntime";
 import toText from "@core/functions/toText";
 

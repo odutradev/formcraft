@@ -1,9 +1,9 @@
-import useFormRuntime from "@hooks/useFormRuntime";
 import getGroupKey from "@core/functions/getGroupKey";
+import useFormRuntime from "@hooks/useFormRuntime";
 import FieldList from "../fieldList";
 
-import type { GroupProps } from "@core/types";
 import type { GroupBlockProps } from "./types";
+import type { GroupProps } from "@core/types";
 
 const GroupBlock = ({ group, groupKey, level, formStyle, binding, collapsedKeys, onToggle }: GroupBlockProps) => {
   const { components } = useFormRuntime();

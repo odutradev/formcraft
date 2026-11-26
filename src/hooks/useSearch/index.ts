@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import createFormStore from "@core/engine";
 
-import type { FormRow } from "@core/types";
 import type { UseSearchOptions } from "./types";
+import type { FormRow } from "@core/types";
 
 const useSearch = ({ config, initialValue, reportError }: UseSearchOptions) => {
   const hasInitialFilter = Boolean(initialValue && config.initialFilterName);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import useFormRuntime from "@hooks/useFormRuntime";
 import getGroupKey from "@core/functions/getGroupKey";
+import useFormRuntime from "@hooks/useFormRuntime";
 import GroupBlock from "../groupBlock";
 
 import type { GroupListProps } from "./types";
