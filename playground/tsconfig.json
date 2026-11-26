@@ -3,7 +3,8 @@
   "compilerOptions": {
     "paths": {
       "multi-step-form": ["../dist/index.d.ts"],
-      "multi-step-form/mui": ["../dist/adapters/mui/index.d.ts"]
+      "multi-step-form/mui": ["../dist/adapters/mui/index.d.ts"],
+      "multi-step-form/native": ["../dist/adapters/native/index.d.ts"]
     }
   },
   "include": ["."],

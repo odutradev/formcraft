@@ -32,6 +32,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: new RegExp(`^${packageName}/mui$`), replacement: resolvePath("../dist/mui.js") },
+      { find: new RegExp(`^${packageName}/native$`), replacement: resolvePath("../dist/native.js") },
       { find: new RegExp(`^${packageName}$`), replacement: resolvePath("../dist/index.js") }
     ]
   },
