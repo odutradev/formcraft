@@ -335,7 +335,7 @@ O `components` recebe um objeto `FormComponents`, com um componente para cada pe
 
 ### Adapter nativo
 
-O adapter nativo usa elementos HTML (`input`, `select`, `datalist`, `dialog`, `table`) e injeta o próprio CSS quando o formulário aparece, sem nenhum import de CSS. O campo de data usa o seletor do navegador, e o autocomplete usa `datalist`.
+O adapter nativo usa elementos HTML (`input`, `dialog`, `table`) e injeta o próprio CSS quando o formulário aparece, sem nenhum import de CSS. Seleção e autocomplete usam um combobox próprio, com lista estilizada aberta em popover (fica por cima de cards, tabelas e modais), navegação por teclado (setas, Enter, Esc, Backspace) e atributos ARIA de combobox. Na seleção múltipla, as opções têm caixa de marcação e os itens escolhidos viram chips. O campo de data usa o seletor do navegador.
 
 O tema é controlado por variáveis CSS. Defina-as em qualquer elemento que envolva o formulário, ou no `:root` para mudar todos:
 
@@ -351,20 +351,25 @@ O tema é controlado por variáveis CSS. Defina-as em qualquer elemento que envo
 | :--- | :--- | :--- |
 | `--msf-color-primary` | `#2563eb` | Botões, etapa atual, foco e destaques |
 | `--msf-color-primary-contrast` | `#ffffff` | Texto sobre a cor primária |
-| `--msf-color-text` | `#1f2937` | Texto principal |
-| `--msf-color-text-secondary` | `#6b7280` | Rótulos, dicas e textos de apoio |
-| `--msf-color-background` | `#ffffff` | Fundo dos campos, grupos e modais |
-| `--msf-color-surface` | `#f3f4f6` | Cabeçalhos, linhas em destaque e chips |
-| `--msf-color-border` | `#d1d5db` | Bordas e divisores |
+| `--msf-color-text` | `#0f172a` | Texto principal e rótulos |
+| `--msf-color-text-secondary` | `#64748b` | Dicas, ícones e textos de apoio |
+| `--msf-color-background` | `#ffffff` | Fundo dos campos, grupos, listas e modais |
+| `--msf-color-surface` | `#f8fafc` | Cabeçalhos de tabela, campos somente leitura e áreas de apoio |
+| `--msf-color-border` | `#e2e8f0` | Bordas de cards, tabelas e divisores |
+| `--msf-color-border-strong` | `#cbd5e1` | Bordas dos campos |
 | `--msf-color-error` | `#dc2626` | Erros e campos inválidos |
-| `--msf-color-warning` | `#b45309` | Avisos |
+| `--msf-color-warning` | `#d97706` | Avisos e selo de anexo obrigatório |
+| `--msf-color-success` | `#16a34a` | Anexo enviado |
 | `--msf-color-info` | `#0284c7` | Botões informativos do DevTools |
+| `--msf-color-overlay` | `rgb(15 23 42 / 0.55)` | Fundo atrás dos modais |
 | `--msf-color-scheme` | `light` | `color-scheme` dos controles nativos. Use `dark` no tema escuro. |
 | `--msf-font-family` | `system-ui, ...` | Fonte |
 | `--msf-font-size` | `1rem` | Tamanho base do texto |
 | `--msf-radius` | `8px` | Arredondamento |
 | `--msf-spacing` | `8px` | Unidade de espaçamento. Os espaços são múltiplos dela. |
-| `--msf-shadow` | `0 1px 3px rgb(0 0 0 / 0.12)` | Sombra de cards e botões |
+| `--msf-shadow` | `0 1px 2px ..., 0 1px 3px ...` | Sombra de cards |
+| `--msf-shadow-lg` | `0 24px 48px -12px ...` | Sombra dos modais |
+| `--msf-transition` | `0.15s ease` | Duração das transições de hover e foco |
 
 Para ir além das variáveis, sobrescreva as classes `msf-*` (por exemplo `.msf-button`, `.msf-control`, `.msf-group`). O CSS do adapter fica na camada `@layer multi-step-form`, então qualquer CSS seu, fora de camadas, tem prioridade sem precisar de `!important` ou de seletores mais específicos.
 
@@ -421,7 +426,12 @@ npm install
 npm run dev
 ```
 
-O `npm run dev` abre o playground (`playground/`), que mostra a mesma configuração de exemplo, com quase todos os recursos, em dois formulários: um com o adapter MUI e outro com o adapter nativo. Uma barra no topo muda a cor primária, o modo claro ou escuro, o arredondamento, o espaçamento e a fonte dos dois, e permite ver os dois lado a lado ou um de cada vez. A configuração fica em `playground/config/sampleConfig`. O código do playground segue a mesma organização da biblioteca: `components/` (um componente por pasta), `config/`, `data/`, `functions/` e `types/`, importados pelo alias `@playground`.
+O `npm run dev` abre o playground (`playground/`), com duas abas:
+
+- **Formulário completo:** a configuração de exemplo de duas etapas (`playground/config/sampleConfig`), com busca, máscara, subgrupo condicional, modal, tabela e DevTools.
+- **Galeria de componentes:** um formulário por grupo de recursos (`playground/config/showcaseSections`): texto e números, seleção, datas, arquivos, mensagens e divisores, botões e modal, tabela, busca em tabela e em árvore, grupos e etapas com ações. Juntos, eles usam todos os tipos de campo e opções da config.
+
+No topo dá para ver os adapters MUI e nativo lado a lado ou um de cada vez e trocar entre modo claro e escuro. O painel de tema muda a cor primária, o arredondamento, o espaçamento e a fonte dos dois adapters e mostra o CSS equivalente para o nativo. O código do playground segue a mesma organização da biblioteca: `components/` (um componente por pasta), `config/`, `data/`, `functions/` e `types/`, importados pelo alias `@playground`.
 
 O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form` e `multi-step-form/mui` (o alias também cobre `multi-step-form/native`) e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
 

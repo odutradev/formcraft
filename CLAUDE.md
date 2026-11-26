@@ -294,7 +294,7 @@ color: "#666"
 
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
-- Behavior changes are checked by hand in the playground (`npm run dev`, config in `playground/config/sampleConfig`).
+- Behavior changes are checked by hand in the playground (`npm run dev`). The full form config is in `playground/config/sampleConfig`; the components gallery, one single-step form per feature group, is in `playground/config/showcaseSections`. A new field type or config option gets an example in the gallery.
 - The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src` or the `@core`, `@renderer` and `@adapters` aliases in the playground.
 - The playground follows the same folder rules as the library: `components/<name>/` (`index.tsx`, `styles.css`, `types.ts`), `config/`, `data/`, `functions/<name>/index.ts` and `types/`, imported through the `@playground` alias.
 

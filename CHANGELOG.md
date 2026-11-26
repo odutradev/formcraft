@@ -2,6 +2,20 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Adicionado
+
+- Variáveis `--msf-color-border-strong`, `--msf-color-success`, `--msf-color-overlay`, `--msf-shadow-lg` e `--msf-transition` no adapter nativo.
+- Galeria de componentes no playground, com um formulário por grupo de recursos e todos os tipos de campo.
+
+### Alterado
+
+- Novo visual do adapter nativo: campos, etapas, cards, botões, chips, alertas com ícone por tipo, anexos, tabela, modal com botão de fechar, busca e DevTools.
+- Seleção e autocomplete do adapter nativo passam a usar um combobox próprio, com lista estilizada em popover, navegação por teclado e caixas de marcação na seleção múltipla, no lugar de `select` e `datalist`.
+- Anexos do adapter nativo mostram rótulo, selo de obrigatório e botão "Anexar PDF" na mesma linha; em espaços estreitos o botão mostra só o ícone.
+- Novo layout do playground: cabeçalho com abas, painel de tema lateral e cards por adapter.
+
 ## [0.1.4] - 2026-11-26
 
 ### Alterado
