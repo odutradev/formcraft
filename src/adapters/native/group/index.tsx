@@ -13,8 +13,8 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
 
   if (variant === "plain") {
     return (
-      <section className={joinClassNames("msf-group-plain", isHighlighted && "msf-group-plain--highlighted")}>
-        {title && <h3 className="msf-group-plain-title">{title}</h3>}
+      <section className={joinClassNames("fc-group-plain", isHighlighted && "fc-group-plain--highlighted")}>
+        {title && <h3 className="fc-group-plain-title">{title}</h3>}
         {children}
       </section>
     );
@@ -26,14 +26,14 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
   };
 
   return (
-    <section className={joinClassNames("msf-group", `msf-group--${variant}`, isSeamless && "msf-group--seamless")}>
+    <section className={joinClassNames("fc-group", `fc-group--${variant}`, isSeamless && "fc-group--seamless")}>
       {title && (
-        <div className={joinClassNames("msf-group-header", isCollapsible && "msf-group-header--clickable")} onClick={isCollapsible ? onToggle : undefined}>
-          <h3 className="msf-group-title">{title}</h3>
+        <div className={joinClassNames("fc-group-header", isCollapsible && "fc-group-header--clickable")} onClick={isCollapsible ? onToggle : undefined}>
+          <h3 className="fc-group-title">{title}</h3>
           {isCollapsible && (
             <button
               type="button"
-              className={joinClassNames("msf-group-toggle", isCollapsed && "msf-group-toggle--collapsed")}
+              className={joinClassNames("fc-group-toggle", isCollapsed && "fc-group-toggle--collapsed")}
               aria-controls={contentId}
               aria-expanded={!isCollapsed}
               aria-label={isCollapsed ? labels.expand : labels.collapse}
@@ -44,7 +44,7 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
           )}
         </div>
       )}
-      <div id={contentId} className="msf-group-content" hidden={isCollapsed}>
+      <div id={contentId} className="fc-group-content" hidden={isCollapsed}>
         {children}
       </div>
     </section>

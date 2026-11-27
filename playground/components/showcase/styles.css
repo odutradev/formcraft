@@ -36,8 +36,8 @@
 }
 
 .showcase-nav a:hover {
-  border-color: var(--msf-color-primary);
-  color: var(--msf-color-primary);
+  border-color: var(--fc-color-primary);
+  color: var(--fc-color-primary);
 }
 
 .showcase-nav a span {

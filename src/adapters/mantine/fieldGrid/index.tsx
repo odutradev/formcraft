@@ -6,10 +6,10 @@ import type { CssVariables } from "@typings";
 const smallScreenColumns = 2;
 
 const FieldGrid = ({ columns, children }: FieldGridProps) => {
-  const style: CssVariables | undefined = columns ? { "--msf-columns": columns, "--msf-columns-sm": Math.min(smallScreenColumns, columns) } : undefined;
+  const style: CssVariables | undefined = columns ? { "--fc-columns": columns, "--fc-columns-sm": Math.min(smallScreenColumns, columns) } : undefined;
 
   return (
-    <Box className="msf-mantine-grid" data-auto={columns ? undefined : true} style={style}>
+    <Box className="fc-mantine-grid" data-auto={columns ? undefined : true} style={style}>
       {children}
     </Box>
   );

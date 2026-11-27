@@ -1,5 +1,5 @@
 export const stepIndicatorStyles = `
-.msf-enchase-steps {
+.fc-enchase-steps {
   display: flex;
   gap: var(--enchase-space-sm);
   margin: 0;
@@ -7,7 +7,7 @@ export const stepIndicatorStyles = `
   list-style: none;
 }
 
-.msf-enchase-step {
+.fc-enchase-step {
   display: flex;
   flex: 1;
   align-items: center;
@@ -17,14 +17,14 @@ export const stepIndicatorStyles = `
   font-size: var(--enchase-font-size-sm);
 }
 
-.msf-enchase-step:not(:last-child)::after {
+.fc-enchase-step:not(:last-child)::after {
   content: "";
   flex: 1;
   height: 1px;
   background: var(--enchase-color-border);
 }
 
-.msf-enchase-step-marker {
+.fc-enchase-step-marker {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -36,19 +36,19 @@ export const stepIndicatorStyles = `
   font-weight: var(--enchase-font-weight-semibold);
 }
 
-.msf-enchase-step[data-state="current"] {
+.fc-enchase-step[data-state="current"] {
   color: var(--enchase-color-text-primary);
   font-weight: var(--enchase-font-weight-medium);
 }
 
-.msf-enchase-step[data-state="current"] .msf-enchase-step-marker,
-.msf-enchase-step[data-state="done"] .msf-enchase-step-marker {
+.fc-enchase-step[data-state="current"] .fc-enchase-step-marker,
+.fc-enchase-step[data-state="done"] .fc-enchase-step-marker {
   border-color: var(--enchase-color-primary);
   background: var(--enchase-color-primary);
   color: var(--enchase-color-on-primary);
 }
 
-.msf-enchase-step-title {
+.fc-enchase-step-title {
   display: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -56,7 +56,7 @@ export const stepIndicatorStyles = `
 }
 
 @media (min-width: 768px) {
-  .msf-enchase-step-title {
+  .fc-enchase-step-title {
     display: inline;
   }
 }

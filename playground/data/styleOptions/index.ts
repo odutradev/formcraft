@@ -1,5 +1,5 @@
 import type { AdapterDetails, AdapterName, AdapterView, ColorMode, PageTab, StyleOption, StyleSettings } from "@playground/types";
-import type { FormLocaleOption } from "multi-step-form";
+import type { FormLocaleOption } from "formcraft";
 
 export const defaultSettings: StyleSettings = {
   locale: "auto",
@@ -55,18 +55,18 @@ export const adapterDetails: Record<AdapterName, AdapterDetails> = {
 };
 
 export const darkNativePalette: Record<string, string> = {
-  "--msf-color-text": "#f1f5f9",
-  "--msf-color-text-secondary": "#94a3b8",
-  "--msf-color-background": "#111827",
-  "--msf-color-surface": "#1a2333",
-  "--msf-color-border": "#273244",
-  "--msf-color-border-strong": "#3a475c",
-  "--msf-color-error": "#f87171",
-  "--msf-color-warning": "#fbbf24",
-  "--msf-color-success": "#4ade80",
-  "--msf-color-info": "#38bdf8",
-  "--msf-color-overlay": "rgb(2 6 23 / 0.7)",
-  "--msf-color-scheme": "dark"
+  "--fc-color-text": "#f1f5f9",
+  "--fc-color-text-secondary": "#94a3b8",
+  "--fc-color-background": "#111827",
+  "--fc-color-surface": "#1a2333",
+  "--fc-color-border": "#273244",
+  "--fc-color-border-strong": "#3a475c",
+  "--fc-color-error": "#f87171",
+  "--fc-color-warning": "#fbbf24",
+  "--fc-color-success": "#4ade80",
+  "--fc-color-info": "#38bdf8",
+  "--fc-color-overlay": "rgb(2 6 23 / 0.7)",
+  "--fc-color-scheme": "dark"
 };
 
-export const cssLayerOrder = "@layer reset, base, tokens, recipes, mantine, enchase-theme, enchase-base, enchase, multi-step-form;";
+export const cssLayerOrder = "@layer reset, base, tokens, recipes, mantine, enchase-theme, enchase-base, enchase, formcraft;";

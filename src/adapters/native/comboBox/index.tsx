@@ -140,12 +140,12 @@ const ComboBox = (props: ComboBoxProps) => {
     <div
       ref={containerRef}
       className={joinClassNames(
-        "msf-control",
-        "msf-combobox",
-        isMultiple && "msf-control--wrap",
-        isDisabled && "msf-control--disabled",
-        isOpen && "msf-combobox--open",
-        isReadOnly && "msf-combobox--readonly"
+        "fc-control",
+        "fc-combobox",
+        isMultiple && "fc-control--wrap",
+        isDisabled && "fc-control--disabled",
+        isOpen && "fc-combobox--open",
+        isReadOnly && "fc-combobox--readonly"
       )}
       onClick={handleControlClick}
       onBlur={handleBlur}
@@ -157,7 +157,7 @@ const ComboBox = (props: ComboBoxProps) => {
       <input
         ref={inputRef}
         id={id}
-        className={joinClassNames("msf-input", !isSearchable && "msf-combobox-input--static")}
+        className={joinClassNames("fc-input", !isSearchable && "fc-combobox-input--static")}
         role="combobox"
         autoComplete="off"
         value={inputValue}
@@ -176,7 +176,7 @@ const ComboBox = (props: ComboBoxProps) => {
       {hasClear && (
         <button
           type="button"
-          className="msf-icon-button msf-combobox-clear"
+          className="fc-icon-button fc-combobox-clear"
           aria-label={labels.remove}
           tabIndex={-1}
           onClick={(event) => {
@@ -187,11 +187,11 @@ const ComboBox = (props: ComboBoxProps) => {
           <Icon name="close" />
         </button>
       )}
-      <span className="msf-combobox-arrow" aria-hidden="true">
+      <span className="fc-combobox-arrow" aria-hidden="true">
         <Icon name="chevronDown" />
       </span>
-      <ul ref={listRef} id={listId} className="msf-listbox" role="listbox" popover="manual" aria-multiselectable={isMultiple || undefined}>
-        {isOpen && !visibleOptions.length && <li className="msf-listbox-empty">{labels.noOptions}</li>}
+      <ul ref={listRef} id={listId} className="fc-listbox" role="listbox" popover="manual" aria-multiselectable={isMultiple || undefined}>
+        {isOpen && !visibleOptions.length && <li className="fc-listbox-empty">{labels.noOptions}</li>}
         {isOpen &&
           visibleOptions.map((option, index) => {
             const isSelected = selectedValues.includes(option.value);
@@ -202,7 +202,7 @@ const ComboBox = (props: ComboBoxProps) => {
                 data-index={index}
                 role="option"
                 aria-selected={isSelected}
-                className={joinClassNames("msf-option", index === safeActiveIndex && "msf-option--active", isSelected && "msf-option--selected")}
+                className={joinClassNames("fc-option", index === safeActiveIndex && "fc-option--active", isSelected && "fc-option--selected")}
                 onMouseDown={(event) => event.preventDefault()}
                 onMouseEnter={() => setActiveIndex(index)}
                 onClick={(event) => {
@@ -211,11 +211,11 @@ const ComboBox = (props: ComboBoxProps) => {
                 }}
               >
                 {isMultiple && (
-                  <span className="msf-option-check" aria-hidden="true">
+                  <span className="fc-option-check" aria-hidden="true">
                     {isSelected && <Icon name="check" />}
                   </span>
                 )}
-                <span className="msf-option-label">{option.label}</span>
+                <span className="fc-option-label">{option.label}</span>
                 {!isMultiple && isSelected && <Icon name="check" />}
               </li>
             );

@@ -1,6 +1,6 @@
 import type { FormConfig, FormValues } from "@typings";
 
-export interface UseMultiStepFormOptions {
+export interface UseFormcraftOptions {
   config: FormConfig;
   initialData?: FormValues;
   requiredMessage: string;

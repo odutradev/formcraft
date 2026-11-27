@@ -9,7 +9,7 @@ export interface FormRuntime {
   reportError: (error: unknown) => void;
 }
 
-export interface MultiStepFormDefaults {
+export interface FormcraftDefaults {
   components?: FormComponentsOverride;
   locale?: FormLocaleOption;
   labels?: Partial<FormLabels>;

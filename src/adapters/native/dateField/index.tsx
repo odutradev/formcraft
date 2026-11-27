@@ -16,10 +16,10 @@ const DateField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
 
   return (
     <FieldFrame id={id} helperId={helperId} field={field} isRequired={isRequired} error={error}>
-      <div className={joinClassNames("msf-control", isDisabled && "msf-control--disabled")}>
+      <div className={joinClassNames("fc-control", isDisabled && "fc-control--disabled")}>
         <input
           id={id}
-          className="msf-input"
+          className="fc-input"
           type="date"
           value={toText(value)}
           min={minDate}

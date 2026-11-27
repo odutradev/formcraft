@@ -17,7 +17,7 @@ const Button = ({ label, icon, variant, color = "primary", placement, isDisabled
   );
 
   if (placement !== "field") return button;
-  return <div className="msf-enchase-field-button">{button}</div>;
+  return <div className="fc-enchase-field-button">{button}</div>;
 };
 
 export default Button;

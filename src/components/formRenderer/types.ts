@@ -1,7 +1,7 @@
-import type { ActionContext, FormComponents, FormLabels, FormLocale, MultiStepFormProps } from "@typings";
+import type { ActionContext, FormComponents, FormLabels, FormLocale, FormProps } from "@typings";
 import type { FormState, FormStore } from "@engine/types";
 
-export interface FormRendererProps extends Omit<MultiStepFormProps, "components" | "locale" | "labels"> {
+export interface FormRendererProps extends Omit<FormProps, "components" | "locale" | "labels"> {
   components: FormComponents;
   locale: FormLocale;
   labels: FormLabels;

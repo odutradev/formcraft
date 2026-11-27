@@ -1,11 +1,11 @@
 export const fileFieldStyles = `
-.msf-enchase-file-field {
+.fc-enchase-file-field {
   display: flex;
   flex-direction: column;
   gap: var(--enchase-space-xs);
 }
 
-.msf-enchase-file {
+.fc-enchase-file {
   display: flex;
   align-items: flex-start;
   gap: var(--enchase-space-sm);
@@ -15,15 +15,15 @@ export const fileFieldStyles = `
   background: var(--enchase-color-surface);
 }
 
-.msf-enchase-file[data-error] {
+.fc-enchase-file[data-error] {
   border-color: var(--enchase-color-error);
 }
 
-.msf-enchase-file[data-done] {
+.fc-enchase-file[data-done] {
   border-color: var(--enchase-color-primary);
 }
 
-.msf-enchase-file-order {
+.fc-enchase-file-order {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -37,12 +37,12 @@ export const fileFieldStyles = `
   font-weight: var(--enchase-font-weight-bold);
 }
 
-.msf-enchase-file[data-done] .msf-enchase-file-order {
+.fc-enchase-file[data-done] .fc-enchase-file-order {
   background: var(--enchase-color-primary);
   color: var(--enchase-color-on-primary);
 }
 
-.msf-enchase-file-content {
+.fc-enchase-file-content {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -50,7 +50,7 @@ export const fileFieldStyles = `
   min-width: 0;
 }
 
-.msf-enchase-file-line {
+.fc-enchase-file-line {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -58,7 +58,7 @@ export const fileFieldStyles = `
   gap: var(--enchase-space-xs);
 }
 
-.msf-enchase-file-title {
+.fc-enchase-file-title {
   display: flex;
   align-items: center;
   gap: var(--enchase-space-xs);
@@ -66,24 +66,24 @@ export const fileFieldStyles = `
   font-size: var(--enchase-font-size-sm);
 }
 
-.msf-enchase-file-name {
+.fc-enchase-file-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.msf-enchase-file-icon {
+.fc-enchase-file-icon {
   flex-shrink: 0;
   color: var(--enchase-color-primary);
 }
 
-.msf-enchase-file-description {
+.fc-enchase-file-description {
   display: flex;
   align-items: flex-end;
   gap: var(--enchase-space-sm);
 }
 
-.msf-enchase-error {
+.fc-enchase-error {
   margin: 0;
   color: var(--enchase-color-error);
   font-size: var(--enchase-font-size-xs);

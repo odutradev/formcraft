@@ -81,7 +81,7 @@
 
 .theme-control input[type="range"] {
   width: 100%;
-  accent-color: var(--msf-color-primary);
+  accent-color: var(--fc-color-primary);
 }
 
 .swatches {

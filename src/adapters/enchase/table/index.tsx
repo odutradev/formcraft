@@ -19,20 +19,20 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
     setExpandedKeys((previous) => (previous.includes(rowKey) ? previous.filter((key) => key !== rowKey) : [...previous, rowKey]));
 
   return (
-    <div className="msf-enchase-stack">
-      {label && <p className="msf-enchase-muted">{label}</p>}
-      <div className="msf-enchase-table-frame">
-        <table className="msf-enchase-table">
+    <div className="fc-enchase-stack">
+      {label && <p className="fc-enchase-muted">{label}</p>}
+      <div className="fc-enchase-table-frame">
+        <table className="fc-enchase-table">
           <thead>
             <tr>
-              {isExpandable && <th scope="col" className="msf-enchase-table-toggle" />}
+              {isExpandable && <th scope="col" className="fc-enchase-table-toggle" />}
               {columns.map((column) => (
                 <th key={column.key} scope="col">
                   {column.header}
                 </th>
               ))}
               {hasActions && (
-                <th scope="col" className="msf-enchase-table-end">
+                <th scope="col" className="fc-enchase-table-end">
                   {labels.actions}
                 </th>
               )}
@@ -49,7 +49,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                 <Fragment key={rowKey}>
                   <tr>
                     {isExpandable && (
-                      <td className="msf-enchase-table-toggle">
+                      <td className="fc-enchase-table-toggle">
                         {hasDetail && (
                           <Button
                             variant="ghost"
@@ -68,7 +68,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                       <td key={column.key}>{renderCell(column, row)}</td>
                     ))}
                     {hasActions && (
-                      <td className="msf-enchase-table-end">
+                      <td className="fc-enchase-table-end">
                         <Menu
                           label={labels.moreActions}
                           placement="bottom-end"
@@ -82,7 +82,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                     )}
                   </tr>
                   {isExpanded && hasDetail && (
-                    <tr className="msf-enchase-table-detail">
+                    <tr className="fc-enchase-table-detail">
                       <td colSpan={totalColumns}>{rowDetail}</td>
                     </tr>
                   )}

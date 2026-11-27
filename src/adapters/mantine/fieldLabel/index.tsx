@@ -7,10 +7,10 @@ const FieldLabel = ({ label, tooltip }: FieldLabelProps) => {
   if (!tooltip) return <>{label}</>;
 
   return (
-    <span className="msf-mantine-label">
+    <span className="fc-mantine-label">
       {label}
-      <Tooltip label={tooltip} multiline maw={320} withArrow className="msf-mantine-tooltip">
-        <IconInfoCircle size={14} aria-label={tooltip} className="msf-mantine-label-icon" />
+      <Tooltip label={tooltip} multiline maw={320} withArrow className="fc-mantine-tooltip">
+        <IconInfoCircle size={14} aria-label={tooltip} className="fc-mantine-label-icon" />
       </Tooltip>
     </span>
   );

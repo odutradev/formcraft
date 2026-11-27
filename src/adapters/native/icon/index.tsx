@@ -18,7 +18,7 @@ const iconPaths: Record<IconName, string> = {
 };
 
 const Icon = ({ name }: IconProps) => (
-  <svg className="msf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <svg className="fc-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <path d={iconPaths[name]} />
   </svg>
 );

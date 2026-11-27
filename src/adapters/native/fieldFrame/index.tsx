@@ -6,19 +6,19 @@ const FieldFrame = ({ id, helperId, field, isRequired, error, hint, children }: 
   const helperText = [error, hint].filter(Boolean).join(" - ");
 
   return (
-    <div className={joinClassNames("msf-field", error && "msf-field--invalid")}>
+    <div className={joinClassNames("fc-field", error && "fc-field--invalid")}>
       {field.label && (
-        <div className="msf-label-row">
-          <label className="msf-label" htmlFor={id}>
+        <div className="fc-label-row">
+          <label className="fc-label" htmlFor={id}>
             {field.label}
             {isRequired && (
-              <span className="msf-required" aria-hidden="true">
+              <span className="fc-required" aria-hidden="true">
                 {" *"}
               </span>
             )}
           </label>
           {field.tooltip && (
-            <span className="msf-tooltip" tabIndex={0} role="note" aria-label={field.tooltip} data-tooltip={field.tooltip}>
+            <span className="fc-tooltip" tabIndex={0} role="note" aria-label={field.tooltip} data-tooltip={field.tooltip}>
               ?
             </span>
           )}
@@ -26,7 +26,7 @@ const FieldFrame = ({ id, helperId, field, isRequired, error, hint, children }: 
       )}
       {children}
       {helperText && (
-        <p id={helperId} className="msf-helper">
+        <p id={helperId} className="fc-helper">
           {helperText}
         </p>
       )}

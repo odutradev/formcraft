@@ -1,4 +1,4 @@
-import type { FormRow } from "multi-step-form";
+import type { FormRow } from "formcraft";
 
 export const people: FormRow[] = [
   { id: "1", name: "Ana Souza", document: "111.222.333-44", city: "São Paulo" },

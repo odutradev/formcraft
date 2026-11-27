@@ -1,8 +1,8 @@
 import mergeComponents from "@functions/mergeComponents";
 
-import type { MultiStepFormDefaults } from "@typings";
+import type { FormcraftDefaults } from "@typings";
 
-const mergeFormDefaults = (parent: MultiStepFormDefaults, child: MultiStepFormDefaults): MultiStepFormDefaults => ({
+const mergeFormDefaults = (parent: FormcraftDefaults, child: FormcraftDefaults): FormcraftDefaults => ({
   components: parent.components ? mergeComponents(parent.components, child.components) : child.components,
   locale: child.locale ?? parent.locale,
   labels: { ...parent.labels, ...child.labels },

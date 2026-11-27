@@ -9,13 +9,13 @@ const TableView = ({ results, columns, onSelect }: TableViewProps) => {
   const { labels } = useFormRuntime();
 
   return (
-    <table className="msf-table-grid msf-results-table">
+    <table className="fc-table-grid fc-results-table">
       <thead>
         <tr>
           {columns.map((column) => (
             <th key={column.key}>{column.header}</th>
           ))}
-          <th className="msf-table-actions-cell">{labels.actions}</th>
+          <th className="fc-table-actions-cell">{labels.actions}</th>
         </tr>
       </thead>
       <tbody>
@@ -24,8 +24,8 @@ const TableView = ({ results, columns, onSelect }: TableViewProps) => {
             {columns.map((column) => (
               <td key={column.key}>{toText(row[column.key]) || emptyCell}</td>
             ))}
-            <td className="msf-table-actions-cell">
-              <button type="button" className="msf-button msf-button--outlined msf-button--small" onClick={() => onSelect(row)}>
+            <td className="fc-table-actions-cell">
+              <button type="button" className="fc-button fc-button--outlined fc-button--small" onClick={() => onSelect(row)}>
                 {labels.select}
               </button>
             </td>

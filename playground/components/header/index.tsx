@@ -14,7 +14,7 @@ const Header = ({ tab, adapterView, colorMode, onTabChange, onAdapterViewChange,
           <span />
         </span>
         <div>
-          <p className="brand-name">multi-step-form</p>
+          <p className="brand-name">formcraft</p>
           <p className="brand-tagline">Playground consumindo o pacote gerado em dist/</p>
         </div>
       </div>

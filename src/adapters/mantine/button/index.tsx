@@ -20,7 +20,7 @@ const Button = ({ label, icon, variant, color = "primary", placement, isDisabled
   );
 
   if (placement !== "field") return button;
-  return <Box className="msf-mantine-field-button">{button}</Box>;
+  return <Box className="fc-mantine-field-button">{button}</Box>;
 };
 
 export default Button;

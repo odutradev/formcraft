@@ -15,7 +15,7 @@ const TableView = ({ results, columns, onSelect }: TableViewProps) => {
   const tableColumns: TableColumn<FormRow>[] = [
     ...columns.map((column) => ({ key: column.key, header: column.header, cell: (row: FormRow) => toText(row[column.key]) || emptyCell })),
     {
-      key: "msf-select",
+      key: "fc-select",
       header: labels.actions,
       align: "end",
       cell: (row: FormRow) => (

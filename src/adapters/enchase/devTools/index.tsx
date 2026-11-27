@@ -11,14 +11,14 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
   const gap = "var(--enchase-space-xs)";
 
   return (
-    <Card variant="outlined" animation={false} className="msf-enchase-devtools">
-      <div className="msf-enchase-stack">
-        <span className="msf-enchase-devtools-title">
+    <Card variant="outlined" animation={false} className="fc-enchase-devtools">
+      <div className="fc-enchase-stack">
+        <span className="fc-enchase-devtools-title">
           <Bug size={18} aria-hidden="true" />
           DevTools
         </span>
 
-        <span className="msf-enchase-devtools-section">Ações globais</span>
+        <span className="fc-enchase-devtools-section">Ações globais</span>
         <Flex gap={gap} wrap>
           <Button size="sm" variant="danger" onClick={onClearAll}>
             <Trash size={16} aria-hidden="true" />
@@ -34,7 +34,7 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
 
         {stepsWithTestData.length > 0 && (
           <>
-            <span className="msf-enchase-devtools-section">Preenchimento individual</span>
+            <span className="fc-enchase-devtools-section">Preenchimento individual</span>
             <Flex gap={gap} wrap>
               {stepsWithTestData.map((step) => (
                 <Button key={step.id} size="sm" variant="outline" onClick={() => onFillStep(step.id)}>
@@ -45,7 +45,7 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
           </>
         )}
 
-        <span className="msf-enchase-devtools-section">Limpeza individual</span>
+        <span className="fc-enchase-devtools-section">Limpeza individual</span>
         <Flex gap={gap} wrap>
           {steps.map((step) => (
             <Button key={step.id} size="sm" variant="dashed" onClick={() => onClearStep(step.id)}>
@@ -55,7 +55,7 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
           ))}
         </Flex>
 
-        <span className="msf-enchase-devtools-section">Inspecionar</span>
+        <span className="fc-enchase-devtools-section">Inspecionar</span>
         <Flex gap={gap} wrap>
           <Button size="sm" variant="outline" aria-expanded={isStateVisible} onClick={() => setIsStateVisible((previous) => !previous)}>
             <Braces size={16} aria-hidden="true" />
@@ -67,8 +67,8 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
           </Button>
         </Flex>
 
-        {isStateVisible && <pre className="msf-enchase-devtools-code">{JSON.stringify(values, null, 2)}</pre>}
-        {isSchemaVisible && <pre className="msf-enchase-devtools-code">{JSON.stringify(schema, null, 2)}</pre>}
+        {isStateVisible && <pre className="fc-enchase-devtools-code">{JSON.stringify(values, null, 2)}</pre>}
+        {isSchemaVisible && <pre className="fc-enchase-devtools-code">{JSON.stringify(schema, null, 2)}</pre>}
       </div>
     </Card>
   );

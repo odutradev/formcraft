@@ -1,5 +1,5 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { MultiStepFormProvider } from "multi-step-form";
+import { FormcraftProvider } from "formcraft";
 import { useMemo, useState } from "react";
 
 import buildNativeStyle from "@playground/functions/buildNativeStyle";
@@ -41,7 +41,7 @@ const App = () => {
         {cssLayerOrder}
       </style>
       <LibraryProviders settings={settings}>
-        <MultiStepFormProvider {...globalFormDefaults} locale={settings.locale}>
+        <FormcraftProvider {...globalFormDefaults} locale={settings.locale}>
           <CssBaseline />
           <div className={`playground${settings.colorMode === "dark" ? " dark" : ""}`} data-mode={settings.colorMode} style={buildNativeStyle(settings)}>
             <Header
@@ -73,7 +73,7 @@ const App = () => {
               </main>
             </div>
           </div>
-        </MultiStepFormProvider>
+        </FormcraftProvider>
       </LibraryProviders>
     </ThemeProvider>
   );

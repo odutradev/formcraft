@@ -22,10 +22,10 @@ const Form = ({ header, isLoading, children }: FormProps) => {
 
   return (
     <DatesProvider settings={{ locale: dateLocales[locale] }}>
-      <style href="multi-step-form-mantine" precedence="default">
+      <style href="formcraft-mantine" precedence="default">
         {stylesheet}
       </style>
-      <Box component="form" noValidate pos="relative" className="msf-mantine-form" onSubmit={(event) => event.preventDefault()}>
+      <Box component="form" noValidate pos="relative" className="fc-mantine-form" onSubmit={(event) => event.preventDefault()}>
         <Stack gap="xl">
           {header}
           <Stack gap="lg">{children}</Stack>

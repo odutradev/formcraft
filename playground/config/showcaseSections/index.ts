@@ -3,7 +3,7 @@ import { englishFormDefaults, sectionFormDefaults } from "@playground/data/formD
 import { departments, people } from "@playground/data/people";
 
 import type { ShowcaseSection } from "@playground/types";
-import type { FormAction, FormRow } from "multi-step-form";
+import type { FormAction, FormRow } from "formcraft";
 
 const validateAction: FormAction[] = [{ label: "Validar", actionType: "submit" }];
 
@@ -400,8 +400,8 @@ const showcaseSections: ShowcaseSection[] = [
     id: "provider",
     title: "Provider",
     description:
-      "Os presets phone e zipCode vêm do MultiStepFormProvider global do app. Um Provider aninhado nesta seção define formStyle collapsed e o texto de obrigatório. A config local troca o preset zipCode e um campo troca o rótulo do preset.",
-    features: ["MultiStepFormProvider", "fieldPreSets global", "Provider aninhado", "labels", "formStyle"],
+      "Os presets phone e zipCode vêm do FormcraftProvider global do app. Um Provider aninhado nesta seção define formStyle collapsed e o texto de obrigatório. A config local troca o preset zipCode e um campo troca o rótulo do preset.",
+    features: ["FormcraftProvider", "fieldPreSets global", "Provider aninhado", "labels", "formStyle"],
     defaults: sectionFormDefaults,
     config: {
       fieldPreSets: { zipCode: { label: "CEP de entrega", mask: "00000-000" } },

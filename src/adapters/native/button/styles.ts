@@ -1,100 +1,100 @@
 export const buttonStyles = `
-.msf-button {
+.fc-button {
   position: relative;
   display: inline-flex;
   min-height: 2.5rem;
   align-items: center;
   justify-content: center;
-  gap: var(--msf-spacing);
-  padding: 0 calc(var(--msf-spacing) * 2.25);
+  gap: var(--fc-spacing);
+  padding: 0 calc(var(--fc-spacing) * 2.25);
   border: 1px solid transparent;
-  border-radius: var(--msf-radius);
+  border-radius: var(--fc-radius);
   background: transparent;
-  color: var(--msf-color-primary);
+  color: var(--fc-color-primary);
   font: inherit;
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color var(--msf-transition), box-shadow var(--msf-transition), border-color var(--msf-transition), transform 0.1s ease;
+  transition: background-color var(--fc-transition), box-shadow var(--fc-transition), border-color var(--fc-transition), transform 0.1s ease;
 }
-.msf-button:active:not(:disabled) {
+.fc-button:active:not(:disabled) {
   transform: translateY(1px);
 }
-.msf-button--inherit {
-  color: var(--msf-color-text);
+.fc-button--inherit {
+  color: var(--fc-color-text);
 }
-.msf-button--outlined {
-  border-color: var(--msf-color-border-strong);
-  background: var(--msf-color-background);
+.fc-button--outlined {
+  border-color: var(--fc-color-border-strong);
+  background: var(--fc-color-background);
   box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
 }
-.msf-button--outlined.msf-button--primary {
-  border-color: color-mix(in srgb, var(--msf-color-primary) 50%, transparent);
+.fc-button--outlined.fc-button--primary {
+  border-color: color-mix(in srgb, var(--fc-color-primary) 50%, transparent);
 }
-.msf-button:hover:not(:disabled) {
+.fc-button:hover:not(:disabled) {
   background: color-mix(in srgb, currentColor 8%, transparent);
 }
-.msf-button--outlined:hover:not(:disabled) {
+.fc-button--outlined:hover:not(:disabled) {
   border-color: currentColor;
-  background: color-mix(in srgb, currentColor 6%, var(--msf-color-background));
+  background: color-mix(in srgb, currentColor 6%, var(--fc-color-background));
 }
-.msf-button--contained {
-  background: var(--msf-color-primary);
+.fc-button--contained {
+  background: var(--fc-color-primary);
   box-shadow: 0 1px 2px rgb(15 23 42 / 0.12), inset 0 1px 0 rgb(255 255 255 / 0.12);
-  color: var(--msf-color-primary-contrast);
+  color: var(--fc-color-primary-contrast);
 }
-.msf-button--contained:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--msf-color-primary) 88%, black);
-  box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--msf-color-primary) 45%, transparent);
+.fc-button--contained:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--fc-color-primary) 88%, black);
+  box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--fc-color-primary) 45%, transparent);
 }
-.msf-button--contained.msf-button--inherit {
-  border-color: var(--msf-color-border);
-  background: var(--msf-color-surface);
+.fc-button--contained.fc-button--inherit {
+  border-color: var(--fc-color-border);
+  background: var(--fc-color-surface);
   box-shadow: none;
-  color: var(--msf-color-text);
+  color: var(--fc-color-text);
 }
-.msf-button--contained.msf-button--inherit:hover:not(:disabled) {
-  background: var(--msf-color-border);
+.fc-button--contained.fc-button--inherit:hover:not(:disabled) {
+  background: var(--fc-color-border);
   box-shadow: none;
 }
-.msf-button:disabled {
+.fc-button:disabled {
   cursor: not-allowed;
   opacity: 0.45;
   box-shadow: none;
 }
-.msf-button--contained:disabled {
-  background: color-mix(in srgb, var(--msf-color-text-secondary) 35%, var(--msf-color-background));
-  color: var(--msf-color-background);
+.fc-button--contained:disabled {
+  background: color-mix(in srgb, var(--fc-color-text-secondary) 35%, var(--fc-color-background));
+  color: var(--fc-color-background);
   opacity: 1;
 }
-.msf-button--full {
+.fc-button--full {
   width: 100%;
 }
-.msf-button--small {
+.fc-button--small {
   min-height: 2rem;
-  padding: 0 calc(var(--msf-spacing) * 1.5);
+  padding: 0 calc(var(--fc-spacing) * 1.5);
   font-size: 0.8125rem;
 }
-.msf-button-icon {
+.fc-button-icon {
   display: inline-flex;
 }
-.msf-button .msf-icon {
+.fc-button .fc-icon {
   width: 1.125rem;
   height: 1.125rem;
 }
-.msf-field-button {
+.fc-field-button {
   display: flex;
   width: 100%;
   height: 100%;
   min-height: 2.75rem;
   align-items: flex-end;
 }
-.msf-field-button .msf-button {
+.fc-field-button .fc-button {
   min-height: 2.75rem;
 }
-.msf-icon-button {
+.fc-icon-button {
   display: inline-flex;
   width: 2rem;
   height: 2rem;
@@ -103,25 +103,25 @@ export const buttonStyles = `
   justify-content: center;
   padding: 0;
   border: 0;
-  border-radius: calc(var(--msf-radius) * 0.75);
+  border-radius: calc(var(--fc-radius) * 0.75);
   background: transparent;
-  color: var(--msf-color-text-secondary);
+  color: var(--fc-color-text-secondary);
   cursor: pointer;
-  transition: background-color var(--msf-transition), color var(--msf-transition);
+  transition: background-color var(--fc-transition), color var(--fc-transition);
 }
-.msf-icon-button:hover:not(:disabled) {
+.fc-icon-button:hover:not(:disabled) {
   background: color-mix(in srgb, currentColor 12%, transparent);
-  color: var(--msf-color-text);
+  color: var(--fc-color-text);
 }
-.msf-icon-button:disabled {
+.fc-icon-button:disabled {
   cursor: default;
   opacity: 0.4;
 }
-.msf-icon-button--primary,
-.msf-icon-button--primary:hover:not(:disabled) {
-  color: var(--msf-color-primary);
+.fc-icon-button--primary,
+.fc-icon-button--primary:hover:not(:disabled) {
+  color: var(--fc-color-primary);
 }
-.msf-icon-button--danger:hover:not(:disabled) {
-  color: var(--msf-color-error);
+.fc-icon-button--danger:hover:not(:disabled) {
+  color: var(--fc-color-error);
 }
 `;

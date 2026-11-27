@@ -47,27 +47,27 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
   };
 
   return (
-    <div className="msf-file">
-      <input ref={inputRef} className="msf-visually-hidden" type="file" accept=".pdf" tabIndex={-1} aria-label={field.label} onChange={handleFileChange} />
-      <div className={joinClassNames("msf-file-row", hasSavedFile && "msf-file-row--done", error && "msf-file-row--invalid")}>
-        <span className="msf-file-badge" aria-hidden="true">
+    <div className="fc-file">
+      <input ref={inputRef} className="fc-visually-hidden" type="file" accept=".pdf" tabIndex={-1} aria-label={field.label} onChange={handleFileChange} />
+      <div className={joinClassNames("fc-file-row", hasSavedFile && "fc-file-row--done", error && "fc-file-row--invalid")}>
+        <span className="fc-file-badge" aria-hidden="true">
           {hasSavedFile ? <Icon name="check" /> : orderNumber}
         </span>
-        <div className="msf-file-content">
-          <div className="msf-file-main">
-            <span className="msf-file-label">{field.label}</span>
-            {isRequired && !fileValue && <span className="msf-badge">{labels.fileRequired}</span>}
+        <div className="fc-file-content">
+          <div className="fc-file-main">
+            <span className="fc-file-label">{field.label}</span>
+            {isRequired && !fileValue && <span className="fc-badge">{labels.fileRequired}</span>}
             {fileValue && (
-              <span className="msf-file-info">
+              <span className="fc-file-info">
                 <Icon name="file" />
-                <span className="msf-file-name">{fileValue.file.name}</span>
+                <span className="fc-file-name">{fileValue.file.name}</span>
                 {!isEditing && !isReadOnly && (
-                  <button type="button" className="msf-icon-button" aria-label={labels.fileEditDescription} onClick={handleEditDescription}>
+                  <button type="button" className="fc-icon-button" aria-label={labels.fileEditDescription} onClick={handleEditDescription}>
                     <Icon name="edit" />
                   </button>
                 )}
                 {!isReadOnly && (
-                  <button type="button" className="msf-icon-button msf-icon-button--danger" aria-label={labels.fileRemove} onClick={handleRemove}>
+                  <button type="button" className="fc-icon-button fc-icon-button--danger" aria-label={labels.fileRemove} onClick={handleRemove}>
                     <Icon name="delete" />
                   </button>
                 )}
@@ -76,38 +76,38 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
             {!fileValue && !isReadOnly && (
               <button
                 type="button"
-                className="msf-button msf-button--outlined msf-button--primary msf-button--small"
+                className="fc-button fc-button--outlined fc-button--primary fc-button--small"
                 title={labels.fileAttach}
                 onClick={() => inputRef.current?.click()}
               >
                 <Icon name="upload" />
-                <span className="msf-file-attach-label">{labels.fileAttach}</span>
+                <span className="fc-file-attach-label">{labels.fileAttach}</span>
               </button>
             )}
           </div>
-          {hasSavedFile && fileValue?.description && <p className="msf-file-description">{fileValue.description}</p>}
+          {hasSavedFile && fileValue?.description && <p className="fc-file-description">{fileValue.description}</p>}
           {fileValue && isEditing && (
-            <div className="msf-file-editor">
-              <label className="msf-label" htmlFor={descriptionId}>
+            <div className="fc-file-editor">
+              <label className="fc-label" htmlFor={descriptionId}>
                 {labels.fileDescription}
               </label>
-              <div className="msf-control">
+              <div className="fc-control">
                 <textarea
                   id={descriptionId}
-                  className="msf-input"
+                  className="fc-input"
                   rows={2}
                   value={draftDescription}
                   onChange={(event) => setDraftDescription(event.target.value)}
                 />
               </div>
-              <button type="button" className="msf-button msf-button--contained msf-button--primary msf-button--small" onClick={handleSaveDescription}>
+              <button type="button" className="fc-button fc-button--contained fc-button--primary fc-button--small" onClick={handleSaveDescription}>
                 {labels.save}
               </button>
             </div>
           )}
         </div>
       </div>
-      {error && <p className="msf-helper msf-helper--error">{error}</p>}
+      {error && <p className="fc-helper fc-helper--error">{error}</p>}
     </div>
   );
 };

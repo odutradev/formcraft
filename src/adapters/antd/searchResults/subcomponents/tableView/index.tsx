@@ -21,7 +21,7 @@ const TableView = ({ results, columns, isPaginated, onSelect }: TableViewProps) 
       render: (_: unknown, record: ResultRecord) => toText(record.row[column.key]) || emptyCell
     })),
     {
-      key: "msf-select",
+      key: "fc-select",
       title: labels.actions,
       align: "right",
       render: (_: unknown, record: ResultRecord) => (

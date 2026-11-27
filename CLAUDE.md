@@ -24,7 +24,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
 | Language | TypeScript (100% typed), emitting `.d.ts` |
 | Form engine | Own engine in `src/engine`: a reducer-driven store read with `useSyncExternalStore` (no `react-hook-form`) |
 | Base components | Adapter pattern: `formRenderer` receives a component map; the native adapter is the default |
-| Styling | Defined by each adapter. MUI uses `styled` with theme tokens; Chakra uses style props with its tokens; Mantine, Ant Design and Enchase use their components' props plus small CSS strings in `styles.ts`, joined by `stylesheet/` without a layer and themed by the library's CSS variables (antd's tokens are copied to `--msf-antd-*` by the form root); the native adapter uses CSS strings joined inside `@layer multi-step-form` and themed by `--msf-*` variables |
+| Styling | Defined by each adapter. MUI uses `styled` with theme tokens; Chakra uses style props with its tokens; Mantine, Ant Design and Enchase use their components' props plus small CSS strings in `styles.ts`, joined by `stylesheet/` without a layer and themed by the library's CSS variables (antd's tokens are copied to `--fc-antd-*` by the form root); the native adapter uses CSS strings joined inside `@layer formcraft` and themed by `--fc-*` variables |
 | State | Form store per form or modal + `useState` for UI state + React context for the runtime. No global store |
 | Requests | None. The library never calls HTTP; async work arrives through config callbacks |
 | Unit tests | Not required |
@@ -35,21 +35,21 @@ The original `react-hook-form` component was replaced by the structure below. Th
 ```text
 .
 ├── lib/  # public package entries: re-exports only
-│   ├── index.ts  # multi-step-form
+│   ├── index.ts  # formcraft
 │   ├── mui/
-│   │   └── index.ts  # multi-step-form/mui
+│   │   └── index.ts  # formcraft/mui
 │   ├── mantine/ antd/ chakra/ enchase/
-│   │   └── index.ts  # multi-step-form/<name>
+│   │   └── index.ts  # formcraft/<name>
 │   └── native/
-│       └── index.ts  # multi-step-form/native
+│       └── index.ts  # formcraft/native
 └── src/
     ├── types/
     │   ├── values.ts  # FormValues, FormErrors, ActionContext, Resolvable
     │   ├── config.ts  # FormConfig, FormStep, FormGroup, FormField and their options
     │   ├── labels.ts  # FormLabels, FormLocale, FormLocaleOption
     │   ├── components.ts  # adapter contract: FormComponents and every component's props
-    │   ├── runtime.ts  # FormRuntime, MultiStepFormDefaults
-    │   ├── props.ts  # MultiStepFormProps, MultiStepFormProviderProps
+    │   ├── runtime.ts  # FormRuntime, FormcraftDefaults
+    │   ├── props.ts  # FormProps, FormcraftProviderProps
     │   ├── styles.ts  # CssVariables, shared by the adapters
     │   └── index.ts  # re-exports every file above
     ├── labels/
@@ -71,7 +71,7 @@ The original `react-hook-form` component was replaced by the structure below. Th
     │   └── formRuntime/
     │       └── index.ts  # FormRuntimeContext: components, locale, labels, reportError
     ├── hooks/
-    │   ├── useMultiStepForm/
+    │   ├── useFormcraft/
     │   │   ├── index.ts  # form orchestrator: steps, validation, actions
     │   │   └── types.ts
     │   ├── useSearch/
@@ -81,11 +81,11 @@ The original `react-hook-form` component was replaced by the structure below. Th
     │   ├── useFormDefaults/
     │   └── useFormLocale/  # resolves "auto" from navigator.languages and follows languagechange
     ├── components/
-    │   ├── multiStepForm/
-    │   │   ├── index.tsx  # public MultiStepForm: merges native adapter, provider defaults and props
+    │   ├── form/
+    │   │   ├── index.tsx  # public Form: merges native adapter, provider defaults and props
     │   │   └── types.ts
-    │   ├── multiStepFormProvider/
-    │   │   ├── index.tsx  # MultiStepFormProvider: global defaults, merged with parent providers
+    │   ├── formcraftProvider/
+    │   │   ├── index.tsx  # FormcraftProvider: global defaults, merged with parent providers
     │   │   └── types.ts
     │   └── formRenderer/
     │       ├── subcomponents/
@@ -125,19 +125,19 @@ The original `react-hook-form` component was replaced by the structure below. Th
 | `functions` | Pure helpers, no React | `types`, `labels`, `engine` types, other `functions` |
 | `context` | React contexts | `types` |
 | `hooks` | React hooks with the form logic | `types`, `labels`, `engine`, `functions`, `context`, other `hooks` |
-| `components` | Library components with no UI library | everything above and, only in `multiStepForm`, `adapters/native` |
+| `components` | Library components with no UI library | everything above and, only in `form`, `adapters/native` |
 | `adapters/<name>` | UI implementations of `FormComponents` | `types`, `hooks` (`useFormRuntime`), display helpers (`toText`) and their own UI library |
 | `lib` (project root) | Public entries | anything in `src` |
 
 **Layer rules:**
 
 - `types`, `labels`, `engine`, `functions`, `context` and `hooks` are the headless layer: they depend only on React and never import from `components`, `adapters`, MUI or any UI library.
-- `components/multiStepForm` is the public component. It is the only place that joins `formRenderer` with the default adapter (`nativeComponents`) and with the provider defaults; the merge rules live in `functions` (`mergeComponents`, `mergeFormDefaults`).
-- `components/multiStepFormProvider` only reads the parent defaults from `context/formDefaults`, merges its own and provides the result. Precedence is always: library defaults, outer provider, inner provider, form props and `config`.
+- `components/form` is the public component. It is the only place that joins `formRenderer` with the default adapter (`nativeComponents`) and with the provider defaults; the merge rules live in `functions` (`mergeComponents`, `mergeFormDefaults`).
+- `components/formcraftProvider` only reads the parent defaults from `context/formDefaults`, merges its own and provides the result. Precedence is always: library defaults, outer provider, inner provider, form props and `config`.
 - `components/formRenderer` never renders a UI-library component directly: it asks the component map for one.
 - `adapters/<name>` implement the `FormComponents` contract declared in `types`. They never import `components` or another adapter.
 - Every input type in `InputFieldType` must have a component in each adapter's `inputs` map.
-- The locale is resolved once, in `components/multiStepForm` (`useFormLocale`), and reaches adapters through `useFormRuntime().locale`. Adapters use it for date pickers and library locale providers; they never read `navigator` themselves.
+- The locale is resolved once, in `components/form` (`useFormLocale`), and reaches adapters through `useFormRuntime().locale`. Adapters use it for date pickers and library locale providers; they never read `navigator` themselves.
 - An adapter never ships a provider the consumer must already have (theme, color mode, `MantineProvider`, `ChakraProvider`). It may wrap its form in a locale-only provider of its library (`DatesProvider`, antd `ConfigProvider` with `locale`), because nested ones inherit the consumer's theme.
 - Each form and each modal (form modal, search filters) owns a store from `createFormStore`. Only `functions` (`changeField`, `createActionContext`) and `hooks` dispatch to it.
 - DevTools logic lives in `hooks/useDevTools`; its panel is an adapter component. It is opt-in through the `isDevToolsEnabled` prop, which consumers set from their own environment flag (for example `import.meta.env.DEV`). The library never turns it on by itself.
@@ -170,17 +170,17 @@ The original `react-hook-form` component was replaced by the structure below. Th
 | Element | Standard | Example |
 | :--- | :--- | :--- |
 | Components | PascalCase | `<StepIndicator />` |
-| Functions and hooks | camelCase | `resolveValue(), useMultiStepForm()` |
+| Functions and hooks | camelCase | `resolveValue(), useFormcraft()` |
 | Variables and props | camelCase | `currentStepIndex, visibleGroups` |
 | Types and interfaces | PascalCase | `interface InputFieldProps {}` |
 | Constants and static data | camelCase | `const defaultLabels = {}` |
 | Component folders and files | camelCase | `stepIndicator/` |
 | Utility files | camelCase, folder + `index.ts` | `resolveValue/index.ts` |
 | Folders | camelCase | `functions/` |
-| Hooks | prefix `use` + camelCase | `useMultiStepForm` |
+| Hooks | prefix `use` + camelCase | `useFormcraft` |
 | Event handlers | handle prefix | `handleNext` |
 | Callback props | prefix `on` | `onSubmit`, `onError` |
-| Type prefix | No prefix | `MultiStepFormProps` |
+| Type prefix | No prefix | `FormProps` |
 | Booleans | With a verb (is, has, should) | `isReadOnly` |
 
 ## 5. Components
@@ -271,13 +271,13 @@ Hooks run only at the top level of components and hooks, never inside callbacks,
 
 ✅ Do:
 ```typescript
-const { executeAction } = useMultiStepForm(props);
+const { executeAction } = useFormcraft(props);
 const handleNext = () => executeAction(nextAction);
 ```
 
 ❌ Don't:
 ```typescript
-const handleNext = () => useMultiStepForm(props).executeAction(nextAction);
+const handleNext = () => useFormcraft(props).executeAction(nextAction);
 ```
 
 ### Don't reinvent utilities
@@ -325,7 +325,7 @@ Semantic elements, labels on icon buttons, errors linked to their fields and vis
 
 ### Theme colors and spacing
 
-No hard-coded colors or spacing in adapters: use the host theme's tokens. In the native adapter the tokens are the `--msf-*` variables declared in `adapters/native/theme`; that file is the only place with literal default values. In the other adapters the tokens are the library's own (`--mantine-*`, antd `theme.useToken()`, Chakra token names such as `fg.muted` and `colorPalette.solid`, `--enchase-*`). Media queries may use the library's default breakpoints as literals, because CSS variables do not work there.
+No hard-coded colors or spacing in adapters: use the host theme's tokens. In the native adapter the tokens are the `--fc-*` variables declared in `adapters/native/theme`; that file is the only place with literal default values. In the other adapters the tokens are the library's own (`--mantine-*`, antd `theme.useToken()`, Chakra token names such as `fg.muted` and `colorPalette.solid`, `--enchase-*`). Media queries may use the library's default breakpoints as literals, because CSS variables do not work there.
 
 ✅ Do:
 ```typescript
@@ -344,7 +344,7 @@ color: "#666"
 - Unit and E2E tests are not required.
 - Before every commit, `typecheck`, `lint` and `build` must pass.
 - Behavior changes are checked by hand in the playground (`npm run dev`). The full form config is in `playground/config/sampleConfig`; the components gallery, one single-step form per feature group, is in `playground/config/showcaseSections`. A new field type or config option gets an example in the gallery.
-- The playground consumes the built package, not `src`: it imports from `multi-step-form`, `multi-step-form/mui` and `multi-step-form/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src`, `lib` or the library aliases in the playground.
+- The playground consumes the built package, not `src`: it imports from `formcraft`, `formcraft/mui` and `formcraft/native`, which `playground/vite.config.ts` aliases to `dist/` while rebuilding the library in watch mode. Never import from `src`, `lib` or the library aliases in the playground.
 - The playground follows the same folder rules as the library: `components/<name>/` (`index.tsx`, `styles.css`, `types.ts`), `config/`, `data/`, `functions/<name>/index.ts` and `types/`, imported through the `@playground` alias.
 
 ## 11. Commits and Git
@@ -498,12 +498,12 @@ export interface FieldWrapperProps {
 ### `lib/index.ts`
 
 ```typescript
-export { default as MultiStepFormProvider } from "@components/multiStepFormProvider";
-export { default as MultiStepForm } from "@components/multiStepForm";
+export { default as FormcraftProvider } from "@components/formcraftProvider";
+export { default as Form } from "@components/form";
 export { default as useFormRuntime } from "@hooks/useFormRuntime";
 export { default as defaultLabels } from "@labels";
 
-export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldProps, MultiStepFormProps } from "@typings";
+export type { ActionContext, FormComponents, FormConfig, FormField, InputFieldProps, FormProps } from "@typings";
 ```
 
 ## 15. Checklist before delivering

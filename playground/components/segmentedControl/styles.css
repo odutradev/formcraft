@@ -38,6 +38,6 @@
 }
 
 .segmented button:focus-visible {
-  outline: 2px solid var(--msf-color-primary);
+  outline: 2px solid var(--fc-color-primary);
   outline-offset: 1px;
 }

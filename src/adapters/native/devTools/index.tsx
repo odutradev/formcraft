@@ -8,16 +8,16 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
   const stepsWithTestData = steps.filter((step) => step.hasTestData);
 
   return (
-    <section className="msf-devtools" aria-label="DevTools">
-      <p className="msf-devtools-title">DevTools</p>
+    <section className="fc-devtools" aria-label="DevTools">
+      <p className="fc-devtools-title">DevTools</p>
 
-      <p className="msf-devtools-section">Ações globais</p>
-      <div className="msf-devtools-buttons">
-        <button type="button" className="msf-button msf-button--outlined msf-button--small msf-tone-error" onClick={onClearAll}>
+      <p className="fc-devtools-section">Ações globais</p>
+      <div className="fc-devtools-buttons">
+        <button type="button" className="fc-button fc-button--outlined fc-button--small fc-tone-error" onClick={onClearAll}>
           Limpar tudo
         </button>
         {stepsWithTestData.length > 1 && (
-          <button type="button" className="msf-button msf-button--contained msf-button--small msf-tone-warning" onClick={onFillAll}>
+          <button type="button" className="fc-button fc-button--contained fc-button--small fc-tone-warning" onClick={onFillAll}>
             Preencher todos os steps
           </button>
         )}
@@ -25,13 +25,13 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
 
       {stepsWithTestData.length > 0 && (
         <>
-          <p className="msf-devtools-section">Preenchimento individual</p>
-          <div className="msf-devtools-buttons">
+          <p className="fc-devtools-section">Preenchimento individual</p>
+          <div className="fc-devtools-buttons">
             {stepsWithTestData.map((step) => (
               <button
                 key={step.id}
                 type="button"
-                className="msf-button msf-button--outlined msf-button--small msf-tone-warning"
+                className="fc-button fc-button--outlined fc-button--small fc-tone-warning"
                 onClick={() => onFillStep(step.id)}
               >
                 {step.title}
@@ -41,20 +41,20 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
         </>
       )}
 
-      <p className="msf-devtools-section">Limpeza individual</p>
-      <div className="msf-devtools-buttons">
+      <p className="fc-devtools-section">Limpeza individual</p>
+      <div className="fc-devtools-buttons">
         {steps.map((step) => (
-          <button key={step.id} type="button" className="msf-button msf-button--outlined msf-button--small msf-tone-error" onClick={() => onClearStep(step.id)}>
+          <button key={step.id} type="button" className="fc-button fc-button--outlined fc-button--small fc-tone-error" onClick={() => onClearStep(step.id)}>
             {step.title}
           </button>
         ))}
       </div>
 
-      <p className="msf-devtools-section">Inspecionar</p>
-      <div className="msf-devtools-buttons">
+      <p className="fc-devtools-section">Inspecionar</p>
+      <div className="fc-devtools-buttons">
         <button
           type="button"
-          className="msf-button msf-button--outlined msf-button--small msf-tone-info"
+          className="fc-button fc-button--outlined fc-button--small fc-tone-info"
           aria-expanded={isStateVisible}
           onClick={() => setIsStateVisible((previous) => !previous)}
         >
@@ -62,7 +62,7 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
         </button>
         <button
           type="button"
-          className="msf-button msf-button--outlined msf-button--small msf-tone-info"
+          className="fc-button fc-button--outlined fc-button--small fc-tone-info"
           aria-expanded={isSchemaVisible}
           onClick={() => setIsSchemaVisible((previous) => !previous)}
         >
@@ -70,8 +70,8 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
         </button>
       </div>
 
-      {isStateVisible && <pre className="msf-devtools-json">{JSON.stringify(values, null, 2)}</pre>}
-      {isSchemaVisible && <pre className="msf-devtools-json">{JSON.stringify(schema, null, 2)}</pre>}
+      {isStateVisible && <pre className="fc-devtools-json">{JSON.stringify(values, null, 2)}</pre>}
+      {isSchemaVisible && <pre className="fc-devtools-json">{JSON.stringify(schema, null, 2)}</pre>}
     </section>
   );
 };

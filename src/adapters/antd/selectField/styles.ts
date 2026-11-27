@@ -1,5 +1,5 @@
 export const selectFieldStyles = `
-.msf-antd-control {
+.fc-antd-control {
   width: 100%;
 }
 `;

@@ -26,7 +26,7 @@ const TagsField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
   };
 
   return (
-    <div className="msf-enchase-tags">
+    <div className="fc-enchase-tags">
       <Input
         fullWidth
         label={field.label}
@@ -40,7 +40,7 @@ const TagsField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
         onKeyDown={handleKeyDown}
       />
       {tags.length > 0 && (
-        <div className="msf-enchase-tags-list">
+        <div className="fc-enchase-tags-list">
           {tags.map((tag) => (
             <Tag key={tag} size="sm" onRemove={isEditable ? () => onChange(tags.filter((item) => item !== tag)) : undefined}>
               {tag}

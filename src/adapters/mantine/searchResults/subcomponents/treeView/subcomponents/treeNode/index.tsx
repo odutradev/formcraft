@@ -16,20 +16,20 @@ const TreeNode = ({ item, config, level, isExpandedByDefault, onSelect }: TreeNo
   const children = Array.isArray(rawChildren) ? (rawChildren as FormRow[]) : [];
   const hasChildren = children.length > 0;
   const text = `${toText(item[config.valueKey])} - ${toText(item[config.labelKey])}`;
-  const style: CssVariables = { "--msf-level": level };
+  const style: CssVariables = { "--fc-level": level };
 
   const handleToggle = () => setIsExpanded((previous) => !previous);
   const handleSelect = () => onSelect(item);
 
   return (
     <Box role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
-      <Group gap="xs" wrap="nowrap" className="msf-mantine-tree-node" style={style}>
+      <Group gap="xs" wrap="nowrap" className="fc-mantine-tree-node" style={style}>
         {hasChildren ? (
           <ActionIcon variant="subtle" color="gray" size="sm" aria-label={isExpanded ? labels.collapse : labels.expand} onClick={handleToggle}>
             {isExpanded ? <IconChevronDown size={16} /> : <IconChevronRight size={16} />}
           </ActionIcon>
         ) : (
-          <Box className="msf-mantine-tree-spacer" />
+          <Box className="fc-mantine-tree-spacer" />
         )}
         {!hasChildren && <Checkbox size="xs" aria-label={text} onChange={handleSelect} />}
         <UnstyledButton onClick={hasChildren ? handleToggle : handleSelect}>

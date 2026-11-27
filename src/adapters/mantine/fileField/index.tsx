@@ -48,7 +48,7 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
   return (
     <Stack gap={4}>
       <input ref={inputRef} type="file" accept=".pdf" hidden aria-label={field.label} onChange={handleFileChange} />
-      <Paper withBorder radius="md" p="sm" className="msf-mantine-file" data-error={error ? true : undefined} data-done={hasSavedFile || undefined}>
+      <Paper withBorder radius="md" p="sm" className="fc-mantine-file" data-error={error ? true : undefined} data-done={hasSavedFile || undefined}>
         <Group gap="sm" wrap="nowrap" align="flex-start">
           <ThemeIcon radius="xl" variant={hasSavedFile ? "filled" : "light"} color={hasSavedFile ? "teal" : undefined} aria-hidden="true">
             {hasSavedFile ? (
@@ -59,9 +59,9 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
               </Text>
             )}
           </ThemeIcon>
-          <Stack gap="xs" className="msf-mantine-file-content">
+          <Stack gap="xs" className="fc-mantine-file-content">
             <Group gap="xs" justify="space-between" wrap="wrap">
-              <Group gap="xs" wrap="nowrap" className="msf-mantine-file-title">
+              <Group gap="xs" wrap="nowrap" className="fc-mantine-file-title">
                 <Text size="sm" fw={500} truncate>
                   {field.label}
                 </Text>
@@ -72,8 +72,8 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
                 )}
               </Group>
               {fileValue ? (
-                <Group gap={4} wrap="nowrap" className="msf-mantine-file-title">
-                  <IconFileTypePdf size={18} className="msf-mantine-file-icon" />
+                <Group gap={4} wrap="nowrap" className="fc-mantine-file-title">
+                  <IconFileTypePdf size={18} className="fc-mantine-file-icon" />
                   <Text size="sm" truncate>
                     {fileValue.file.name}
                   </Text>
@@ -108,7 +108,7 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
                   value={draftDescription}
                   autosize
                   minRows={2}
-                  className="msf-mantine-file-description"
+                  className="fc-mantine-file-description"
                   onChange={(event) => setDraftDescription(event.currentTarget.value)}
                 />
                 <Button size="xs" onClick={handleSaveDescription}>

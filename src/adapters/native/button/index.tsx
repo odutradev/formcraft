@@ -6,17 +6,17 @@ const Button = ({ label, icon, variant, color = "primary", placement, isDisabled
   const button = (
     <button
       type="button"
-      className={joinClassNames("msf-button", `msf-button--${variant}`, `msf-button--${color}`, placement === "field" && "msf-button--full")}
+      className={joinClassNames("fc-button", `fc-button--${variant}`, `fc-button--${color}`, placement === "field" && "fc-button--full")}
       disabled={isDisabled}
       onClick={onClick}
     >
-      {icon && <span className="msf-button-icon">{icon}</span>}
+      {icon && <span className="fc-button-icon">{icon}</span>}
       {label}
     </button>
   );
 
   if (placement !== "field") return button;
-  return <div className="msf-field-button">{button}</div>;
+  return <div className="fc-field-button">{button}</div>;
 };
 
 export default Button;

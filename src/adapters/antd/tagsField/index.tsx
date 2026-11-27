@@ -22,7 +22,7 @@ const TagsField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
         placeholder={labels.tagsHint}
         disabled={isDisabled || isReadOnly}
         status={error ? "error" : undefined}
-        className="msf-antd-control"
+        className="fc-antd-control"
         onChange={(selected) => onChange(selected ?? [])}
       />
     </FieldFrame>

@@ -1,24 +1,24 @@
 export const fieldGridStyles = `
-.msf-antd-grid {
+.fc-antd-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--msf-antd-space-md);
+  gap: var(--fc-antd-space-md);
   width: 100%;
 }
 
-.msf-antd-grid[data-auto] {
+.fc-antd-grid[data-auto] {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.625rem), 1fr));
 }
 
 @media (min-width: 576px) {
-  .msf-antd-grid:not([data-auto]) {
-    grid-template-columns: repeat(var(--msf-columns-sm), minmax(0, 1fr));
+  .fc-antd-grid:not([data-auto]) {
+    grid-template-columns: repeat(var(--fc-columns-sm), minmax(0, 1fr));
   }
 }
 
 @media (min-width: 992px) {
-  .msf-antd-grid:not([data-auto]) {
-    grid-template-columns: repeat(var(--msf-columns), minmax(0, 1fr));
+  .fc-antd-grid:not([data-auto]) {
+    grid-template-columns: repeat(var(--fc-columns), minmax(0, 1fr));
   }
 }
 `;

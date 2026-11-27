@@ -23,7 +23,7 @@ const SelectField = (props: SelectFieldProps) => {
     allowClear: !isRequired && !isReadOnly,
     status: error ? ("error" as const) : undefined,
     notFoundContent: labels.noOptions,
-    className: "msf-antd-control"
+    className: "fc-antd-control"
   };
 
   return (

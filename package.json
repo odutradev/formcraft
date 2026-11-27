@@ -1,5 +1,5 @@
 {
-  "name": "multi-step-form",
+  "name": "formcraft",
   "version": "0.1.9",
   "description": "Config-driven multi-step form library for React with pluggable UI adapters",
   "keywords": [
@@ -17,13 +17,13 @@
   ],
   "license": "MIT",
   "author": "odutradev",
-  "homepage": "https://github.com/odutradev/multiStepForm#readme",
+  "homepage": "https://github.com/odutradev/formcraft#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/odutradev/multiStepForm.git"
+    "url": "git+https://github.com/odutradev/formcraft.git"
   },
   "bugs": {
-    "url": "https://github.com/odutradev/multiStepForm/issues"
+    "url": "https://github.com/odutradev/formcraft/issues"
   },
   "type": "module",
   "sideEffects": false,

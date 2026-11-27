@@ -1,6 +1,6 @@
 import { people } from "@playground/data/people";
 
-import type { FormRow, FormValues } from "multi-step-form";
+import type { FormRow, FormValues } from "formcraft";
 
 const searchPeople = async (filters: FormValues): Promise<FormRow[]> => {
   const term = String(filters.name ?? "").toLowerCase();

@@ -1,4 +1,4 @@
-import type { FormConfig, FormValues } from "multi-step-form";
+import type { FormConfig, FormValues } from "formcraft";
 import type { AdapterName } from "@playground/types";
 
 export interface AdapterFormProps {

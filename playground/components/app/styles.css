@@ -10,7 +10,7 @@
   --header-height: 0px;
 
   min-height: 100vh;
-  background: radial-gradient(1200px 400px at 10% -10%, color-mix(in srgb, var(--msf-color-primary) 10%, transparent), transparent), var(--page-background);
+  background: radial-gradient(1200px 400px at 10% -10%, color-mix(in srgb, var(--fc-color-primary) 10%, transparent), transparent), var(--page-background);
   color: var(--page-text);
   font-family:
     Inter,

@@ -46,23 +46,23 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
   };
 
   return (
-    <div className="msf-antd-file-field">
+    <div className="fc-antd-file-field">
       <input ref={inputRef} type="file" accept=".pdf" hidden aria-label={field.label} onChange={handleFileChange} />
-      <div className="msf-antd-file" data-error={error ? true : undefined} data-done={hasSavedFile || undefined}>
-        <span className="msf-antd-file-order" aria-hidden="true">
+      <div className="fc-antd-file" data-error={error ? true : undefined} data-done={hasSavedFile || undefined}>
+        <span className="fc-antd-file-order" aria-hidden="true">
           {hasSavedFile ? <CheckOutlined /> : orderNumber}
         </span>
-        <div className="msf-antd-file-content">
-          <div className="msf-antd-file-line">
-            <div className="msf-antd-file-title">
+        <div className="fc-antd-file-content">
+          <div className="fc-antd-file-line">
+            <div className="fc-antd-file-title">
               <Typography.Text strong ellipsis>
                 {field.label}
               </Typography.Text>
               {isRequired && !fileValue && <Tag color="warning">{labels.fileRequired}</Tag>}
             </div>
             {fileValue ? (
-              <div className="msf-antd-file-title">
-                <FilePdfOutlined className="msf-antd-file-icon" />
+              <div className="fc-antd-file-title">
+                <FilePdfOutlined className="fc-antd-file-icon" />
                 <Typography.Text ellipsis>{fileValue.file.name}</Typography.Text>
                 {!isEditing && !isReadOnly && (
                   <Button type="text" size="small" aria-label={labels.fileEditDescription} icon={<EditOutlined />} onClick={handleEditDescription} />
@@ -79,7 +79,7 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
           </div>
           {hasSavedFile && fileValue?.description && <Typography.Text type="secondary">{fileValue.description}</Typography.Text>}
           {fileValue && isEditing && (
-            <div className="msf-antd-file-description">
+            <div className="fc-antd-file-description">
               <Input.TextArea
                 aria-label={labels.fileDescription}
                 placeholder={labels.fileDescription}

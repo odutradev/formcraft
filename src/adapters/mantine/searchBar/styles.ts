@@ -1,5 +1,5 @@
 export const searchBarStyles = `
-.msf-mantine-search-filters {
+.fc-mantine-search-filters {
   flex: 1;
   min-width: 0;
 }

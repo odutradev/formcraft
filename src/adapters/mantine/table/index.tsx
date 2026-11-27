@@ -28,7 +28,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
         <MantineTable highlightOnHover withTableBorder verticalSpacing="xs">
           <MantineTable.Thead>
             <MantineTable.Tr>
-              {isExpandable && <MantineTable.Th className="msf-mantine-table-toggle" />}
+              {isExpandable && <MantineTable.Th className="fc-mantine-table-toggle" />}
               {columns.map((column) => (
                 <MantineTable.Th key={column.key}>{column.header}</MantineTable.Th>
               ))}
@@ -46,7 +46,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                 <Fragment key={rowKey}>
                   <MantineTable.Tr>
                     {isExpandable && (
-                      <MantineTable.Td className="msf-mantine-table-toggle">
+                      <MantineTable.Td className="fc-mantine-table-toggle">
                         {hasDetail && (
                           <ActionIcon
                             variant="subtle"
@@ -85,7 +85,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                   </MantineTable.Tr>
                   {isExpanded && hasDetail && (
                     <MantineTable.Tr>
-                      <MantineTable.Td colSpan={totalColumns} className="msf-mantine-table-detail">
+                      <MantineTable.Td colSpan={totalColumns} className="fc-mantine-table-detail">
                         {rowDetail}
                       </MantineTable.Td>
                     </MantineTable.Tr>

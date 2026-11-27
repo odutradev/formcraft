@@ -2,6 +2,16 @@
 
 Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Alterado
+
+- **Quebra de compatibilidade:** o pacote passa a se chamar `formcraft`. Os caminhos de importação mudam de `multi-step-form` para `formcraft`, e o mesmo vale para as entradas dos adapters (`formcraft/mui`, `formcraft/native`, `formcraft/mantine`, `formcraft/antd`, `formcraft/chakra` e `formcraft/enchase`).
+- **Quebra de compatibilidade:** a camada CSS do adapter nativo passa de `@layer multi-step-form` para `@layer formcraft`. Quem declara a ordem das camadas precisa trocar o nome.
+- O repositório passa a ser `odutradev/formcraft`. A instalação fica `npm install github:odutradev/formcraft`.
+- **Quebra de compatibilidade:** os nomes exportados passam a ser `Form` (antes `MultiStepForm`) e `FormcraftProvider` (antes `MultiStepFormProvider`). Os tipos `MultiStepFormProps`, `MultiStepFormProviderProps` e `MultiStepFormDefaults` viram `FormProps`, `FormcraftProviderProps` e `FormcraftDefaults`.
+- **Quebra de compatibilidade:** o prefixo das classes CSS passa de `msf-*` para `fc-*`, e o das variáveis de tema de `--msf-*` para `--fc-*`. Quem sobrescreve classes ou variáveis precisa trocar o prefixo.
+
 ## [0.1.9] - 2026-11-26
 
 ### Adicionado
@@ -111,8 +121,8 @@ Primeira versão como biblioteca, extraída do componente `MultiStepForm` da apl
 - As opções dos campos do modal recebiam o contexto do formulário pai.
 - Falhas no `onSearch` não eram tratadas.
 
-[0.1.6]: https://github.com/odutradev/multiStepForm/releases/tag/v0.1.6
-[0.1.5]: https://github.com/odutradev/multiStepForm/releases/tag/v0.1.5
-[0.1.4]: https://github.com/odutradev/multiStepForm/releases/tag/v0.1.4
-[0.1.3]: https://github.com/odutradev/multiStepForm/releases/tag/v0.1.3
-[0.1.1]: https://github.com/odutradev/multiStepForm/releases/tag/v0.1.1
+[0.1.6]: https://github.com/odutradev/formcraft/releases/tag/v0.1.6
+[0.1.5]: https://github.com/odutradev/formcraft/releases/tag/v0.1.5
+[0.1.4]: https://github.com/odutradev/formcraft/releases/tag/v0.1.4
+[0.1.3]: https://github.com/odutradev/formcraft/releases/tag/v0.1.3
+[0.1.1]: https://github.com/odutradev/formcraft/releases/tag/v0.1.1

@@ -12,13 +12,13 @@ const SearchResults = ({ results, columns, viewMode, treeConfig, isLoading, isPa
 
   if (isLoading) {
     return (
-      <Flex vertical align="center" gap="small" className="msf-antd-results-state" role="status" aria-live="polite">
+      <Flex vertical align="center" gap="small" className="fc-antd-results-state" role="status" aria-live="polite">
         <Spin />
         <Typography.Text>{labels.searching}</Typography.Text>
       </Flex>
     );
   }
-  if (!results.length) return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={labels.noResults} className="msf-antd-results-state" />;
+  if (!results.length) return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={labels.noResults} className="fc-antd-results-state" />;
   if (isTreeView && treeConfig) return <TreeView results={results} config={treeConfig} isExpandedByDefault={isExpandedByDefault} onSelect={onSelect} />;
   return <TableView results={results} columns={columns} isPaginated={isPaginated} onSelect={onSelect} />;
 };

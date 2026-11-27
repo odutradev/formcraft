@@ -1,5 +1,5 @@
-export { default as MultiStepFormProvider } from "@components/multiStepFormProvider";
-export { default as MultiStepForm } from "@components/multiStepForm";
+export { default as FormcraftProvider } from "@components/formcraftProvider";
+export { default as Form } from "@components/form";
 export { nativeComponents } from "@adapters/native";
 export { default as useFormRuntime } from "@hooks/useFormRuntime";
 export { default as defaultLabels } from "@labels";
@@ -41,9 +41,9 @@ export type {
   MessageFieldProps,
   MessageFieldType,
   ModalProps,
-  MultiStepFormDefaults,
-  MultiStepFormProps,
-  MultiStepFormProviderProps,
+  FormcraftDefaults,
+  FormProps,
+  FormcraftProviderProps,
   Resolvable,
   SearchBarProps,
   SearchConfig,

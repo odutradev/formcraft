@@ -1,5 +1,5 @@
 export const formStyles = `
-.msf-enchase-form {
+.fc-enchase-form {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@ export const formStyles = `
   font-family: var(--enchase-font-primary);
 }
 
-.msf-enchase-overlay {
+.fc-enchase-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -20,17 +20,17 @@ export const formStyles = `
   background: color-mix(in srgb, var(--enchase-color-surface) 80%, transparent);
 }
 
-.msf-enchase-stack {
+.fc-enchase-stack {
   display: flex;
   flex-direction: column;
   gap: var(--enchase-space-md);
 }
 
-.msf-enchase-stack--lg {
+.fc-enchase-stack--lg {
   gap: var(--enchase-space-lg);
 }
 
-.msf-enchase-muted {
+.fc-enchase-muted {
   margin: 0;
   color: var(--enchase-color-text-secondary);
   font-size: var(--enchase-font-size-sm);

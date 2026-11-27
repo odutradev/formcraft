@@ -9,14 +9,14 @@ const Form = ({ header, isLoading, hasStepIndicator, children }: FormProps) => {
   const { labels } = useFormRuntime();
 
   return (
-    <form className="msf-form" noValidate onSubmit={(event) => event.preventDefault()}>
-      <style href="multi-step-form-native" precedence="default">
+    <form className="fc-form" noValidate onSubmit={(event) => event.preventDefault()}>
+      <style href="formcraft-native" precedence="default">
         {stylesheet}
       </style>
       {header}
-      <div className={joinClassNames("msf-form-body", hasStepIndicator && "msf-form-body--with-steps")}>{children}</div>
+      <div className={joinClassNames("fc-form-body", hasStepIndicator && "fc-form-body--with-steps")}>{children}</div>
       {isLoading && (
-        <div className="msf-loading" role="status" aria-live="polite">
+        <div className="fc-loading" role="status" aria-live="polite">
           <Spinner isLarge />
           <p>{labels.processing}</p>
         </div>

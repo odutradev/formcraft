@@ -1,4 +1,4 @@
-# MultiStepForm
+# formcraft
 
 Biblioteca React para formulários em etapas orientados a configuração. Você descreve as etapas, os grupos e os campos em um objeto `FormConfig`, e a biblioteca cuida da renderização, da validação, da navegação entre etapas e dos campos condicionais.
 
@@ -25,7 +25,7 @@ O núcleo é **headless**: depende só do React. A parte visual vem de um **adap
 A biblioteca é instalada a partir do GitHub. O script `prepare` gera o build durante a instalação.
 
 ```bash
-npm install github:odutradev/multiStepForm
+npm install github:odutradev/formcraft
 ```
 
 O React é uma dependência de pares (peer dependency) obrigatória. O adapter nativo não precisa de mais nada. Os outros adapters pedem a biblioteca visual deles, e você instala só a do adapter que usar:
@@ -54,9 +54,9 @@ npm install enchase lucide-react
 ## Uso básico
 
 ```tsx
-import { MultiStepForm } from "multi-step-form";
+import { Form } from "formcraft";
 
-import type { FormConfig, FormValues } from "multi-step-form";
+import type { FormConfig, FormValues } from "formcraft";
 
 const config: FormConfig = {
   steps: [
@@ -92,7 +92,7 @@ const RegistrationPage = () => {
     await saveRegistration(data);
   };
 
-  return <MultiStepForm config={config} onSubmit={handleSubmit} onError={reportError} />;
+  return <Form config={config} onSubmit={handleSubmit} onError={reportError} />;
 };
 ```
 
@@ -101,14 +101,14 @@ Sem a prop `components`, o formulário usa o adapter nativo, em HTML puro, sem n
 Para usar o Material UI, passe o adapter dele:
 
 ```tsx
-import { muiComponents } from "multi-step-form/mui";
+import { muiComponents } from "formcraft/mui";
 
-<MultiStepForm config={config} components={muiComponents} onSubmit={handleSubmit} />;
+<Form config={config} components={muiComponents} onSubmit={handleSubmit} />;
 ```
 
 O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `LocalizationProvider` do date picker, no idioma do formulário. Os outros adapters seguem o mesmo padrão, e a seção [Adapters](#adapters) mostra o que cada um precisa.
 
-## Propriedades do `MultiStepForm`
+## Propriedades do `Form`
 
 | Propriedade | Tipo | Padrão | Descrição |
 | :--- | :--- | :--- | :--- |
@@ -121,18 +121,18 @@ O adapter MUI usa o tema do `ThemeProvider` da sua aplicação e já inclui o `L
 | `labels` | `Partial<FormLabels>` | textos do idioma | Substitui textos da interface, por cima dos textos do idioma. |
 | `isDevToolsEnabled` | `boolean` | `false` | Habilita o painel de DevTools (atalho `Ctrl + Shift + Q`). |
 
-Os valores padrão de `components`, `locale`, `labels`, `onError` e `isDevToolsEnabled` podem vir de um `MultiStepFormProvider` (veja a próxima seção).
+Os valores padrão de `components`, `locale`, `labels`, `onError` e `isDevToolsEnabled` podem vir de um `FormcraftProvider` (veja a próxima seção).
 
-## Configuração global com `MultiStepFormProvider`
+## Configuração global com `FormcraftProvider`
 
-O `MultiStepFormProvider` define padrões para todos os formulários abaixo dele. Cada formulário pode sobrescrever qualquer um deles pelas próprias props ou pela `config`.
+O `FormcraftProvider` define padrões para todos os formulários abaixo dele. Cada formulário pode sobrescrever qualquer um deles pelas próprias props ou pela `config`.
 
 ```tsx
-import { MultiStepForm, MultiStepFormProvider } from "multi-step-form";
-import { muiComponents } from "multi-step-form/mui";
+import { Form, FormcraftProvider } from "formcraft";
+import { muiComponents } from "formcraft/mui";
 
 const App = () => (
-  <MultiStepFormProvider
+  <FormcraftProvider
     components={muiComponents}
     locale="pt-BR"
     labels={{ required: "Preencha este campo" }}
@@ -142,12 +142,12 @@ const App = () => (
     isDevToolsEnabled={import.meta.env.DEV}
   >
     <Routes />
-  </MultiStepFormProvider>
+  </FormcraftProvider>
 );
 
-<MultiStepForm config={config} onSubmit={handleSubmit} />;
+<Form config={config} onSubmit={handleSubmit} />;
 
-<MultiStepForm config={config} onSubmit={handleSubmit} labels={{ required: "Obrigatório" }} isDevToolsEnabled={false} />;
+<Form config={config} onSubmit={handleSubmit} labels={{ required: "Obrigatório" }} isDevToolsEnabled={false} />;
 ```
 
 | Opção | Como combina com o valor local |
@@ -161,7 +161,7 @@ const App = () => (
 
 Os Providers podem ser aninhados: um Provider interno herda os padrões do externo e sobrescreve só o que declarar. Isso serve para padrões de uma área do app, como presets de um módulo.
 
-O tema visual não passa pelo Provider: em cada biblioteca use o provider de tema dela (`ThemeProvider` do MUI, `MantineProvider`, `ConfigProvider` do Ant Design, `ChakraProvider`, `ColorModeProvider` do Enchase), e no adapter nativo defina as variáveis `--msf-*` no `:root` ou em um elemento acima do formulário.
+O tema visual não passa pelo Provider: em cada biblioteca use o provider de tema dela (`ThemeProvider` do MUI, `MantineProvider`, `ConfigProvider` do Ant Design, `ChakraProvider`, `ColorModeProvider` do Enchase), e no adapter nativo defina as variáveis `--fc-*` no `:root` ou em um elemento acima do formulário.
 
 ## Configuração
 
@@ -359,17 +359,17 @@ A biblioteca traz os textos em português (`ptBRLabels`) e em inglês (`enLabels
 Para desligar a detecção, passe um idioma fixo, no formulário ou no Provider:
 
 ```tsx
-<MultiStepForm config={config} onSubmit={handleSubmit} locale="en" />
+<Form config={config} onSubmit={handleSubmit} locale="en" />
 
-<MultiStepFormProvider locale="pt-BR">
+<FormcraftProvider locale="pt-BR">
   <App />
-</MultiStepFormProvider>
+</FormcraftProvider>
 ```
 
 Para trocar textos, passe só o que quiser mudar. Eles ficam por cima dos textos do idioma escolhido:
 
 ```tsx
-<MultiStepForm config={config} onSubmit={handleSubmit} labels={{ required: "Preencha este campo", search: "Pesquisar" }} />
+<Form config={config} onSubmit={handleSubmit} labels={{ required: "Preencha este campo", search: "Pesquisar" }} />
 ```
 
 A lista completa de chaves está no tipo `FormLabels`. `defaultLabels` continua exportado e é igual a `ptBRLabels`. O idioma também chega aos adapters, pelo `locale` do `useFormRuntime`: os date pickers do MUI, do Mantine, do Ant Design e do Enchase usam o idioma do formulário. A formatação de moeda continua em real (BRL). O painel de DevTools, que é usado só em desenvolvimento, tem textos fixos.
@@ -385,7 +385,7 @@ Com `isDevToolsEnabled`, o atalho `Ctrl + Shift + Q` mostra um painel que:
 A biblioteca nunca ativa o painel sozinha. Ligue-o apenas em desenvolvimento:
 
 ```tsx
-<MultiStepForm config={config} onSubmit={handleSubmit} isDevToolsEnabled={import.meta.env.DEV} />
+<Form config={config} onSubmit={handleSubmit} isDevToolsEnabled={import.meta.env.DEV} />
 ```
 
 ## Adapters
@@ -394,12 +394,12 @@ O `components` recebe um objeto `FormComponents`, com um componente para cada pe
 
 | Adapter | Import | O que a aplicação precisa ter |
 | :--- | :--- | :--- |
-| Nativo (padrão) | Nenhum. Para estendê-lo: `import { nativeComponents } from "multi-step-form"` | Nada |
-| Material UI | `import { muiComponents } from "multi-step-form/mui"` | `ThemeProvider` (opcional) |
-| Mantine | `import { mantineComponents } from "multi-step-form/mantine"` | `MantineProvider` e o CSS do Mantine (`@mantine/core/styles.css` e `@mantine/dates/styles.css`) |
-| Ant Design | `import { antdComponents } from "multi-step-form/antd"` | Nada além do `antd`; o `ConfigProvider` é opcional |
-| Chakra UI | `import { chakraComponents } from "multi-step-form/chakra"` | `ChakraProvider` com um `system` (o `defaultSystem` serve) |
-| Enchase | `import { enchaseComponents } from "multi-step-form/enchase"` | `ColorModeProvider` e `enchase/styles.css`; `UIProvider` para os textos internos do Enchase |
+| Nativo (padrão) | Nenhum. Para estendê-lo: `import { nativeComponents } from "formcraft"` | Nada |
+| Material UI | `import { muiComponents } from "formcraft/mui"` | `ThemeProvider` (opcional) |
+| Mantine | `import { mantineComponents } from "formcraft/mantine"` | `MantineProvider` e o CSS do Mantine (`@mantine/core/styles.css` e `@mantine/dates/styles.css`) |
+| Ant Design | `import { antdComponents } from "formcraft/antd"` | Nada além do `antd`; o `ConfigProvider` é opcional |
+| Chakra UI | `import { chakraComponents } from "formcraft/chakra"` | `ChakraProvider` com um `system` (o `defaultSystem` serve) |
+| Enchase | `import { enchaseComponents } from "formcraft/enchase"` | `ColorModeProvider` e `enchase/styles.css`; `UIProvider` para os textos internos do Enchase |
 
 Cada adapter usa os componentes e o tema da própria biblioteca, então o formulário segue o tema que a aplicação já tem. Os detalhes que mudam de uma biblioteca para outra:
 
@@ -418,46 +418,46 @@ O tema é controlado por variáveis CSS. Defina-as em qualquer elemento que envo
 
 ```css
 .cadastro {
-  --msf-color-primary: #7c3aed;
-  --msf-radius: 12px;
-  --msf-font-family: Georgia, serif;
+  --fc-color-primary: #7c3aed;
+  --fc-radius: 12px;
+  --fc-font-family: Georgia, serif;
 }
 ```
 
 | Variável | Padrão | Uso |
 | :--- | :--- | :--- |
-| `--msf-color-primary` | `#2563eb` | Botões, etapa atual, foco e destaques |
-| `--msf-color-primary-contrast` | `#ffffff` | Texto sobre a cor primária |
-| `--msf-color-text` | `#0f172a` | Texto principal e rótulos |
-| `--msf-color-text-secondary` | `#64748b` | Dicas, ícones e textos de apoio |
-| `--msf-color-background` | `#ffffff` | Fundo dos campos, grupos, listas e modais |
-| `--msf-color-surface` | `#f8fafc` | Cabeçalhos de tabela, campos somente leitura e áreas de apoio |
-| `--msf-color-border` | `#e2e8f0` | Bordas de cards, tabelas e divisores |
-| `--msf-color-border-strong` | `#cbd5e1` | Bordas dos campos |
-| `--msf-color-error` | `#dc2626` | Erros e campos inválidos |
-| `--msf-color-warning` | `#d97706` | Avisos e selo de anexo obrigatório |
-| `--msf-color-success` | `#16a34a` | Anexo enviado |
-| `--msf-color-info` | `#0284c7` | Botões informativos do DevTools |
-| `--msf-color-overlay` | `rgb(15 23 42 / 0.55)` | Fundo atrás dos modais |
-| `--msf-color-scheme` | `light` | `color-scheme` dos controles nativos. Use `dark` no tema escuro. |
-| `--msf-font-family` | `system-ui, ...` | Fonte |
-| `--msf-font-size` | `1rem` | Tamanho base do texto |
-| `--msf-radius` | `8px` | Arredondamento |
-| `--msf-spacing` | `8px` | Unidade de espaçamento. Os espaços são múltiplos dela. |
-| `--msf-shadow` | `0 1px 2px ..., 0 1px 3px ...` | Sombra de cards |
-| `--msf-shadow-lg` | `0 24px 48px -12px ...` | Sombra dos modais |
-| `--msf-transition` | `0.15s ease` | Duração das transições de hover e foco |
+| `--fc-color-primary` | `#2563eb` | Botões, etapa atual, foco e destaques |
+| `--fc-color-primary-contrast` | `#ffffff` | Texto sobre a cor primária |
+| `--fc-color-text` | `#0f172a` | Texto principal e rótulos |
+| `--fc-color-text-secondary` | `#64748b` | Dicas, ícones e textos de apoio |
+| `--fc-color-background` | `#ffffff` | Fundo dos campos, grupos, listas e modais |
+| `--fc-color-surface` | `#f8fafc` | Cabeçalhos de tabela, campos somente leitura e áreas de apoio |
+| `--fc-color-border` | `#e2e8f0` | Bordas de cards, tabelas e divisores |
+| `--fc-color-border-strong` | `#cbd5e1` | Bordas dos campos |
+| `--fc-color-error` | `#dc2626` | Erros e campos inválidos |
+| `--fc-color-warning` | `#d97706` | Avisos e selo de anexo obrigatório |
+| `--fc-color-success` | `#16a34a` | Anexo enviado |
+| `--fc-color-info` | `#0284c7` | Botões informativos do DevTools |
+| `--fc-color-overlay` | `rgb(15 23 42 / 0.55)` | Fundo atrás dos modais |
+| `--fc-color-scheme` | `light` | `color-scheme` dos controles nativos. Use `dark` no tema escuro. |
+| `--fc-font-family` | `system-ui, ...` | Fonte |
+| `--fc-font-size` | `1rem` | Tamanho base do texto |
+| `--fc-radius` | `8px` | Arredondamento |
+| `--fc-spacing` | `8px` | Unidade de espaçamento. Os espaços são múltiplos dela. |
+| `--fc-shadow` | `0 1px 2px ..., 0 1px 3px ...` | Sombra de cards |
+| `--fc-shadow-lg` | `0 24px 48px -12px ...` | Sombra dos modais |
+| `--fc-transition` | `0.15s ease` | Duração das transições de hover e foco |
 
-Para ir além das variáveis, sobrescreva as classes `msf-*` (por exemplo `.msf-button`, `.msf-control`, `.msf-group`). O CSS do adapter fica na camada `@layer multi-step-form`, então qualquer CSS seu, fora de camadas, tem prioridade sem precisar de `!important` ou de seletores mais específicos. Isso vale também para resets globais em camadas que sejam declaradas depois, como o `preflight` do Chakra: se usar o adapter nativo e o Chakra na mesma página, declare a ordem das camadas com `multi-step-form` por último (`@layer reset, base, tokens, recipes, multi-step-form;`) antes de qualquer outro CSS.
+Para ir além das variáveis, sobrescreva as classes `fc-*` (por exemplo `.fc-button`, `.fc-control`, `.fc-group`). O CSS do adapter fica na camada `@layer formcraft`, então qualquer CSS seu, fora de camadas, tem prioridade sem precisar de `!important` ou de seletores mais específicos. Isso vale também para resets globais em camadas que sejam declaradas depois, como o `preflight` do Chakra: se usar o adapter nativo e o Chakra na mesma página, declare a ordem das camadas com `formcraft` por último (`@layer reset, base, tokens, recipes, formcraft;`) antes de qualquer outro CSS.
 
 ### Estender ou criar um adapter
 
 Para trocar só algumas peças, estenda um adapter existente:
 
 ```tsx
-import { muiComponents } from "multi-step-form/mui";
+import { muiComponents } from "formcraft/mui";
 
-import type { FormComponents, InputFieldProps } from "multi-step-form";
+import type { FormComponents, InputFieldProps } from "formcraft";
 
 const NativeDateField = ({ field, value, isRequired, isDisabled, isReadOnly, onChange }: InputFieldProps) => (
   <label>
@@ -483,11 +483,11 @@ Para criar um adapter completo para outra biblioteca visual, implemente todas as
 
 ## Migração do componente antigo
 
-Esta biblioteca substitui o componente `MultiStepForm` que usava `react-hook-form`. O formato da configuração é o mesmo, com estas diferenças:
+Esta biblioteca substitui o componente `Form` que usava `react-hook-form`. O formato da configuração é o mesmo, com estas diferenças:
 
 | Antes | Agora |
 | :--- | :--- |
-| `import MultiStepForm from "@components/multiStepForm"` | `import { MultiStepForm } from "multi-step-form"` e `import { muiComponents } from "multi-step-form/mui"` |
+| `import Form from "@components/form"` | `import { Form } from "formcraft"` e `import { muiComponents } from "formcraft/mui"` |
 | Visual do Material UI embutido | Sem `components`, usa o adapter nativo. Para manter o visual MUI, passe `components={muiComponents}`. |
 | `icon: "Search"` (nome do ícone) | `icon: <Search />` (elemento React) |
 | Autocomplete de opção única guardava o texto digitado | Guarda o `value` da opção. Use `freeSolo` para texto livre. |
@@ -510,7 +510,7 @@ O `npm run dev` abre o playground (`playground/`), com duas abas:
 
 No topo dá para ver os seis adapters lado a lado ou um de cada vez e trocar entre modo claro e escuro. O painel lateral muda a cor primária, o arredondamento, o espaçamento, a fonte e o idioma (automático, português ou inglês) de todos os adapters e mostra o CSS equivalente para o nativo. Os providers de tema de cada biblioteca ficam em `components/libraryProviders`, e o mapa de adapters em `data/adapterComponents`. O código do playground segue a mesma organização da biblioteca: `components/` (um componente por pasta), `config/`, `data/`, `functions/` e `types/`, importados pelo alias `@playground`.
 
-O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `multi-step-form` e das entradas de cada adapter (`multi-step-form/mui`, `/mantine`, `/antd`, `/chakra`, `/enchase`), e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
+O playground usa o pacote gerado em `dist/`, como um projeto que instalou a biblioteca: ele importa de `formcraft` e das entradas de cada adapter (`formcraft/mui`, `/mantine`, `/antd`, `/chakra`, `/enchase`), e um alias aponta esses nomes para os arquivos da `dist`. O `npm run dev` gera a `dist` antes de abrir e a reconstrói a cada mudança em `src/`, recarregando a página.
 
 | Script | O que faz |
 | :--- | :--- |
@@ -525,13 +525,13 @@ A estrutura do código e as regras do projeto estão no [CLAUDE.md](CLAUDE.md). 
 
 ```text
 lib/                 # entradas públicas do pacote (só reexportam)
-├── index.ts         # multi-step-form
-├── mui/index.ts     # multi-step-form/mui
-├── mantine/index.ts # multi-step-form/mantine
-├── antd/index.ts    # multi-step-form/antd
-├── chakra/index.ts  # multi-step-form/chakra
-├── enchase/index.ts # multi-step-form/enchase
-└── native/index.ts  # multi-step-form/native
+├── index.ts         # formcraft
+├── mui/index.ts     # formcraft/mui
+├── mantine/index.ts # formcraft/mantine
+├── antd/index.ts    # formcraft/antd
+├── chakra/index.ts  # formcraft/chakra
+├── enchase/index.ts # formcraft/enchase
+└── native/index.ts  # formcraft/native
 src/
 ├── types/       # tipos compartilhados e o contrato dos adapters
 ├── labels/      # textos em pt-BR e en (ptBR/, en/)
@@ -539,7 +539,7 @@ src/
 ├── functions/   # funções puras: validação, máscaras, visibilidade, mesclagens
 ├── context/     # contextos React
 ├── hooks/       # hooks com a lógica do formulário
-├── components/  # MultiStepForm, MultiStepFormProvider e o renderer interno
+├── components/  # Form, FormcraftProvider e o renderer interno
 └── adapters/
     ├── native/   # adapter HTML nativo com variáveis CSS
     ├── mui/      # adapter Material UI

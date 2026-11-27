@@ -1,15 +1,15 @@
 import type { FormLabels, FormLocaleOption } from "@typings/labels";
 import type { FormComponentsOverride } from "@typings/components";
-import type { MultiStepFormDefaults } from "@typings/runtime";
+import type { FormcraftDefaults } from "@typings/runtime";
 import type { FormConfig } from "@typings/config";
 import type { FormValues } from "@typings/values";
 import type { ReactNode } from "react";
 
-export interface MultiStepFormProviderProps extends MultiStepFormDefaults {
+export interface FormcraftProviderProps extends FormcraftDefaults {
   children: ReactNode;
 }
 
-export interface MultiStepFormProps {
+export interface FormProps {
   config: FormConfig;
   components?: FormComponentsOverride;
   onSubmit: (data: FormValues) => void | Promise<void>;

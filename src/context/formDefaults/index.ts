@@ -1,9 +1,9 @@
 import { createContext } from "react";
 
-import type { MultiStepFormDefaults } from "@typings";
+import type { FormcraftDefaults } from "@typings";
 
-export const emptyFormDefaults: MultiStepFormDefaults = {};
+export const emptyFormDefaults: FormcraftDefaults = {};
 
-const FormDefaultsContext = createContext<MultiStepFormDefaults>(emptyFormDefaults);
+const FormDefaultsContext = createContext<FormcraftDefaults>(emptyFormDefaults);
 
 export default FormDefaultsContext;

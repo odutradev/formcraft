@@ -24,7 +24,7 @@ const TreeView = ({ results, config, isExpandedByDefault, onSelect }: TreeViewPr
   return (
     <Tree
       key={String(isExpandedByDefault)}
-      className="msf-antd-tree"
+      className="fc-antd-tree"
       blockNode
       defaultExpandAll={isExpandedByDefault}
       treeData={entries.map((entry) => entry.node)}

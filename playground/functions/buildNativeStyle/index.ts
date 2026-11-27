@@ -6,11 +6,11 @@ import type { CSSProperties } from "react";
 
 const buildNativeStyle = (settings: StyleSettings): CSSProperties =>
   ({
-    "--msf-color-primary": settings.primaryColor,
-    "--msf-color-primary-contrast": getContrastText(settings.primaryColor),
-    "--msf-radius": `${settings.borderRadius}px`,
-    "--msf-spacing": `${settings.spacing}px`,
-    "--msf-font-family": settings.fontFamily,
+    "--fc-color-primary": settings.primaryColor,
+    "--fc-color-primary-contrast": getContrastText(settings.primaryColor),
+    "--fc-radius": `${settings.borderRadius}px`,
+    "--fc-spacing": `${settings.spacing}px`,
+    "--fc-font-family": settings.fontFamily,
     ...(settings.colorMode === "dark" && darkNativePalette)
   }) as CSSProperties;
 

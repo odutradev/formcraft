@@ -16,10 +16,10 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
   );
 
   return (
-    <Paper withBorder radius="md" p="md" className="msf-mantine-devtools">
+    <Paper withBorder radius="md" p="md" className="fc-mantine-devtools">
       <Stack gap="sm">
         <Group gap="xs">
-          <IconBug size={18} className="msf-mantine-devtools-icon" />
+          <IconBug size={18} className="fc-mantine-devtools-icon" />
           <Text fw={600} c="red">
             DevTools
           </Text>

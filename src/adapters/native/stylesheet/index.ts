@@ -54,6 +54,6 @@ const componentStyles = [
   devToolsStyles
 ];
 
-const stylesheet = `@layer multi-step-form {\n${componentStyles.map((styles) => styles.trim()).join("\n")}\n}`;
+const stylesheet = `@layer formcraft {\n${componentStyles.map((styles) => styles.trim()).join("\n")}\n}`;
 
 export default stylesheet;

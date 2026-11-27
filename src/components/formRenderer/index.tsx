@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import useMultiStepForm from "@hooks/useMultiStepForm";
+import useFormcraft from "@hooks/useFormcraft";
 import FormRuntimeContext from "@context/formRuntime";
 import ActionBar from "./subcomponents/actionBar";
 import GroupList from "./subcomponents/groupList";
@@ -15,7 +15,7 @@ const FormRenderer = ({ config, components, onSubmit, onError, initialData, loca
   const runtime = useMemo<FormRuntime>(() => ({ components, locale, labels, reportError: onError ?? ignoreError }), [components, locale, labels, onError]);
 
   const { store, state, context, visibleSteps, currentStep, currentStepIndex, visibleGroups, isStepReadOnly, isActionLoading, isCurrentStepValid, executeAction } =
-    useMultiStepForm({ config, initialData, onSubmit, requiredMessage: runtime.labels.required, reportError: runtime.reportError });
+    useFormcraft({ config, initialData, onSubmit, requiredMessage: runtime.labels.required, reportError: runtime.reportError });
 
   const devTools = useDevTools({ config, store, isEnabled: isDevToolsEnabled });
 

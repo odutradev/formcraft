@@ -1,6 +1,6 @@
 import { en, ptBR } from "enchase/locales";
 
-import type { FormLocaleOption } from "multi-step-form";
+import type { FormLocaleOption } from "formcraft";
 
 const resolveEnchaseLocale = (locale: FormLocaleOption) => {
   if (locale === "en") return en;

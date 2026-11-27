@@ -48,7 +48,7 @@ const SearchResults = ({ results, columns, viewMode, treeConfig, isLoading, isPa
 
   return (
     <Stack gap="xs">
-      <Paper withBorder radius="md" className="msf-mantine-results">
+      <Paper withBorder radius="md" className="fc-mantine-results">
         {renderContent()}
       </Paper>
       {shouldPaginate && !isLoading && results.length > 0 && (

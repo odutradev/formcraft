@@ -1,5 +1,5 @@
 import type { AdapterName, AdapterView } from "@playground/types";
-import type { FormConfig } from "multi-step-form";
+import type { FormConfig } from "formcraft";
 
 export interface FormComparisonProps {
   config: FormConfig;

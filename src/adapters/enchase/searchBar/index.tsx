@@ -9,8 +9,8 @@ const SearchBar = ({ isLoading, onSearch, children }: SearchBarProps) => {
   const { labels } = useFormRuntime();
 
   return (
-    <div className="msf-enchase-search-bar">
-      <div className="msf-enchase-search-filters">{children}</div>
+    <div className="fc-enchase-search-bar">
+      <div className="fc-enchase-search-filters">{children}</div>
       <Button disabled={isLoading} onClick={onSearch}>
         {isLoading ? <InlineLoading size="xs" /> : <Search size={16} aria-hidden="true" />}
         {labels.search}

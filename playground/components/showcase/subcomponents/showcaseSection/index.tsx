@@ -1,4 +1,4 @@
-import { MultiStepFormProvider } from "multi-step-form";
+import { FormcraftProvider } from "formcraft";
 
 import FormComparison from "@playground/components/formComparison";
 import "./styles.css";
@@ -22,9 +22,9 @@ const ShowcaseSection = ({ section, index, adapterView }: ShowcaseSectionProps) 
       </div>
     </header>
     {section.defaults ? (
-      <MultiStepFormProvider {...section.defaults}>
+      <FormcraftProvider {...section.defaults}>
         <FormComparison config={section.config} adapterView={adapterView} />
-      </MultiStepFormProvider>
+      </FormcraftProvider>
     ) : (
       <FormComparison config={section.config} adapterView={adapterView} />
     )}

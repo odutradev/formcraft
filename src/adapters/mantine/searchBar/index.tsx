@@ -10,7 +10,7 @@ const SearchBar = ({ isLoading, onSearch, children }: SearchBarProps) => {
 
   return (
     <Flex direction={{ base: "column", sm: "row" }} align={{ base: "stretch", sm: "flex-end" }} gap="sm">
-      <Box className="msf-mantine-search-filters">{children}</Box>
+      <Box className="fc-mantine-search-filters">{children}</Box>
       <Button loading={isLoading} leftSection={<IconSearch size={16} />} onClick={onSearch}>
         {labels.search}
       </Button>

@@ -28,18 +28,18 @@ const Modal = ({ title, size, actions, onClose, children }: ModalProps) => {
   };
 
   return (
-    <dialog ref={dialogRef} className={`msf-modal msf-modal--${size}`} aria-labelledby={titleId} onCancel={handleCancel} onClick={handleBackdropClick}>
-      <div className="msf-modal-surface">
-        <header className="msf-modal-header">
-          <h2 id={titleId} className="msf-modal-title">
+    <dialog ref={dialogRef} className={`fc-modal fc-modal--${size}`} aria-labelledby={titleId} onCancel={handleCancel} onClick={handleBackdropClick}>
+      <div className="fc-modal-surface">
+        <header className="fc-modal-header">
+          <h2 id={titleId} className="fc-modal-title">
             {title}
           </h2>
-          <button type="button" className="msf-icon-button" aria-label={labels.close} onClick={onClose}>
+          <button type="button" className="fc-icon-button" aria-label={labels.close} onClick={onClose}>
             <Icon name="close" />
           </button>
         </header>
-        <div className="msf-modal-body">{children}</div>
-        <footer className="msf-modal-footer">{actions}</footer>
+        <div className="fc-modal-body">{children}</div>
+        <footer className="fc-modal-footer">{actions}</footer>
       </div>
     </dialog>
   );

@@ -19,7 +19,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
 
   const actionColumn: ColumnsType<TableRecord> = [
     {
-      key: "msf-actions",
+      key: "fc-actions",
       title: labels.actions,
       align: "right",
       render: (_, record) => (
@@ -45,7 +45,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
   };
 
   return (
-    <div className="msf-antd-stack">
+    <div className="fc-antd-stack">
       {label && <Typography.Text type="secondary">{label}</Typography.Text>}
       <AntdTable<TableRecord>
         size="small"

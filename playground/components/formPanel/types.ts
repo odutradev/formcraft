@@ -1,5 +1,5 @@
 import type { AdapterName } from "@playground/types";
-import type { FormValues } from "multi-step-form";
+import type { FormValues } from "formcraft";
 import type { ReactNode } from "react";
 
 export interface FormPanelProps {

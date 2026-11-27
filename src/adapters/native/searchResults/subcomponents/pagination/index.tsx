@@ -14,9 +14,9 @@ const Pagination = ({ count, page, rowsPerPage, rowsPerPageOptions, onPageChange
   const lastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
 
   return (
-    <div className="msf-pagination">
+    <div className="fc-pagination">
       <label htmlFor={selectId}>{labels.rowsPerPage}</label>
-      <select id={selectId} className="msf-pagination-select" value={rowsPerPage} onChange={(event) => onRowsPerPageChange(Number(event.target.value))}>
+      <select id={selectId} className="fc-pagination-select" value={rowsPerPage} onChange={(event) => onRowsPerPageChange(Number(event.target.value))}>
         {rowsPerPageOptions.map((option) => (
           <option key={option} value={option}>
             {option}
@@ -24,10 +24,10 @@ const Pagination = ({ count, page, rowsPerPage, rowsPerPageOptions, onPageChange
         ))}
       </select>
       <span aria-live="polite">{labels.displayedRows({ from, to, count })}</span>
-      <button type="button" className="msf-icon-button" aria-label={labels.previousPage} disabled={page === 0} onClick={() => onPageChange(page - 1)}>
+      <button type="button" className="fc-icon-button" aria-label={labels.previousPage} disabled={page === 0} onClick={() => onPageChange(page - 1)}>
         <Icon name="chevronLeft" />
       </button>
-      <button type="button" className="msf-icon-button" aria-label={labels.nextPage} disabled={page >= lastPage} onClick={() => onPageChange(page + 1)}>
+      <button type="button" className="fc-icon-button" aria-label={labels.nextPage} disabled={page >= lastPage} onClick={() => onPageChange(page + 1)}>
         <Icon name="chevronRight" />
       </button>
     </div>

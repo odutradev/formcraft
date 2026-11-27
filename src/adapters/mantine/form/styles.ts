@@ -1,5 +1,5 @@
 export const formStyles = `
-.msf-mantine-form {
+.fc-mantine-form {
   width: 100%;
 }
 `;

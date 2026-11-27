@@ -1,7 +1,7 @@
 export const subGroupListStyles = `
-.msf-subgroup-list {
+.fc-subgroup-list {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--msf-spacing) * 2);
+  gap: calc(var(--fc-spacing) * 2);
 }
 `;

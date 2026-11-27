@@ -17,27 +17,27 @@ const Form = ({ header, isLoading, children }: FormProps) => {
   const { token } = theme.useToken();
 
   const style: CssVariables = {
-    "--msf-antd-space-xs": `${token.paddingXS}px`,
-    "--msf-antd-space-sm": `${token.paddingSM}px`,
-    "--msf-antd-space-md": `${token.padding}px`,
-    "--msf-antd-space-lg": `${token.paddingLG}px`,
-    "--msf-antd-radius": `${token.borderRadiusLG}px`,
-    "--msf-antd-border": token.colorBorderSecondary,
-    "--msf-antd-subtle": token.colorFillQuaternary,
-    "--msf-antd-primary": token.colorPrimary,
-    "--msf-antd-text-secondary": token.colorTextSecondary,
-    "--msf-antd-error": token.colorError,
-    "--msf-antd-success": token.colorSuccess,
-    "--msf-antd-surface": token.colorBgContainer
+    "--fc-antd-space-xs": `${token.paddingXS}px`,
+    "--fc-antd-space-sm": `${token.paddingSM}px`,
+    "--fc-antd-space-md": `${token.padding}px`,
+    "--fc-antd-space-lg": `${token.paddingLG}px`,
+    "--fc-antd-radius": `${token.borderRadiusLG}px`,
+    "--fc-antd-border": token.colorBorderSecondary,
+    "--fc-antd-subtle": token.colorFillQuaternary,
+    "--fc-antd-primary": token.colorPrimary,
+    "--fc-antd-text-secondary": token.colorTextSecondary,
+    "--fc-antd-error": token.colorError,
+    "--fc-antd-success": token.colorSuccess,
+    "--fc-antd-surface": token.colorBgContainer
   };
 
   return (
     <ConfigProvider locale={antdLocales[locale]}>
-      <style href="multi-step-form-antd" precedence="default">
+      <style href="formcraft-antd" precedence="default">
         {stylesheet}
       </style>
       <Spin spinning={isLoading} description={labels.processing} size="large">
-        <form noValidate className="msf-antd-form" style={style} onSubmit={(event) => event.preventDefault()}>
+        <form noValidate className="fc-antd-form" style={style} onSubmit={(event) => event.preventDefault()}>
           {header}
           {children}
         </form>

@@ -16,23 +16,23 @@ const TreeNode = ({ item, config, level, isExpandedByDefault, onSelect }: TreeNo
   const children = Array.isArray(rawChildren) ? (rawChildren as FormRow[]) : [];
   const hasChildren = children.length > 0;
   const text = `${toText(item[config.valueKey])} - ${toText(item[config.labelKey])}`;
-  const style: CssVariables = { "--msf-level": level };
+  const style: CssVariables = { "--fc-level": level };
 
   const handleToggle = () => setIsExpanded((previous) => !previous);
   const handleSelect = () => onSelect(item);
 
   return (
     <div role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
-      <div className="msf-enchase-tree-node" style={style}>
+      <div className="fc-enchase-tree-node" style={style}>
         {hasChildren ? (
           <Button variant="ghost" size="sm" iconOnly aria-label={isExpanded ? labels.collapse : labels.expand} onClick={handleToggle}>
             {isExpanded ? <ChevronDownIcon size={16} /> : <ChevronRightIcon size={16} />}
           </Button>
         ) : (
-          <span className="msf-enchase-tree-spacer" />
+          <span className="fc-enchase-tree-spacer" />
         )}
         {!hasChildren && <Checkbox aria-label={text} onChange={handleSelect} />}
-        <button type="button" className="msf-enchase-tree-label" onClick={hasChildren ? handleToggle : handleSelect}>
+        <button type="button" className="fc-enchase-tree-label" onClick={hasChildren ? handleToggle : handleSelect}>
           {text}
         </button>
       </div>

@@ -10,8 +10,8 @@ const Pagination = ({ page, count, rowsPerPage, rowsPerPageOptions, onPageChange
   const to = Math.min(count, (page + 1) * rowsPerPage);
 
   return (
-    <div className="msf-enchase-pagination">
-      <div className="msf-enchase-pagination-size">
+    <div className="fc-enchase-pagination">
+      <div className="fc-enchase-pagination-size">
         <span>{labels.rowsPerPage}</span>
         <Select
           aria-label={labels.rowsPerPage}

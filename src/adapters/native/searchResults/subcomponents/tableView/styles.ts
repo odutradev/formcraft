@@ -1,5 +1,5 @@
 export const searchTableViewStyles = `
-.msf-results-table th {
+.fc-results-table th {
   position: sticky;
   top: 0;
   z-index: 1;

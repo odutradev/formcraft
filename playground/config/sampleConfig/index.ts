@@ -1,6 +1,6 @@
 import searchPeople from "@playground/functions/searchPeople";
 
-import type { FormConfig, FormRow } from "multi-step-form";
+import type { FormConfig, FormRow } from "formcraft";
 
 const sampleConfig: FormConfig = {
   formStyle: "collapsed",

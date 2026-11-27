@@ -15,7 +15,7 @@ const FieldFrame = ({ id, label, tooltip, hint, error, isRequired, children }: F
     required={isRequired}
     validateStatus={error ? "error" : undefined}
     help={error ?? hint}
-    className="msf-antd-item"
+    className="fc-antd-item"
     style={itemStyle}
   >
     {children}

@@ -1,27 +1,27 @@
 export const chipStyles = `
-.msf-chip {
+.fc-chip {
   display: inline-flex;
   max-width: 100%;
   min-height: 1.75rem;
   align-items: center;
-  gap: calc(var(--msf-spacing) * 0.25);
-  padding: 0 calc(var(--msf-spacing) * 0.5) 0 calc(var(--msf-spacing) * 1.25);
-  border: 1px solid color-mix(in srgb, var(--msf-color-primary) 25%, transparent);
+  gap: calc(var(--fc-spacing) * 0.25);
+  padding: 0 calc(var(--fc-spacing) * 0.5) 0 calc(var(--fc-spacing) * 1.25);
+  border: 1px solid color-mix(in srgb, var(--fc-color-primary) 25%, transparent);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--msf-color-primary) 10%, var(--msf-color-background));
-  color: color-mix(in srgb, var(--msf-color-primary) 75%, var(--msf-color-text));
+  background: color-mix(in srgb, var(--fc-color-primary) 10%, var(--fc-color-background));
+  color: color-mix(in srgb, var(--fc-color-primary) 75%, var(--fc-color-text));
   font-size: 0.8125rem;
   font-weight: 600;
 }
-.msf-chip:not(:has(.msf-chip-remove)) {
-  padding-right: calc(var(--msf-spacing) * 1.25);
+.fc-chip:not(:has(.fc-chip-remove)) {
+  padding-right: calc(var(--fc-spacing) * 1.25);
 }
-.msf-chip-label {
+.fc-chip-label {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.msf-chip-remove {
+.fc-chip-remove {
   display: inline-flex;
   width: 1.25rem;
   height: 1.25rem;
@@ -34,13 +34,13 @@ export const chipStyles = `
   color: inherit;
   cursor: pointer;
   opacity: 0.7;
-  transition: background-color var(--msf-transition), opacity var(--msf-transition);
+  transition: background-color var(--fc-transition), opacity var(--fc-transition);
 }
-.msf-chip-remove:hover {
-  background: color-mix(in srgb, var(--msf-color-primary) 20%, transparent);
+.fc-chip-remove:hover {
+  background: color-mix(in srgb, var(--fc-color-primary) 20%, transparent);
   opacity: 1;
 }
-.msf-chip-remove .msf-icon {
+.fc-chip-remove .fc-icon {
   width: 0.875rem;
   height: 0.875rem;
 }

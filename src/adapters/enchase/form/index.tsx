@@ -10,14 +10,14 @@ const Form = ({ header, isLoading, children }: FormProps) => {
 
   return (
     <>
-      <style href="multi-step-form-enchase" precedence="default">
+      <style href="formcraft-enchase" precedence="default">
         {stylesheet}
       </style>
-      <form noValidate className="msf-enchase-form" onSubmit={(event) => event.preventDefault()}>
+      <form noValidate className="fc-enchase-form" onSubmit={(event) => event.preventDefault()}>
         {header}
         {children}
         {isLoading && (
-          <div className="msf-enchase-overlay">
+          <div className="fc-enchase-overlay">
             <Loading text={labels.processing} />
           </div>
         )}

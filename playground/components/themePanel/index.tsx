@@ -2,16 +2,16 @@ import { colorPresets, fontOptions, localeOptions } from "@playground/data/style
 import "./styles.css";
 
 import type { StyleSettings } from "@playground/types";
-import type { FormLocaleOption } from "multi-step-form";
+import type { FormLocaleOption } from "formcraft";
 import type { ThemePanelProps } from "./types";
 
 const ThemePanel = ({ settings, onSettingsChange, onReset }: ThemePanelProps) => {
   const update = <Key extends keyof StyleSettings>(key: Key, value: StyleSettings[Key]) => onSettingsChange((previous) => ({ ...previous, [key]: value }));
   const snippet = [
     ".meu-form {",
-    `  --msf-color-primary: ${settings.primaryColor};`,
-    `  --msf-radius: ${settings.borderRadius}px;`,
-    `  --msf-spacing: ${settings.spacing}px;`,
+    `  --fc-color-primary: ${settings.primaryColor};`,
+    `  --fc-radius: ${settings.borderRadius}px;`,
+    `  --fc-spacing: ${settings.spacing}px;`,
     "}"
   ];
 
@@ -24,7 +24,7 @@ const ThemePanel = ({ settings, onSettingsChange, onReset }: ThemePanelProps) =>
         </button>
       </div>
       <p className="theme-panel-hint">
-        Os controles mudam ao mesmo tempo o tema de cada biblioteca (MUI, Mantine, Ant Design, Chakra e Enchase) e as variáveis --msf-* do adapter nativo. O
+        Os controles mudam ao mesmo tempo o tema de cada biblioteca (MUI, Mantine, Ant Design, Chakra e Enchase) e as variáveis --fc-* do adapter nativo. O
         idioma vale para todos os formulários.
       </p>
 
@@ -83,7 +83,7 @@ const ThemePanel = ({ settings, onSettingsChange, onReset }: ThemePanelProps) =>
             </option>
           ))}
         </select>
-        <span className="theme-panel-hint">Prop locale no MultiStepFormProvider global. Navegador: {navigator.language}</span>
+        <span className="theme-panel-hint">Prop locale no FormcraftProvider global. Navegador: {navigator.language}</span>
       </label>
 
       <div className="theme-snippet">

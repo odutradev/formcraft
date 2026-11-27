@@ -13,7 +13,7 @@ import isVisible from "@functions/isVisible";
 import createFormStore from "@engine";
 
 import type { ActionContext, FormAction, FormConfig, FormErrors, FormStep } from "@typings";
-import type { StepPointer, UseMultiStepFormOptions } from "./types";
+import type { StepPointer, UseFormcraftOptions } from "./types";
 
 const getVisibleSteps = (steps: FormStep[], context: ActionContext): FormStep[] => steps.filter((step) => isVisible(step, context));
 
@@ -22,7 +22,7 @@ const getStepFields = (step: FormStep, context: ActionContext, preSets: FormConf
 
 const hasErrors = (errors: FormErrors): boolean => Object.keys(errors).length > 0;
 
-const useMultiStepForm = ({ config, initialData, requiredMessage, onSubmit, reportError }: UseMultiStepFormOptions) => {
+const useFormcraft = ({ config, initialData, requiredMessage, onSubmit, reportError }: UseFormcraftOptions) => {
   const [store] = useState(() => createFormStore(initialData));
   const state = useFormStore(store);
   const [stepPointer, setStepPointer] = useState<StepPointer>({ index: 0 });
@@ -112,4 +112,4 @@ const useMultiStepForm = ({ config, initialData, requiredMessage, onSubmit, repo
   };
 };
 
-export default useMultiStepForm;
+export default useFormcraft;

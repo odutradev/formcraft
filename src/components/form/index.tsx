@@ -7,9 +7,9 @@ import FormRenderer from "@components/formRenderer";
 import useFormLocale from "@hooks/useFormLocale";
 import { labelsByLocale } from "@labels";
 
-import type { MultiStepFormProps } from "./types";
+import type { FormProps } from "./types";
 
-const MultiStepForm = ({ config, components, locale, labels, onError, isDevToolsEnabled, ...props }: MultiStepFormProps) => {
+const Form = ({ config, components, locale, labels, onError, isDevToolsEnabled, ...props }: FormProps) => {
   const defaults = useFormDefaults();
   const resolvedLocale = useFormLocale(locale ?? defaults.locale ?? "auto");
 
@@ -36,4 +36,4 @@ const MultiStepForm = ({ config, components, locale, labels, onError, isDevTools
   );
 };
 
-export default MultiStepForm;
+export default Form;

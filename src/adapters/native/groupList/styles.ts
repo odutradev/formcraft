@@ -1,7 +1,7 @@
 export const groupListStyles = `
-.msf-group-list {
+.fc-group-list {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--msf-spacing) * 3);
+  gap: calc(var(--fc-spacing) * 3);
 }
 `;

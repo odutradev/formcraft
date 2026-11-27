@@ -8,9 +8,9 @@ const SearchBar = ({ isLoading, onSearch, children }: SearchBarProps) => {
   const { labels } = useFormRuntime();
 
   return (
-    <div className="msf-search-bar">
-      <div className="msf-search-filters">{children}</div>
-      <button type="button" className="msf-button msf-button--contained msf-button--primary" disabled={isLoading} onClick={onSearch}>
+    <div className="fc-search-bar">
+      <div className="fc-search-filters">{children}</div>
+      <button type="button" className="fc-button fc-button--contained fc-button--primary" disabled={isLoading} onClick={onSearch}>
         {isLoading ? <Spinner /> : <Icon name="search" />}
         {labels.search}
       </button>

@@ -13,8 +13,8 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
 
   if (variant === "plain") {
     return (
-      <div className="msf-enchase-stack msf-enchase-group-plain" data-highlighted={isHighlighted || undefined}>
-        {title && <strong className="msf-enchase-group-title">{title}</strong>}
+      <div className="fc-enchase-stack fc-enchase-group-plain" data-highlighted={isHighlighted || undefined}>
+        {title && <strong className="fc-enchase-group-title">{title}</strong>}
         {children}
       </div>
     );
@@ -35,12 +35,12 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
       aria-label={isCollapsed ? labels.expand : labels.collapse}
       onClick={handleButtonClick}
     >
-      <ChevronDownIcon size={18} className="msf-enchase-group-chevron" data-collapsed={isCollapsed || undefined} />
+      <ChevronDownIcon size={18} className="fc-enchase-group-chevron" data-collapsed={isCollapsed || undefined} />
     </Button>
   );
 
   const header = title && (
-    <span className="msf-enchase-group-header" data-clickable={isCollapsible || undefined} onClick={isCollapsible ? onToggle : undefined}>
+    <span className="fc-enchase-group-header" data-clickable={isCollapsible || undefined} onClick={isCollapsible ? onToggle : undefined}>
       {title}
     </span>
   );
@@ -53,7 +53,7 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
       animation={false}
       header={header || undefined}
       headerExtra={toggle || undefined}
-      className="msf-enchase-group"
+      className="fc-enchase-group"
       data-variant={variant}
       data-seamless={isSeamless || undefined}
       data-collapsed={isCollapsed || undefined}

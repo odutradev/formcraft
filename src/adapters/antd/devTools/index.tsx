@@ -10,7 +10,7 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
   const stepsWithTestData = steps.filter((step) => step.hasTestData);
 
   const sectionTitle = (title: string) => (
-    <Typography.Text type="secondary" strong className="msf-antd-devtools-section">
+    <Typography.Text type="secondary" strong className="fc-antd-devtools-section">
       {title}
     </Typography.Text>
   );
@@ -18,7 +18,7 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
   return (
     <Card
       size="small"
-      className="msf-antd-devtools"
+      className="fc-antd-devtools"
       title={
         <Typography.Text type="danger">
           <BugOutlined /> DevTools
@@ -70,8 +70,8 @@ const DevTools = ({ steps, values, schema, onFillStep, onFillAll, onClearStep, o
           </Button>
         </Flex>
 
-        {isStateVisible && <pre className="msf-antd-devtools-code">{JSON.stringify(values, null, 2)}</pre>}
-        {isSchemaVisible && <pre className="msf-antd-devtools-code">{JSON.stringify(schema, null, 2)}</pre>}
+        {isStateVisible && <pre className="fc-antd-devtools-code">{JSON.stringify(values, null, 2)}</pre>}
+        {isSchemaVisible && <pre className="fc-antd-devtools-code">{JSON.stringify(schema, null, 2)}</pre>}
       </Flex>
     </Card>
   );

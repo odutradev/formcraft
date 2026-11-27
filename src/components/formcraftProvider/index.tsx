@@ -4,9 +4,9 @@ import mergeFormDefaults from "@functions/mergeFormDefaults";
 import FormDefaultsContext from "@context/formDefaults";
 import useFormDefaults from "@hooks/useFormDefaults";
 
-import type { MultiStepFormProviderProps } from "./types";
+import type { FormcraftProviderProps } from "./types";
 
-const MultiStepFormProvider = ({ components, locale, labels, fieldPreSets, formStyle, onError, isDevToolsEnabled, children }: MultiStepFormProviderProps) => {
+const FormcraftProvider = ({ components, locale, labels, fieldPreSets, formStyle, onError, isDevToolsEnabled, children }: FormcraftProviderProps) => {
   const parentDefaults = useFormDefaults();
 
   const defaults = useMemo(
@@ -17,4 +17,4 @@ const MultiStepFormProvider = ({ components, locale, labels, fieldPreSets, formS
   return <FormDefaultsContext value={defaults}>{children}</FormDefaultsContext>;
 };
 
-export default MultiStepFormProvider;
+export default FormcraftProvider;

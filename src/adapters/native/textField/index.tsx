@@ -24,10 +24,10 @@ const TextField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
 
   return (
     <FieldFrame id={id} helperId={helperId} field={field} isRequired={isRequired} error={error} hint={hint}>
-      <div className={joinClassNames("msf-control", isDisabled && "msf-control--disabled")}>
+      <div className={joinClassNames("fc-control", isDisabled && "fc-control--disabled")}>
         <input
           id={id}
-          className="msf-input"
+          className="fc-input"
           type={isNumericText ? "text" : (field.type ?? "text")}
           inputMode={isNumericText ? "numeric" : undefined}
           value={toText(value)}
@@ -39,10 +39,10 @@ const TextField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
           onChange={(event) => onChange(event.target.value)}
           onKeyDown={handleKeyDown}
         />
-        {field.type === "percentage" && <span className="msf-adornment">%</span>}
-        {!onOpenSearch && field.icon && <span className="msf-adornment">{field.icon}</span>}
+        {field.type === "percentage" && <span className="fc-adornment">%</span>}
+        {!onOpenSearch && field.icon && <span className="fc-adornment">{field.icon}</span>}
         {onOpenSearch && (
-          <button type="button" className="msf-icon-button" aria-label={labels.openSearch} onClick={onOpenSearch}>
+          <button type="button" className="fc-icon-button" aria-label={labels.openSearch} onClick={onOpenSearch}>
             {field.icon ?? <Icon name="search" />}
           </button>
         )}

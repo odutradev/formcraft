@@ -23,8 +23,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: color-mix(in srgb, var(--msf-color-primary) 12%, transparent);
-  color: var(--msf-color-primary);
+  background: color-mix(in srgb, var(--fc-color-primary) 12%, transparent);
+  color: var(--fc-color-primary);
   font-size: 0.875rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;

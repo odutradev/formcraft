@@ -1,11 +1,11 @@
-import { enchaseComponents } from "multi-step-form/enchase";
-import { mantineComponents } from "multi-step-form/mantine";
-import { chakraComponents } from "multi-step-form/chakra";
-import { antdComponents } from "multi-step-form/antd";
-import { muiComponents } from "multi-step-form/mui";
+import { enchaseComponents } from "formcraft/enchase";
+import { mantineComponents } from "formcraft/mantine";
+import { chakraComponents } from "formcraft/chakra";
+import { antdComponents } from "formcraft/antd";
+import { muiComponents } from "formcraft/mui";
 
 import type { AdapterName } from "@playground/types";
-import type { FormComponents } from "multi-step-form";
+import type { FormComponents } from "formcraft";
 
 export const adapterNames: AdapterName[] = ["native", "mui", "mantine", "antd", "chakra", "enchase"];
 

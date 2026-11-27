@@ -47,15 +47,15 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
   };
 
   return (
-    <div className="msf-enchase-file-field">
+    <div className="fc-enchase-file-field">
       <input ref={inputRef} type="file" accept=".pdf" hidden aria-label={field.label} onChange={handleFileChange} />
-      <div className="msf-enchase-file" data-error={error ? true : undefined} data-done={hasSavedFile || undefined}>
-        <span className="msf-enchase-file-order" aria-hidden="true">
+      <div className="fc-enchase-file" data-error={error ? true : undefined} data-done={hasSavedFile || undefined}>
+        <span className="fc-enchase-file-order" aria-hidden="true">
           {hasSavedFile ? <CheckIcon size={14} /> : orderNumber}
         </span>
-        <div className="msf-enchase-file-content">
-          <div className="msf-enchase-file-line">
-            <div className="msf-enchase-file-title">
+        <div className="fc-enchase-file-content">
+          <div className="fc-enchase-file-line">
+            <div className="fc-enchase-file-title">
               <strong>{field.label}</strong>
               {isRequired && !fileValue && (
                 <Badge variant="warning" size="sm">
@@ -64,9 +64,9 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
               )}
             </div>
             {fileValue ? (
-              <div className="msf-enchase-file-title">
-                <FileText size={16} className="msf-enchase-file-icon" aria-hidden="true" />
-                <span className="msf-enchase-file-name">{fileValue.file.name}</span>
+              <div className="fc-enchase-file-title">
+                <FileText size={16} className="fc-enchase-file-icon" aria-hidden="true" />
+                <span className="fc-enchase-file-name">{fileValue.file.name}</span>
                 {!isEditing && !isReadOnly && (
                   <Button variant="ghost" size="sm" iconOnly aria-label={labels.fileEditDescription} onClick={handleEditDescription}>
                     <Pencil size={16} aria-hidden="true" />
@@ -87,9 +87,9 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
               )
             )}
           </div>
-          {hasSavedFile && fileValue?.description && <p className="msf-enchase-muted">{fileValue.description}</p>}
+          {hasSavedFile && fileValue?.description && <p className="fc-enchase-muted">{fileValue.description}</p>}
           {fileValue && isEditing && (
-            <div className="msf-enchase-file-description">
+            <div className="fc-enchase-file-description">
               <Textarea
                 fullWidth
                 label={labels.fileDescription}
@@ -105,7 +105,7 @@ const FileField = ({ field, value, error, orderNumber, isRequired, isReadOnly, o
         </div>
       </div>
       {error && (
-        <p className="msf-enchase-error" role="alert">
+        <p className="fc-enchase-error" role="alert">
           {error}
         </p>
       )}

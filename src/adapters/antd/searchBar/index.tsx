@@ -9,8 +9,8 @@ const SearchBar = ({ isLoading, onSearch, children }: SearchBarProps) => {
   const { labels } = useFormRuntime();
 
   return (
-    <div className="msf-antd-search-bar">
-      <div className="msf-antd-search-filters">{children}</div>
+    <div className="fc-antd-search-bar">
+      <div className="fc-antd-search-filters">{children}</div>
       <Button type="primary" icon={<SearchOutlined />} loading={isLoading} onClick={onSearch}>
         {labels.search}
       </Button>

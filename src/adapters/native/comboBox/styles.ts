@@ -1,116 +1,116 @@
 export const comboBoxStyles = `
-.msf-combobox {
+.fc-combobox {
   cursor: pointer;
 }
-.msf-control--disabled.msf-combobox {
+.fc-control--disabled.fc-combobox {
   cursor: not-allowed;
 }
-.msf-combobox .msf-input {
+.fc-combobox .fc-input {
   text-overflow: ellipsis;
 }
-.msf-combobox-input--static {
+.fc-combobox-input--static {
   cursor: inherit;
   caret-color: transparent;
 }
-.msf-combobox-clear {
+.fc-combobox-clear {
   width: 1.5rem;
   height: 1.5rem;
 }
-.msf-combobox-clear .msf-icon {
+.fc-combobox-clear .fc-icon {
   width: 1rem;
   height: 1rem;
 }
-.msf-combobox-arrow {
+.fc-combobox-arrow {
   display: inline-flex;
   flex-shrink: 0;
-  color: var(--msf-color-text-secondary);
-  transition: transform 0.2s ease, color var(--msf-transition);
+  color: var(--fc-color-text-secondary);
+  transition: transform 0.2s ease, color var(--fc-transition);
 }
-.msf-combobox--open .msf-combobox-arrow {
-  color: var(--msf-color-primary);
+.fc-combobox--open .fc-combobox-arrow {
+  color: var(--fc-color-primary);
   transform: rotate(180deg);
 }
-.msf-listbox {
+.fc-listbox {
   position: fixed;
   inset: auto;
   max-height: 16rem;
   margin: 0;
-  padding: calc(var(--msf-spacing) * 0.5);
+  padding: calc(var(--fc-spacing) * 0.5);
   overflow: auto;
-  border: 1px solid var(--msf-color-border);
-  border-radius: var(--msf-radius);
-  background: var(--msf-color-background);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius);
+  background: var(--fc-color-background);
   box-shadow: 0 12px 32px -8px rgb(15 23 42 / 0.25), 0 2px 6px rgb(15 23 42 / 0.08);
-  color: var(--msf-color-text);
-  font-family: var(--msf-font-family);
+  color: var(--fc-color-text);
+  font-family: var(--fc-font-family);
   font-size: 0.9375rem;
   list-style: none;
 }
-.msf-listbox:popover-open {
-  animation: msf-listbox-in 0.12s ease-out;
+.fc-listbox:popover-open {
+  animation: fc-listbox-in 0.12s ease-out;
 }
-.msf-option {
+.fc-option {
   display: flex;
   align-items: center;
-  gap: var(--msf-spacing);
+  gap: var(--fc-spacing);
   min-height: 2.25rem;
-  padding: calc(var(--msf-spacing) * 0.75) var(--msf-spacing);
-  border-radius: calc(var(--msf-radius) * 0.75);
+  padding: calc(var(--fc-spacing) * 0.75) var(--fc-spacing);
+  border-radius: calc(var(--fc-radius) * 0.75);
   cursor: pointer;
 }
-.msf-option--active {
-  background: color-mix(in srgb, var(--msf-color-primary) 8%, transparent);
+.fc-option--active {
+  background: color-mix(in srgb, var(--fc-color-primary) 8%, transparent);
 }
-.msf-option--selected {
-  color: var(--msf-color-primary);
+.fc-option--selected {
+  color: var(--fc-color-primary);
   font-weight: 600;
 }
-.msf-option > .msf-icon {
+.fc-option > .fc-icon {
   width: 1.125rem;
   height: 1.125rem;
-  color: var(--msf-color-primary);
+  color: var(--fc-color-primary);
 }
-.msf-option-label {
+.fc-option-label {
   min-width: 0;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.msf-option-check {
+.fc-option-check {
   display: inline-flex;
   width: 1.125rem;
   height: 1.125rem;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--msf-color-border-strong);
+  border: 1.5px solid var(--fc-color-border-strong);
   border-radius: 4px;
-  background: var(--msf-color-background);
-  color: var(--msf-color-primary-contrast);
+  background: var(--fc-color-background);
+  color: var(--fc-color-primary-contrast);
 }
-.msf-option--selected .msf-option-check {
-  border-color: var(--msf-color-primary);
-  background: var(--msf-color-primary);
+.fc-option--selected .fc-option-check {
+  border-color: var(--fc-color-primary);
+  background: var(--fc-color-primary);
 }
-.msf-option-check .msf-icon {
+.fc-option-check .fc-icon {
   width: 0.875rem;
   height: 0.875rem;
 }
-.msf-listbox-empty {
-  padding: calc(var(--msf-spacing) * 1.5) var(--msf-spacing);
-  color: var(--msf-color-text-secondary);
+.fc-listbox-empty {
+  padding: calc(var(--fc-spacing) * 1.5) var(--fc-spacing);
+  color: var(--fc-color-text-secondary);
   font-size: 0.875rem;
   text-align: center;
 }
-@keyframes msf-listbox-in {
+@keyframes fc-listbox-in {
   from {
     opacity: 0;
     transform: translateY(-4px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .msf-listbox:popover-open {
+  .fc-listbox:popover-open {
     animation: none;
   }
 }

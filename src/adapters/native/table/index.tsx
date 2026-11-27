@@ -17,21 +17,21 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
     setExpandedKeys((previous) => (previous.includes(rowKey) ? previous.filter((key) => key !== rowKey) : [...previous, rowKey]));
 
   return (
-    <div className="msf-table">
-      {label && <p className="msf-table-label">{label}</p>}
-      <div className="msf-table-scroll">
-        <table className="msf-table-grid">
+    <div className="fc-table">
+      {label && <p className="fc-table-label">{label}</p>}
+      <div className="fc-table-scroll">
+        <table className="fc-table-grid">
           <thead>
             <tr>
               {isExpandable && (
-                <th className="msf-table-toggle-cell">
-                  <span className="msf-visually-hidden">{labels.expand}</span>
+                <th className="fc-table-toggle-cell">
+                  <span className="fc-visually-hidden">{labels.expand}</span>
                 </th>
               )}
               {columns.map((column) => (
                 <th key={column.key}>{column.header}</th>
               ))}
-              {hasActions && <th className="msf-table-actions-cell">{labels.actions}</th>}
+              {hasActions && <th className="fc-table-actions-cell">{labels.actions}</th>}
             </tr>
           </thead>
           <tbody>
@@ -45,11 +45,11 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                 <Fragment key={rowKey}>
                   <tr>
                     {isExpandable && (
-                      <td className="msf-table-toggle-cell">
+                      <td className="fc-table-toggle-cell">
                         {hasDetail && (
                           <button
                             type="button"
-                            className="msf-icon-button"
+                            className="fc-icon-button"
                             aria-expanded={isExpanded}
                             aria-label={isExpanded ? labels.collapse : labels.expand}
                             onClick={() => handleToggleRow(rowKey)}
@@ -63,16 +63,16 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                       <td key={column.key}>{renderCell(column, row)}</td>
                     ))}
                     {hasActions && (
-                      <td className="msf-table-actions-cell">
-                        <div className="msf-row-actions">
+                      <td className="fc-table-actions-cell">
+                        <div className="fc-row-actions">
                           {actions.map((action) => (
                             <button
                               key={action.label}
                               type="button"
-                              className="msf-button msf-button--text msf-button--small"
+                              className="fc-button fc-button--text fc-button--small"
                               onClick={() => onAction(action, row)}
                             >
-                              {action.icon && <span className="msf-button-icon">{action.icon}</span>}
+                              {action.icon && <span className="fc-button-icon">{action.icon}</span>}
                               {action.label}
                             </button>
                           ))}
@@ -81,7 +81,7 @@ const Table = ({ label, rows, columns, actions, isReadOnly, getRowKey, renderCel
                     )}
                   </tr>
                   {isExpanded && hasDetail && (
-                    <tr className="msf-table-detail">
+                    <tr className="fc-table-detail">
                       <td colSpan={totalColumns}>{rowDetail}</td>
                     </tr>
                   )}

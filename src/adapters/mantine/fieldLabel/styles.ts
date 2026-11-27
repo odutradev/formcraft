@@ -1,16 +1,16 @@
 export const fieldLabelStyles = `
-.msf-mantine-label {
+.fc-mantine-label {
   display: inline-flex;
   align-items: center;
   gap: calc(var(--mantine-spacing-xs) / 2);
 }
 
-.msf-mantine-label-icon {
+.fc-mantine-label-icon {
   color: var(--mantine-color-dimmed);
   cursor: help;
 }
 
-.msf-mantine-tooltip {
+.fc-mantine-tooltip {
   white-space: pre-line;
 }
 `;

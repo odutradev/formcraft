@@ -6,7 +6,7 @@ import type { Plugin } from "vite";
 
 const resolvePath = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
-const packageName = "multi-step-form";
+const packageName = "formcraft";
 
 const watchLibraryBuild = (): Plugin => ({
   name: "watch-library-build",

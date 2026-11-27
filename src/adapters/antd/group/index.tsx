@@ -13,7 +13,7 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
 
   if (variant === "plain") {
     return (
-      <div className="msf-antd-stack msf-antd-group-plain" data-highlighted={isHighlighted || undefined}>
+      <div className="fc-antd-stack fc-antd-group-plain" data-highlighted={isHighlighted || undefined}>
         {title && <Typography.Text strong>{title}</Typography.Text>}
         {children}
       </div>
@@ -26,7 +26,7 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
   };
 
   const header = title && (
-    <div className="msf-antd-group-title" data-clickable={isCollapsible || undefined} onClick={isCollapsible ? onToggle : undefined}>
+    <div className="fc-antd-group-title" data-clickable={isCollapsible || undefined} onClick={isCollapsible ? onToggle : undefined}>
       {title}
     </div>
   );
@@ -38,7 +38,7 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
       aria-controls={contentId}
       aria-expanded={!isCollapsed}
       aria-label={isCollapsed ? labels.expand : labels.collapse}
-      icon={<DownOutlined className="msf-antd-group-chevron" data-collapsed={isCollapsed || undefined} />}
+      icon={<DownOutlined className="fc-antd-group-chevron" data-collapsed={isCollapsed || undefined} />}
       onClick={handleButtonClick}
     />
   );

@@ -24,7 +24,7 @@ const SearchResults = ({ results, columns, viewMode, treeConfig, isLoading, isPa
   const renderContent = () => {
     if (isLoading) {
       return (
-        <div className="msf-results-empty" role="status" aria-live="polite">
+        <div className="fc-results-empty" role="status" aria-live="polite">
           <Spinner isLarge />
           <p>{labels.searching}</p>
         </div>
@@ -32,7 +32,7 @@ const SearchResults = ({ results, columns, viewMode, treeConfig, isLoading, isPa
     }
     if (!results.length) {
       return (
-        <div className="msf-results-empty">
+        <div className="fc-results-empty">
           <Icon name="search" />
           <p>{labels.noResults}</p>
         </div>
@@ -44,7 +44,7 @@ const SearchResults = ({ results, columns, viewMode, treeConfig, isLoading, isPa
 
   return (
     <>
-      <div className="msf-results">{renderContent()}</div>
+      <div className="fc-results">{renderContent()}</div>
       {shouldPaginate && !isLoading && results.length > 0 && (
         <Pagination
           count={results.length}

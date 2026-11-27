@@ -6,7 +6,7 @@ import type { FormRuntime } from "@typings";
 
 const useFormRuntime = (): FormRuntime => {
   const runtime = useContext(FormRuntimeContext);
-  if (!runtime) throw new Error("useFormRuntime must be used inside MultiStepForm");
+  if (!runtime) throw new Error("useFormRuntime must be used inside Form");
   return runtime;
 };
 

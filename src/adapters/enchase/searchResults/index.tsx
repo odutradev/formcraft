@@ -24,16 +24,16 @@ const SearchResults = ({ results, columns, viewMode, treeConfig, isLoading, isPa
   const renderContent = () => {
     if (isLoading) {
       return (
-        <div className="msf-enchase-results-state">
+        <div className="fc-enchase-results-state">
           <Loading text={labels.searching} />
         </div>
       );
     }
     if (!results.length) {
       return (
-        <div className="msf-enchase-results-state">
+        <div className="fc-enchase-results-state">
           <SearchX size={32} aria-hidden="true" />
-          <p className="msf-enchase-muted">{labels.noResults}</p>
+          <p className="fc-enchase-muted">{labels.noResults}</p>
         </div>
       );
     }
@@ -42,8 +42,8 @@ const SearchResults = ({ results, columns, viewMode, treeConfig, isLoading, isPa
   };
 
   return (
-    <div className="msf-enchase-stack">
-      <div className="msf-enchase-results">{renderContent()}</div>
+    <div className="fc-enchase-stack">
+      <div className="fc-enchase-results">{renderContent()}</div>
       {shouldPaginate && !isLoading && results.length > 0 && (
         <Pagination
           page={page}

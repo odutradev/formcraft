@@ -13,7 +13,7 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
 
   if (variant === "plain") {
     return (
-      <Stack gap="sm" className="msf-mantine-group-plain" data-highlighted={isHighlighted || undefined}>
+      <Stack gap="sm" className="fc-mantine-group-plain" data-highlighted={isHighlighted || undefined}>
         {title && (
           <Text fw={600} c={isHighlighted ? "var(--mantine-primary-color-filled)" : undefined}>
             {title}
@@ -30,12 +30,12 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
   };
 
   return (
-    <Paper withBorder={!isSeamless} radius="md" className="msf-mantine-group" data-variant={variant} data-seamless={isSeamless || undefined}>
+    <Paper withBorder={!isSeamless} radius="md" className="fc-mantine-group" data-variant={variant} data-seamless={isSeamless || undefined}>
       {title && (
         <MantineGroup
           justify="space-between"
           wrap="nowrap"
-          className="msf-mantine-group-header"
+          className="fc-mantine-group-header"
           data-clickable={isCollapsible || undefined}
           onClick={isCollapsible ? onToggle : undefined}
         >
@@ -51,13 +51,13 @@ const Group = ({ title, variant, isHighlighted, isSeamless, isCollapsible, isCol
               aria-label={isCollapsed ? labels.expand : labels.collapse}
               onClick={handleButtonClick}
             >
-              <IconChevronDown size={18} className="msf-mantine-group-chevron" data-collapsed={isCollapsed || undefined} />
+              <IconChevronDown size={18} className="fc-mantine-group-chevron" data-collapsed={isCollapsed || undefined} />
             </ActionIcon>
           )}
         </MantineGroup>
       )}
       <Collapse expanded={!isCollapsed} id={contentId}>
-        <Box className="msf-mantine-group-content">{children}</Box>
+        <Box className="fc-mantine-group-content">{children}</Box>
       </Collapse>
     </Paper>
   );

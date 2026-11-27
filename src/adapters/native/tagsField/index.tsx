@@ -31,13 +31,13 @@ const TagsField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
 
   return (
     <FieldFrame id={id} helperId={helperId} field={field} isRequired={isRequired} error={error} hint={isEditable ? labels.tagsHint : undefined}>
-      <div className={joinClassNames("msf-control", "msf-control--wrap", isDisabled && "msf-control--disabled")}>
+      <div className={joinClassNames("fc-control", "fc-control--wrap", isDisabled && "fc-control--disabled")}>
         {tags.map((tag) => (
           <Chip key={tag} label={tag} removeLabel={labels.remove} onRemove={isEditable ? () => onChange(tags.filter((item) => item !== tag)) : undefined} />
         ))}
         <input
           id={id}
-          className="msf-input"
+          className="fc-input"
           value={draft}
           required={isRequired && tags.length === 0}
           disabled={isDisabled}

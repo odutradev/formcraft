@@ -3,7 +3,7 @@ import TreeNode from "./subcomponents/treeNode";
 import type { TreeViewProps } from "./types";
 
 const TreeView = ({ results, config, isExpandedByDefault, onSelect }: TreeViewProps) => (
-  <div role="tree" className="msf-enchase-tree">
+  <div role="tree" className="fc-enchase-tree">
     {results.map((item, index) => (
       <TreeNode
         key={`${String(item[config.valueKey])}-${index}-${String(isExpandedByDefault)}`}

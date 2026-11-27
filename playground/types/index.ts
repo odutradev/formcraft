@@ -1,4 +1,4 @@
-import type { FormConfig, FormLocaleOption, MultiStepFormDefaults } from "multi-step-form";
+import type { FormConfig, FormLocaleOption, FormcraftDefaults } from "formcraft";
 
 export type AdapterName = "native" | "mui" | "mantine" | "antd" | "chakra" | "enchase";
 
@@ -34,5 +34,5 @@ export interface ShowcaseSection {
   description: string;
   features: string[];
   config: FormConfig;
-  defaults?: MultiStepFormDefaults;
+  defaults?: FormcraftDefaults;
 }

@@ -20,7 +20,7 @@ const Button = ({ label, icon, variant, color = "primary", placement, isDisabled
   );
 
   if (placement !== "field") return button;
-  return <div className="msf-antd-field-button">{button}</div>;
+  return <div className="fc-antd-field-button">{button}</div>;
 };
 
 export default Button;

@@ -1,21 +1,21 @@
 export const devToolsStyles = `
-.msf-antd-devtools {
+.fc-antd-devtools {
   border-style: dashed;
-  border-color: var(--msf-antd-error);
+  border-color: var(--fc-antd-error);
 }
 
-.msf-antd-devtools-section {
+.fc-antd-devtools-section {
   font-size: 0.75rem;
   text-transform: uppercase;
 }
 
-.msf-antd-devtools-code {
+.fc-antd-devtools-code {
   max-height: 20rem;
   margin: 0;
   overflow: auto;
-  padding: var(--msf-antd-space-sm);
-  border-radius: var(--msf-antd-radius);
-  background: var(--msf-antd-subtle);
+  padding: var(--fc-antd-space-sm);
+  border-radius: var(--fc-antd-radius);
+  background: var(--fc-antd-subtle);
   font-size: 0.75rem;
 }
 `;

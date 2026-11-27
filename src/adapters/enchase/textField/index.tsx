@@ -38,7 +38,7 @@ const TextField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
   if (!onOpenSearch) return input;
 
   return (
-    <div className="msf-enchase-input-action">
+    <div className="fc-enchase-input-action">
       {input}
       <Button type="button" variant="outline" iconOnly aria-label={labels.openSearch} onClick={onOpenSearch}>
         {field.icon ?? <Search size={18} aria-hidden="true" />}

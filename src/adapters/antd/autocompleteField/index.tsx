@@ -18,7 +18,7 @@ const AutocompleteField = ({ field, value, error, options, isRequired, isDisable
     disabled: isDisabled,
     open: isReadOnly ? false : undefined,
     status: error ? ("error" as const) : undefined,
-    className: "msf-antd-control"
+    className: "fc-antd-control"
   };
 
   const renderControl = () => {

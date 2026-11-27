@@ -38,7 +38,7 @@ const DateField = ({ field, value, error, isRequired, isDisabled, isReadOnly, on
         allowClear={!isReadOnly}
         status={error ? "error" : undefined}
         disabledDate={isDateDisabled}
-        className="msf-antd-control"
+        className="fc-antd-control"
         onChange={(selected: Dayjs | null) => onChange(selected ? selected.format(dateFormat) : null)}
       />
     </FieldFrame>

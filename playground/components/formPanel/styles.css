@@ -9,8 +9,8 @@
 }
 
 .panel-native {
-  background: var(--msf-color-background);
-  color: var(--msf-color-text);
+  background: var(--fc-color-background);
+  color: var(--fc-color-text);
 }
 
 .panel-header {

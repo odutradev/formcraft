@@ -1,29 +1,29 @@
 export const fileFieldStyles = `
-.msf-antd-file-field {
+.fc-antd-file-field {
   display: flex;
   flex-direction: column;
-  gap: var(--msf-antd-space-xs);
+  gap: var(--fc-antd-space-xs);
 }
 
-.msf-antd-file {
+.fc-antd-file {
   display: flex;
   align-items: flex-start;
-  gap: var(--msf-antd-space-sm);
-  padding: var(--msf-antd-space-sm);
-  border: 1px solid var(--msf-antd-border);
-  border-radius: var(--msf-antd-radius);
-  background: var(--msf-antd-surface);
+  gap: var(--fc-antd-space-sm);
+  padding: var(--fc-antd-space-sm);
+  border: 1px solid var(--fc-antd-border);
+  border-radius: var(--fc-antd-radius);
+  background: var(--fc-antd-surface);
 }
 
-.msf-antd-file[data-error] {
-  border-color: var(--msf-antd-error);
+.fc-antd-file[data-error] {
+  border-color: var(--fc-antd-error);
 }
 
-.msf-antd-file[data-done] {
-  border-color: var(--msf-antd-success);
+.fc-antd-file[data-done] {
+  border-color: var(--fc-antd-success);
 }
 
-.msf-antd-file-order {
+.fc-antd-file-order {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -31,46 +31,46 @@ export const fileFieldStyles = `
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
-  background: var(--msf-antd-subtle);
-  color: var(--msf-antd-primary);
+  background: var(--fc-antd-subtle);
+  color: var(--fc-antd-primary);
   font-weight: 600;
 }
 
-.msf-antd-file[data-done] .msf-antd-file-order {
-  background: var(--msf-antd-success);
-  color: var(--msf-antd-surface);
+.fc-antd-file[data-done] .fc-antd-file-order {
+  background: var(--fc-antd-success);
+  color: var(--fc-antd-surface);
 }
 
-.msf-antd-file-content {
+.fc-antd-file-content {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: var(--msf-antd-space-xs);
+  gap: var(--fc-antd-space-xs);
   min-width: 0;
 }
 
-.msf-antd-file-line {
+.fc-antd-file-line {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--msf-antd-space-xs);
+  gap: var(--fc-antd-space-xs);
 }
 
-.msf-antd-file-title {
+.fc-antd-file-title {
   display: flex;
   align-items: center;
-  gap: var(--msf-antd-space-xs);
+  gap: var(--fc-antd-space-xs);
   min-width: 0;
 }
 
-.msf-antd-file-icon {
-  color: var(--msf-antd-primary);
+.fc-antd-file-icon {
+  color: var(--fc-antd-primary);
 }
 
-.msf-antd-file-description {
+.fc-antd-file-description {
   display: flex;
   align-items: flex-end;
-  gap: var(--msf-antd-space-sm);
+  gap: var(--fc-antd-space-sm);
 }
 `;
