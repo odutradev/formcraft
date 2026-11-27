@@ -1,0 +1,23 @@
+.logo {
+  display: block;
+  width: auto;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.logo-block {
+  fill: #2b4bd6;
+}
+
+.logo-focus {
+  fill: #f2a93b;
+}
+
+.logo-word {
+  fill: #131a30;
+}
+
+.dark .logo-block,
+.dark .logo-word {
+  fill: #eef1fa;
+}

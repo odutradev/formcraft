@@ -1,5 +1,6 @@
 import { adapterOptions, colorModeOptions, tabOptions } from "@playground/data/styleOptions";
 import SegmentedControl from "@playground/components/segmentedControl";
+import Logo from "@playground/components/logo";
 import "./styles.css";
 
 import type { HeaderProps } from "./types";
@@ -8,15 +9,8 @@ const Header = ({ tab, adapterView, colorMode, onTabChange, onAdapterViewChange,
   <header className="header">
     <div className="header-inner">
       <div className="brand">
-        <span className="brand-logo" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-        <div>
-          <p className="brand-name">formcraft</p>
-          <p className="brand-tagline">Playground consumindo o pacote gerado em dist/</p>
-        </div>
+        <Logo />
+        <p className="brand-tagline">Playground consumindo o pacote gerado em dist/</p>
       </div>
 
       <nav className="header-tabs" aria-label="Seções do playground">

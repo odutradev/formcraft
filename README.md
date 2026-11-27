@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="formcraft" width="100%" />
+</p>
+
 # formcraft
 
 Biblioteca React para formulários em etapas orientados a configuração. Você descreve as etapas, os grupos e os campos em um objeto `FormConfig`, e a biblioteca cuida da renderização, da validação, da navegação entre etapas e dos campos condicionais.

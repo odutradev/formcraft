@@ -23,47 +23,10 @@
   margin-right: auto;
 }
 
-.brand-logo {
-  display: inline-flex;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--fc-color-primary), color-mix(in srgb, var(--fc-color-primary) 55%, #000));
-  box-shadow: 0 6px 16px -6px var(--fc-color-primary);
-}
-
-.brand-logo span {
-  width: 5px;
-  border-radius: 3px;
-  background: #fff;
-}
-
-.brand-logo span:nth-child(1) {
-  height: 8px;
-  opacity: 0.6;
-}
-
-.brand-logo span:nth-child(2) {
-  height: 14px;
-  opacity: 0.8;
-}
-
-.brand-logo span:nth-child(3) {
-  height: 20px;
-}
-
-.brand-name {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
 .brand-tagline {
   margin: 0;
+  padding-left: 12px;
+  border-left: 1px solid var(--page-border);
   color: var(--page-muted);
   font-size: 0.75rem;
 }

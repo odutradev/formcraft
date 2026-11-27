@@ -4,8 +4,15 @@ Todas as mudanças relevantes desta biblioteca ficam registradas aqui. O formato
 
 ## [Não lançado]
 
+### Adicionado
+
+- Identidade visual "Encaixe": o F montado com três blocos, nas cores cobalto, âmbar, tinta e névoa, com Space Grotesk, Inter e JetBrains Mono.
+- `brand.html` na raiz, com o conceito, as cores, a tipografia e um gerador de logo (tipo, paleta, fundo, proporção, tamanho e formato) que exporta SVG com o nome em curvas, PNG, WEBP e JPG.
+- Banner com o logo no topo do README (`assets/banner.svg`).
+
 ### Alterado
 
+- O playground usa o novo logo no cabeçalho, que acompanha o modo claro e escuro, e o novo ícone como favicon.
 - **Quebra de compatibilidade:** o pacote passa a se chamar `formcraft`. Os caminhos de importação mudam de `multi-step-form` para `formcraft`, e o mesmo vale para as entradas dos adapters (`formcraft/mui`, `formcraft/native`, `formcraft/mantine`, `formcraft/antd`, `formcraft/chakra` e `formcraft/enchase`).
 - **Quebra de compatibilidade:** a camada CSS do adapter nativo passa de `@layer multi-step-form` para `@layer formcraft`. Quem declara a ordem das camadas precisa trocar o nome.
 - O repositório passa a ser `odutradev/formcraft`. A instalação fica `npm install github:odutradev/formcraft`.

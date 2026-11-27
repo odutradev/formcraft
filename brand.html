@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>formcraft · Identidade visual</title>
+<meta name="description" content="Identidade visual do formcraft: conceito, cores, tipografia e gerador de logo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='12' y='8' width='13' height='48' rx='3' fill='%232B4BD6'/%3E%3Crect x='29' y='8' width='24' height='13' rx='3' fill='%232B4BD6'/%3E%3Crect x='29' y='25' width='15' height='13' rx='3' fill='%23F2A93B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+<style>
+:root{--cobalt:#2B4BD6;--amber:#F2A93B;--ink:#131A30;--mist:#EEF1FA;--muted:#3A4566;--soft:#4A5578;--line:#C9D1EA;--card:#FFFFFF;--display:"Space Grotesk",Inter,system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--mist);color:var(--ink);font:400 16px/1.55 Inter,system-ui,sans-serif}
+a{color:var(--cobalt)}
+a:hover{color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.hero{background:var(--cobalt);color:var(--mist)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;padding-block:56px}
+.eyebrow{margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+h1{margin:0 0 16px;font:700 clamp(36px,6vw,56px)/1 var(--display);letter-spacing:-.03em}
+.hero p{margin:0;max-width:420px;font-size:18px;line-height:1.5}
+.hero-logo{display:flex;justify-content:flex-end}
+.hero-logo svg{display:block;max-width:100%;height:auto}
+section{padding-block:48px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{margin:0 0 8px;font:700 28px/1.15 var(--display);letter-spacing:-.01em}
+h3{margin:0 0 12px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.lead{margin:0 0 28px;max-width:640px;color:var(--muted)}
+.concept{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+.concept .lead{margin:0}
+.sizes{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px}
+.tile{display:flex;align-items:center;justify-content:center;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.tile.dark{background:var(--ink);border-color:var(--ink)}
+.tile.big{width:96px;height:96px}
+.tile.small{width:48px;height:48px;border-radius:10px}
+.tile.tiny{width:32px;height:32px;border-radius:8px}
+.caption{align-self:center;margin:0;font-size:13px;color:var(--soft)}
+.swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.swatch{display:flex;flex-direction:column;gap:6px;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.swatch:focus-visible,.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.swatch .chip-color{height:72px;border-radius:10px;border:1px solid rgb(19 26 48 / .12)}
+.swatch strong{font-size:14px}
+.swatch code{font:500 13px var(--mono);color:var(--soft)}
+.swatch span{font-size:13px;color:var(--muted)}
+.fonts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.font{padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.font .aa{display:block;margin-bottom:8px;font-size:56px;line-height:1;color:var(--ink)}
+.font strong{display:block;font-size:15px}
+.font span{font-size:13px;color:var(--muted)}
+.generator{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:start}
+.options{display:flex;flex-direction:column;gap:20px}
+fieldset{min-width:0;margin:0;padding:0;border:0}
+legend{padding:0;margin-bottom:8px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:14px;font-weight:500}
+.chip input:checked + span{border-color:var(--cobalt);background:var(--cobalt);color:#fff}
+.chip input:focus-visible + span{outline:3px solid var(--ink);outline-offset:2px}
+.dot{width:14px;height:14px;border-radius:50%;border:1px solid rgb(19 26 48 / .3)}
+.preview{position:sticky;top:16px;display:flex;flex-direction:column;gap:12px}
+.stage{display:flex;align-items:center;justify-content:center;min-height:320px;padding:24px;border:1px solid var(--line);border-radius:12px;background:repeating-conic-gradient(var(--check-a,#fff) 0% 25%,var(--check-b,#E4E9F7) 0% 50%) 50% / 20px 20px;overflow:hidden}
+.stage svg{display:block;max-width:100%;height:auto;max-height:420px}
+.meta{margin:0;font:500 13px var(--mono);color:var(--soft);overflow-wrap:anywhere}
+.hint{margin:0;min-height:1.55em;font-size:13px;color:#8A4B00}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{min-height:44px;padding:0 20px;border:1px solid var(--cobalt);border-radius:8px;background:var(--cobalt);color:#fff;font:600 14px Inter,system-ui,sans-serif;cursor:pointer}
+.btn.secondary{background:var(--card);color:var(--cobalt)}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.status{min-height:1.55em;margin:0;font-size:13px;color:var(--muted)}
+.swatches + .status{margin-top:12px}
+footer{padding-block:32px;font-size:13px;color:var(--soft)}
+@media (max-width:880px){
+.hero .wrap,.concept,.generator{grid-template-columns:minmax(0,1fr)}
+.hero-logo{justify-content:flex-start}
+.swatches{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fonts{grid-template-columns:minmax(0,1fr)}
+.preview{position:static}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">formcraft · Identidade visual</p>
+      <h1>Encaixe</h1>
+      <p>Formulários montados peça por peça, a partir de uma configuração.</p>
+    </div>
+    <div class="hero-logo" id="hero-logo"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="concept-title">
+    <div class="concept">
+      <div>
+        <h2 id="concept-title">O conceito</h2>
+        <p class="lead">O F é montado com três blocos, como campos que se encaixam numa etapa. Dois blocos cobalto formam a estrutura e o bloco âmbar é o campo em foco. Geométrico e direto, funciona bem em 16 px e combina com qualquer adapter.</p>
+      </div>
+      <div class="sizes" id="sizes"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="colors-title">
+    <h2 id="colors-title">Cores</h2>
+    <p class="lead">Quatro cores. O âmbar é escasso: marca só o que está em foco. Clique em uma cor para copiar o HEX.</p>
+    <div class="swatches" id="swatches"></div>
+    <p class="status" id="swatch-status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section aria-labelledby="type-title">
+    <h2 id="type-title">Tipografia</h2>
+    <p class="lead">Três famílias do Google Fonts, cada uma com um papel.</p>
+    <div class="fonts">
+      <div class="font"><span class="aa" style="font-family:var(--display);font-weight:700">Aa</span><strong>Space Grotesk</strong><span>Marca e títulos, em 700</span></div>
+      <div class="font"><span class="aa" style="font-family:Inter,sans-serif;font-weight:500">Aa</span><strong>Inter</strong><span>Texto e interface</span></div>
+      <div class="font"><span class="aa" style="font-family:var(--mono);font-weight:500">Aa</span><strong>JetBrains Mono</strong><span>Código e valores HEX</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="generator-title">
+    <h2 id="generator-title">Gerador de logo</h2>
+    <p class="lead">Monte qualquer versão: tipo, cores, fundo, proporção, tamanho e formato. Os SVGs têm o nome em curvas e funcionam sem a fonte instalada. Tudo é gerado no seu navegador.</p>
+    <div class="generator">
+      <form class="options" id="generator" autocomplete="off"></form>
+      <div class="preview">
+        <div class="stage" id="stage" role="img" aria-label="Prévia do logo"></div>
+        <p class="meta" id="meta"></p>
+        <p class="hint" id="hint"></p>
+        <div class="actions">
+          <button type="button" class="btn" id="download-svg">Baixar SVG</button>
+          <button type="button" class="btn" id="download-raster">Baixar PNG</button>
+          <button type="button" class="btn secondary" id="copy-svg">Copiar SVG</button>
+        </div>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">formcraft · Encaixe. Os arquivos são gerados localmente e nada é enviado a servidores.</footer>
+
+<script>
+const colors = { cobalt: "#2B4BD6", amber: "#F2A93B", ink: "#131A30", mist: "#EEF1FA", white: "#FFFFFF" };
+
+const wordmark = {
+  left: 2.6,
+  right: 439.2,
+  top: -70,
+  bottom: 1.4,
+  d: "M27.8 0L15.2 0L15.2 -39.2L2.6 -39.2L2.6 -49.6L15.2 -49.6L15.2 -58.8Q15.2 -63.9 18.25 -66.95Q21.3 -70 26.2 -70L26.2 -70L39.2 -70L39.2 -59.6L30.6 -59.6Q27.8 -59.6 27.8 -56.6L27.8 -56.6L27.8 -49.6L40.8 -49.6L40.8 -39.2L27.8 -39.2L27.8 0M69.6 1.4L69.6 1.4Q62.2 1.4 56.3 -1.6Q50.4 -4.6 47 -10.3Q43.6 -16 43.6 -24L43.6 -24L43.6 -25.6Q43.6 -33.6 47 -39.3Q50.4 -45 56.3 -48Q62.2 -51 69.6 -51L69.6 -51Q77 -51 82.9 -48Q88.8 -45 92.2 -39.3Q95.6 -33.6 95.6 -25.6L95.6 -25.6L95.6 -24Q95.6 -16 92.2 -10.3Q88.8 -4.6 82.9 -1.6Q77 1.4 69.6 1.4M69.6 -9.8L69.6 -9.8Q75.4 -9.8 79.2 -13.55Q83 -17.3 83 -24.3L83 -24.3L83 -25.3Q83 -32.3 79.25 -36.05Q75.5 -39.8 69.6 -39.8L69.6 -39.8Q63.8 -39.8 60 -36.05Q56.2 -32.3 56.2 -25.3L56.2 -25.3L56.2 -24.3Q56.2 -17.3 60 -13.55Q63.8 -9.8 69.6 -9.8M116.8 0L104.2 0L104.2 -49.6L116.6 -49.6L116.6 -44L118.4 -44Q119.5 -47 122.05 -48.4Q124.6 -49.8 128 -49.8L128 -49.8L134 -49.8L134 -38.6L127.8 -38.6Q123 -38.6 119.9 -36.05Q116.8 -33.5 116.8 -28.2L116.8 -28.2L116.8 0M153.4 0L140.8 0L140.8 -49.6L153.2 -49.6L153.2 -44.2L155 -44.2Q156.3 -46.7 159.3 -48.55Q162.3 -50.4 167.2 -50.4L167.2 -50.4Q172.5 -50.4 175.7 -48.35Q178.9 -46.3 180.6 -43L180.6 -43L182.4 -43Q184.1 -46.2 187.2 -48.3Q190.3 -50.4 196 -50.4L196 -50.4Q200.6 -50.4 204.35 -48.45Q208.1 -46.5 210.35 -42.55Q212.6 -38.6 212.6 -32.6L212.6 -32.6L212.6 0L200 0L200 -31.7Q200 -35.8 197.9 -37.85Q195.8 -39.9 192 -39.9L192 -39.9Q187.7 -39.9 185.35 -37.15Q183 -34.4 183 -29.3L183 -29.3L183 0L170.4 0L170.4 -31.7Q170.4 -35.8 168.3 -37.85Q166.2 -39.9 162.4 -39.9L162.4 -39.9Q158.1 -39.9 155.75 -37.15Q153.4 -34.4 153.4 -29.3L153.4 -29.3L153.4 0M246.5 1.4L246.5 1.4Q239.3 1.4 233.45 -1.6Q227.6 -4.6 224.2 -10.3Q220.8 -16 220.8 -24.1L220.8 -24.1L220.8 -25.5Q220.8 -33.6 224.2 -39.3Q227.6 -45 233.45 -48Q239.3 -51 246.5 -51L246.5 -51Q253.6 -51 258.7 -48.5Q263.8 -46 266.95 -41.65Q270.1 -37.3 271.1 -31.8L271.1 -31.8L258.9 -29.2Q258.5 -32.2 257.1 -34.6Q255.7 -37 253.15 -38.4Q250.6 -39.8 246.8 -39.8L246.8 -39.8Q243 -39.8 239.95 -38.15Q236.9 -36.5 235.15 -33.25Q233.4 -30 233.4 -25.3L233.4 -25.3L233.4 -24.3Q233.4 -19.6 235.15 -16.35Q236.9 -13.1 239.95 -11.45Q243 -9.8 246.8 -9.8L246.8 -9.8Q252.5 -9.8 255.45 -12.75Q258.4 -15.7 259.2 -20.5L259.2 -20.5L271.4 -17.6Q270.1 -12.3 266.95 -7.95Q263.8 -3.6 258.7 -1.1Q253.6 1.4 246.5 1.4M291.4 0L278.8 0L278.8 -49.6L291.2 -49.6L291.2 -44L293 -44Q294.1 -47 296.65 -48.4Q299.2 -49.8 302.6 -49.8L302.6 -49.8L308.6 -49.8L308.6 -38.6L302.4 -38.6Q297.6 -38.6 294.5 -36.05Q291.4 -33.5 291.4 -28.2L291.4 -28.2L291.4 0M329.6 1.4L329.6 1.4Q324.3 1.4 320.1 -0.45Q315.9 -2.3 313.45 -5.85Q311 -9.4 311 -14.5L311 -14.5Q311 -19.6 313.45 -23.05Q315.9 -26.5 320.25 -28.25Q324.6 -30 330.2 -30L330.2 -30L343.8 -30L343.8 -32.8Q343.8 -36.3 341.6 -38.55Q339.4 -40.8 334.6 -40.8L334.6 -40.8Q329.9 -40.8 327.6 -38.65Q325.3 -36.5 324.6 -33.1L324.6 -33.1L313 -37Q314.2 -40.8 316.85 -43.95Q319.5 -47.1 323.95 -49.05Q328.4 -51 334.8 -51L334.8 -51Q344.6 -51 350.3 -46.1Q356 -41.2 356 -31.9L356 -31.9L356 -13.4Q356 -10.4 358.8 -10.4L358.8 -10.4L362.8 -10.4L362.8 0L354.4 0Q350.7 0 348.3 -1.8Q345.9 -3.6 345.9 -6.6L345.9 -6.6L345.9 -6.7L344 -6.7Q343.6 -5.5 342.2 -3.55Q340.8 -1.6 337.8 -0.1Q334.8 1.4 329.6 1.4M331.8 -8.8L331.8 -8.8Q337.1 -8.8 340.45 -11.75Q343.8 -14.7 343.8 -19.6L343.8 -19.6L343.8 -20.6L331.1 -20.6Q327.6 -20.6 325.6 -19.1Q323.6 -17.6 323.6 -14.9L323.6 -14.9Q323.6 -12.2 325.7 -10.5Q327.8 -8.8 331.8 -8.8M386.2 0L373.6 0L373.6 -39.2L361 -39.2L361 -49.6L373.6 -49.6L373.6 -58.8Q373.6 -63.9 376.65 -66.95Q379.7 -70 384.6 -70L384.6 -70L397.6 -70L397.6 -59.6L389 -59.6Q386.2 -59.6 386.2 -56.6L386.2 -56.6L386.2 -49.6L399.2 -49.6L399.2 -39.2L386.2 -39.2L386.2 0M438 0L424 0Q419.1 0 416.05 -3.05Q413 -6.1 413 -11.2L413 -11.2L413 -39.2L400.6 -39.2L400.6 -49.6L413 -49.6L413 -65L425.6 -65L425.6 -49.6L439.2 -49.6L439.2 -39.2L425.6 -39.2L425.6 -13.4Q425.6 -10.4 428.4 -10.4L428.4 -10.4L438 -10.4L438 0"
+};
+
+const symbolBox = { x: 12, y: 8, width: 41, height: 48 };
+
+const symbolBlocks = [
+  { x: 12, y: 8, width: 13, height: 48, role: "primary" },
+  { x: 29, y: 8, width: 24, height: 13, role: "primary" },
+  { x: 29, y: 25, width: 15, height: 13, role: "accent" }
+];
+
+const palettes = {
+  light: { slug: "claro", label: "Padrão claro", primary: colors.cobalt, accent: colors.amber, text: colors.ink, background: "transparent" },
+  dark: { slug: "escuro", label: "Padrão escuro", primary: colors.mist, accent: colors.amber, text: colors.mist, background: "ink" },
+  monoInk: { slug: "mono-tinta", label: "Mono tinta", primary: colors.ink, accent: colors.ink, text: colors.ink, background: "transparent" },
+  monoWhite: { slug: "mono-branco", label: "Mono branco", primary: colors.white, accent: colors.white, text: colors.white, background: "ink" },
+  monoCobalt: { slug: "mono-cobalto", label: "Mono cobalto", primary: colors.cobalt, accent: colors.cobalt, text: colors.cobalt, background: "transparent" }
+};
+
+const backgrounds = {
+  transparent: { label: "Transparente", color: null },
+  mist: { label: "Névoa", color: colors.mist },
+  ink: { label: "Tinta", color: colors.ink },
+  white: { label: "Branco", color: colors.white },
+  cobalt: { label: "Cobalto", color: colors.cobalt }
+};
+
+const ratios = {
+  original: { label: "Original (recorte justo)", value: null },
+  square: { label: "1:1", value: [1, 1] },
+  classic: { label: "4:3", value: [4, 3] },
+  wide: { label: "16:9", value: [16, 9] },
+  social: { label: "1,91:1 · Open Graph", value: [1.91, 1] },
+  banner: { label: "3:1 · banner", value: [3, 1] },
+  story: { label: "9:16", value: [9, 16] }
+};
+
+const sizes = [256, 512, 1024, 2048, 4096];
+
+const formats = {
+  png: { label: "PNG", mime: "image/png", extension: "png" },
+  webp: { label: "WEBP", mime: "image/webp", extension: "webp" },
+  jpg: { label: "JPG", mime: "image/jpeg", extension: "jpg" }
+};
+
+const round = (value) => Math.round(value * 10000) / 10000;
+
+const renderSymbol = (palette, x, y, scale) =>
+  `<g transform="translate(${round(x)} ${round(y)}) scale(${round(scale)}) translate(${-symbolBox.x} ${-symbolBox.y})">${symbolBlocks
+    .map((block) => `<rect x="${block.x}" y="${block.y}" width="${block.width}" height="${block.height}" rx="3" fill="${palette[block.role]}"/>`)
+    .join("")}</g>`;
+
+const renderWordmark = (color, x, baseline, scale) =>
+  `<path transform="translate(${round(x - wordmark.left * scale)} ${round(baseline)}) scale(${round(scale)})" fill="${color}" d="${wordmark.d}"/>`;
+
+const wordmarkWidth = wordmark.right - wordmark.left;
+const wordmarkHeight = wordmark.bottom - wordmark.top;
+
+const layouts = {
+  horizontal: {
+    slug: "horizontal",
+    label: "Horizontal (símbolo + nome)",
+    build: (palette) => {
+      const scale = symbolBox.height / -wordmark.top;
+      const gap = 18;
+      return {
+        width: symbolBox.width + gap + wordmarkWidth * scale,
+        height: symbolBox.height + wordmark.bottom * scale,
+        body: renderSymbol(palette, 0, 0, 1) + renderWordmark(palette.text, symbolBox.width + gap, symbolBox.height, scale)
+      };
+    }
+  },
+  stacked: {
+    slug: "empilhada",
+    label: "Empilhada",
+    build: (palette) => {
+      const symbolScale = 1.5;
+      const wordScale = 0.72;
+      const gap = 26;
+      const symbolWidth = symbolBox.width * symbolScale;
+      const symbolHeight = symbolBox.height * symbolScale;
+      const width = Math.max(wordmarkWidth * wordScale, symbolWidth);
+      return {
+        width,
+        height: symbolHeight + gap + wordmarkHeight * wordScale,
+        body:
+          renderSymbol(palette, (width - symbolWidth) / 2, 0, symbolScale) +
+          renderWordmark(palette.text, (width - wordmarkWidth * wordScale) / 2, symbolHeight + gap - wordmark.top * wordScale, wordScale)
+      };
+    }
+  },
+  symbol: {
+    slug: "simbolo",
+    label: "Símbolo",
+    build: (palette) => ({ width: symbolBox.width, height: symbolBox.height, body: renderSymbol(palette, 0, 0, 1) })
+  },
+  wordmark: {
+    slug: "logotipo",
+    label: "Logotipo (só o nome)",
+    build: (palette) => ({ width: wordmarkWidth, height: wordmarkHeight, body: renderWordmark(palette.text, 0, -wordmark.top, 1) })
+  },
+  appIcon: {
+    slug: "icone",
+    label: "Ícone do app",
+    ownBackground: true,
+    build: (palette, tile) => {
+      const size = 128;
+      const scale = 1.4;
+      return {
+        width: size,
+        height: size,
+        body:
+          `<rect width="${size}" height="${size}" rx="${size * 0.225}" fill="${tile}"/>` +
+          renderSymbol(palette, (size - symbolBox.width * scale) / 2, (size - symbolBox.height * scale) / 2, scale)
+      };
+    }
+  }
+};
+
+const resolveFrame = (content, ratio, hasBackground) => {
+  if (!ratios[ratio].value) {
+    const padding = hasBackground ? Math.round(Math.min(content.width, content.height) * 0.35) : 0;
+    return { width: content.width + padding * 2, height: content.height + padding * 2, scale: 1 };
+  }
+  const [ratioWidth, ratioHeight] = ratios[ratio].value;
+  const unit = 1000 / Math.max(ratioWidth, ratioHeight);
+  const width = ratioWidth * unit;
+  const height = ratioHeight * unit;
+  return { width, height, scale: Math.min((width * 0.62) / content.width, (height * 0.5) / content.height) };
+};
+
+const compose = ({ type, palette, background, ratio, size }) => {
+  const layout = layouts[type];
+  const colorSet = palettes[palette];
+  const fill = backgrounds[background].color;
+  const content = layout.build(colorSet, fill ?? colors.mist);
+  const hasBackground = fill !== null && !layout.ownBackground;
+  const frame = resolveFrame(content, ratio, hasBackground);
+  const x = (frame.width - content.width * frame.scale) / 2;
+  const y = (frame.height - content.height * frame.scale) / 2;
+  const factor = size / Math.max(frame.width, frame.height);
+  const width = Math.max(1, Math.round(frame.width * factor));
+  const height = Math.max(1, Math.round(frame.height * factor));
+  const backdrop = hasBackground ? `<rect width="${round(frame.width)}" height="${round(frame.height)}" fill="${fill}"/>` : "";
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${round(frame.width)} ${round(frame.height)}" width="${width}" height="${height}" role="img" aria-label="formcraft"><title>formcraft</title>${backdrop}<g transform="translate(${round(x)} ${round(y)}) scale(${round(frame.scale)})">${content.body}</g></svg>`;
+  return { svg, width, height };
+};
+
+const channel = (hex, offset) => {
+  const value = parseInt(hex.slice(offset, offset + 2), 16) / 255;
+  return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+};
+
+const luminance = (hex) => 0.2126 * channel(hex, 1) + 0.7152 * channel(hex, 3) + 0.0722 * channel(hex, 5);
+
+const contrast = (first, second) => {
+  const [lighter, darker] = [luminance(first), luminance(second)].sort((a, b) => b - a);
+  return (lighter + 0.05) / (darker + 0.05);
+};
+
+const swatches = [
+  { name: "Cobalto", hex: colors.cobalt, role: "Marca e ação principal" },
+  { name: "Âmbar", hex: colors.amber, role: "O campo em foco" },
+  { name: "Tinta", hex: colors.ink, role: "Texto e fundos escuros" },
+  { name: "Névoa", hex: colors.mist, role: "Fundos claros" }
+];
+
+const defaults = { type: "horizontal", palette: "light", background: "transparent", ratio: "original", size: "2048", format: "png" };
+
+const groups = [
+  { name: "type", legend: "Tipo de logo", options: Object.entries(layouts).map(([value, layout]) => ({ value, label: layout.label })) },
+  { name: "palette", legend: "Paleta de cores", options: Object.entries(palettes).map(([value, palette]) => ({ value, label: palette.label })) },
+  {
+    name: "background",
+    legend: "Fundo",
+    options: Object.entries(backgrounds).map(([value, background]) => ({ value, label: background.label, color: background.color }))
+  },
+  { name: "ratio", legend: "Proporção", options: Object.entries(ratios).map(([value, ratio]) => ({ value, label: ratio.label })) },
+  { name: "size", legend: "Tamanho no lado maior", options: sizes.map((size) => ({ value: String(size), label: `${size} px` })) },
+  { name: "format", legend: "Formato da imagem", options: Object.entries(formats).map(([value, format]) => ({ value, label: format.label })) }
+];
+
+const renderGroup = (group) =>
+  `<fieldset><legend>${group.legend}</legend><div class="chips">${group.options
+    .map(
+      (option) =>
+        `<label class="chip"><input type="radio" name="${group.name}" value="${option.value}"${defaults[group.name] === option.value ? " checked" : ""}><span>${
+          group.name === "background" ? `<i class="dot" style="background:${option.color ?? "repeating-conic-gradient(#fff 0% 25%,#C9D1EA 0% 50%) 50% / 8px 8px"}"></i>` : ""
+        }${option.label}</span></label>`
+    )
+    .join("")}</div></fieldset>`;
+
+const form = document.getElementById("generator");
+const stage = document.getElementById("stage");
+const meta = document.getElementById("meta");
+const hint = document.getElementById("hint");
+const statusLine = document.getElementById("status");
+const swatchStatus = document.getElementById("swatch-status");
+const rasterButton = document.getElementById("download-raster");
+
+form.innerHTML = groups.map(renderGroup).join("");
+
+const readOptions = () => {
+  const values = Object.fromEntries(new FormData(form));
+  return { ...values, size: Number(values.size) };
+};
+
+const buildFileName = (options, extension) =>
+  `formcraft-${layouts[options.type].slug}-${palettes[options.palette].slug}-${options.size}px.${extension}`;
+
+const buildHint = (options) => {
+  const palette = palettes[options.palette];
+  const fill = backgrounds[options.background].color;
+  if (options.format === "jpg" && !fill && !layouts[options.type].ownBackground) return "JPG não guarda transparência: o fundo sai branco.";
+  if (!fill) return "";
+  const logoColors = layouts[options.type].ownBackground ? [palette.primary] : [palette.primary, palette.text];
+  return Math.min(...logoColors.map((logoColor) => contrast(logoColor, fill))) < 3 ? "Pouco contraste entre o logo e o fundo escolhido." : "";
+};
+
+const render = () => {
+  const options = readOptions();
+  const palette = palettes[options.palette];
+  const isLightLogo = luminance(palette.text) > 0.5;
+  stage.style.setProperty("--check-a", isLightLogo ? "#1B2442" : "#FFFFFF");
+  stage.style.setProperty("--check-b", isLightLogo ? "#242F55" : "#E4E9F7");
+  stage.innerHTML = compose({ ...options, size: 480 }).svg;
+  const output = compose(options);
+  const format = formats[options.format];
+  meta.textContent = `${output.width} × ${output.height} px · ${buildFileName(options, format.extension)}`;
+  hint.textContent = buildHint(options);
+  rasterButton.textContent = `Baixar ${format.label}`;
+};
+
+form.addEventListener("change", (event) => {
+  if (event.target.name === "palette") form.elements.background.value = palettes[event.target.value].background;
+  statusLine.textContent = "";
+  render();
+});
+
+const saveBlob = (blob, fileName) => {
+  const url = URL.createObjectURL(blob);
+  Object.assign(document.createElement("a"), { href: url, download: fileName }).click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
+
+const rasterize = (output, format, backdrop) =>
+  new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => {
+      const canvas = Object.assign(document.createElement("canvas"), { width: output.width, height: output.height });
+      const context = canvas.getContext("2d");
+      if (backdrop) {
+        context.fillStyle = backdrop;
+        context.fillRect(0, 0, output.width, output.height);
+      }
+      context.drawImage(image, 0, 0, output.width, output.height);
+      canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("export"))), format.mime, 0.92);
+    };
+    image.onerror = reject;
+    image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(output.svg)}`;
+  });
+
+document.getElementById("download-svg").addEventListener("click", () => {
+  const options = readOptions();
+  saveBlob(new Blob([compose(options).svg], { type: "image/svg+xml" }), buildFileName(options, "svg"));
+  statusLine.textContent = "SVG baixado.";
+});
+
+rasterButton.addEventListener("click", async () => {
+  const options = readOptions();
+  const format = formats[options.format];
+  const needsBackdrop = options.format === "jpg" && !backgrounds[options.background].color;
+  try {
+    const blob = await rasterize(compose(options), format, needsBackdrop ? colors.white : null);
+    saveBlob(blob, buildFileName(options, format.extension));
+    statusLine.textContent = `${format.label} baixado.`;
+  } catch {
+    statusLine.textContent = "Não foi possível gerar a imagem. Tente baixar o SVG.";
+  }
+});
+
+document.getElementById("copy-svg").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(compose(readOptions()).svg);
+    statusLine.textContent = "SVG copiado.";
+  } catch {
+    statusLine.textContent = "Não foi possível copiar. Use Baixar SVG.";
+  }
+});
+
+const heroOptions = { palette: "dark", background: "transparent", ratio: "original" };
+
+document.getElementById("hero-logo").innerHTML = compose({ ...heroOptions, type: "horizontal", size: 520 }).svg;
+
+document.getElementById("sizes").innerHTML =
+  `<div class="tile big">${compose({ ...heroOptions, palette: "light", type: "symbol", size: 64 }).svg}</div>` +
+  `<div class="tile big dark">${compose({ ...heroOptions, type: "symbol", size: 64 }).svg}</div>` +
+  `<div class="tile small">${compose({ ...heroOptions, palette: "light", type: "symbol", size: 32 }).svg}</div>` +
+  `<div class="tile tiny">${compose({ ...heroOptions, palette: "light", type: "symbol", size: 16 }).svg}</div>` +
+  `<p class="caption">Símbolo em 64, 32 e 16 px</p>`;
+
+const swatchContainer = document.getElementById("swatches");
+
+swatchContainer.innerHTML = swatches
+  .map(
+    (swatch) =>
+      `<button type="button" class="swatch" data-hex="${swatch.hex}" aria-label="Copiar ${swatch.name} ${swatch.hex}"><span class="chip-color" style="background:${swatch.hex}"></span><strong>${swatch.name}</strong><code>${swatch.hex}</code><span>${swatch.role}</span></button>`
+  )
+  .join("");
+
+swatchContainer.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-hex]");
+  if (!button) return;
+  try {
+    await navigator.clipboard.writeText(button.dataset.hex);
+    swatchStatus.textContent = `${button.dataset.hex} copiado.`;
+  } catch {
+    swatchStatus.textContent = "Não foi possível copiar o HEX.";
+  }
+});
+
+render();
+</script>
+</body>
+</html>
